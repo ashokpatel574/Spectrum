@@ -1,0 +1,68 @@
+.signUpPage_container {
+  max-width: 45rem;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 2rem 3rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 1rem;
+}
+
+.signUp_title {
+  text-align: center;
+  font-size: 2.8rem;
+  padding-bottom: 0.5rem;
+}
+
+.signUp_form {
+  gap: 0.5rem;
+}
+
+.signUp_form label {
+  display: inline-block;
+  width: 100%;
+  font-size: 1.8rem;
+}
+
+.signUp_form label span {
+  color: var(--error-color);
+}
+
+.signUp_form input {
+  display: inline-block;
+  width: 100%;
+  border: 0;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--border-color-dark);
+  border-radius: 5px;
+  font-size: 1.65rem;
+}
+
+.signUpError_text {
+  color: var(--error-color);
+  font-size: 1.6rem;
+  margin-left: 0.25rem;
+}
+
+.signUpPage-policyText {
+  margin: 0.5rem 0;
+}
+
+.signUpPage-policyText span {
+  font-size: 1.4rem;
+  color: var(--text-color-two);
+}
+
+.signUpBtn {
+  padding: 0.8rem 1.6rem;
+  font-size: 1.8rem;
+  margin: 0.75rem 0;
+}
+
+.goto_login-text {
+  font-size: 1.6rem;
+}
+
+.goto_login-text a {
+  margin-left: 0.5rem;
+  font-size: 1.7rem;
+}

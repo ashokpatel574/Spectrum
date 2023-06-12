@@ -1,0 +1,9 @@
+@import url(../pages/LandingPage/landingPage.css);
+@import url(../pages/Login/loginPage.css);
+@import url(../pages//Signup/signUpPage.css);
+
+.sprectrumApp_container {
+  max-width: 130rem;
+  margin: 0 auto;
+  min-height: 100vh;
+}
