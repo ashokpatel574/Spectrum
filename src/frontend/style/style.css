@@ -3,7 +3,7 @@
 @import url(../pages//Signup/signUpPage.css);
 
 .sprectrumApp_container {
-  max-width: 130rem;
+  width: 100%;
   margin: 0 auto;
-  min-height: 100vh;
+  height: 100vh;
 }

@@ -1,0 +1,30 @@
+.sideBar_container {
+  flex: 0.2;
+  width: 100%;
+  padding: 2rem;
+  flex-shrink: 0;
+}
+
+.sideBar_container-list {
+  gap: 2rem;
+}
+
+.sideBar_container-listItem {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.sideBar_container-listItem span {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.sideBar_container-listItem svg {
+  font-size: 2.8rem;
+}
+
+.sideBar_container-listItem .postBtn {
+  display: inline-block;
+  padding: 0.5rem 5rem;
+  border-radius: 5px;
+}
