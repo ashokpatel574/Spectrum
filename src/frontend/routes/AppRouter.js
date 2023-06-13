@@ -7,6 +7,7 @@ import LandingPage from "../pages/LandingPage/LandingPage";
 import RequireAuth from "../components/RequireAuth/RequireAuth";
 import HomePage from "../pages/Home/HomePage";
 import MockAPI from "../components/mockApi/MockApi";
+import DataContextProvider from "../context/DataContext";
 
 // React Router version > 6.4
 const AppRouter = createBrowserRouter([
@@ -14,7 +15,9 @@ const AppRouter = createBrowserRouter([
     path: "/",
     element: (
       <AuthContextProvider>
-        <App />
+        <DataContextProvider>
+          <App />
+        </DataContextProvider>
       </AuthContextProvider>
     ),
     children: [
