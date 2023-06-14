@@ -18,6 +18,11 @@
   --background-color-two: #ddd;
 }
 
+.customCSS {
+  background-color: #fff;
+  color: #2ecc71;
+}
+
 *,
 *::before,
 *::after {

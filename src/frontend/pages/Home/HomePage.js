@@ -2,13 +2,13 @@ import React from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import SuggestionFeed from "../../components/SuggestionFeed/SuggestionFeed";
 import "./homePage.css";
-import HomeFeed from "../../components/HomeFeed/HomeFeed";
+import { Outlet } from "react-router-dom";
 
 const HomePage = () => {
   return (
     <article className="homePage_container">
       <SideBar />
-      <HomeFeed />
+      <Outlet />
       <SuggestionFeed />
     </article>
   );
