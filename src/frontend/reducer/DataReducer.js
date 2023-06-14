@@ -1,6 +1,7 @@
 export const initialState = {
   posts: [],
   users: [],
+  bookmarks: [],
 };
 
 export const DataReducer = (state, action) => {
@@ -12,6 +13,10 @@ export const DataReducer = (state, action) => {
 
       if (action.payload.type === "allUsers") {
         return { ...state, users: action.payload.value };
+      }
+
+      if (action.payload.type === "userBookmarkData") {
+        return { ...state, bookmark: action.payload.value };
       }
 
       return state;
