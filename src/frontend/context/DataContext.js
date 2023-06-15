@@ -10,7 +10,7 @@ const DataContextProvider = ({ children }) => {
 
   useEffect(() => {
     getServerData(dispatch, token, currentUser);
-  }, [currentUser, token]);
+  }, []);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>
