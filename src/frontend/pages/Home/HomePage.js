@@ -1,17 +1,8 @@
-import React from "react";
-import SideBar from "../../components/SideBar/SideBar";
-import SuggestionFeed from "../../components/SuggestionFeed/SuggestionFeed";
 import "./homePage.css";
-import { Outlet } from "react-router-dom";
+import HomeFeed from "../../components/HomeFeed/HomeFeed";
 
 const HomePage = () => {
-  return (
-    <article className="homePage_container">
-      <SideBar />
-      <Outlet />
-      <SuggestionFeed />
-    </article>
-  );
+  return <HomeFeed />;
 };
 
 export default HomePage;
