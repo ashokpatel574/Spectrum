@@ -7,27 +7,62 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
+import {
+  addLikedPost,
+  getuserProfile,
+  postBookmark,
+  removeBookmark,
+  removeLikedPost,
+} from "../../services/dataServices";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ post }) => {
   const { _id: postId, profileImage, username, createdAt, content } = post;
+  const { token, currentUser } = useAuth();
+  const {
+    state: { bookmarks, users, posts },
+    dispatch,
+  } = useData();
 
-  const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
-  console.log(currentUser);
+  const isPostBookmarked = bookmarks?.some(
+    (bookItem) => bookItem._id === postId
+  );
 
-  const isPostBookmarked = currentUser.bookmarks.includes(postId);
+  const isPostLiked = posts
+    .find((post) => post._id === postId)
+    .likes.likedBy.some((post) => post.username === currentUser.username);
 
-  const postLikeHandler = (postId) => {};
+  const postLikeHandler = (postId) => {
+    isPostLiked
+      ? removeLikedPost(postId, token, dispatch)
+      : addLikedPost(postId, token, dispatch);
+  };
 
-  const postBookMarkHandler = (postId) => {};
+  const postBookMarkHandler = (postId) => {
+    isPostBookmarked
+      ? removeBookmark(postId, token, dispatch, currentUser.username)
+      : postBookmark(postId, token, dispatch, currentUser.username);
+  };
+
+  const getProfileId = users.find((user) => user.username === username)?._id;
+
+  const profileHandler = () => {
+    getuserProfile(getProfileId, dispatch);
+    navigate(`profile/${getProfileId}`);
+  };
 
   return (
     <li className="feedListItem">
-      <div className="feedListItem_ImgContainer">
+      <div onClick={profileHandler} className="feedListItem_ImgContainer">
         <img src={profileImage} alt="profile" />
       </div>
       <div className="feedListItem_InfoContainer flex-column">
-        <div className="feedListItem_InfoContainer-header">
+        <div
+          onClick={profileHandler}
+          className="feedListItem_InfoContainer-header"
+        >
           <span>
             {post?.firstname} {post?.lastname}
           </span>
@@ -44,19 +79,19 @@ const Post = ({ post }) => {
         </div>
         <div className="feedListItem_InfoContainer-footer">
           <span
-            className="post_likeIcon"
+            className={`post_likeIcon ${isPostLiked && "selected"}`}
             onClick={() => postLikeHandler(postId)}
           >
-            <FavoriteBorderIcon />
+            {isPostLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </span>
           <span className="post_commenIcon">
             <ChatBubbleOutlineIcon />
           </span>
           <span
-            className="post_bookmarkIcon"
+            className={`post_bookmarkIcon ${isPostBookmarked && "marked"}`}
             onClick={() => postBookMarkHandler(postId)}
           >
-            <BookmarkBorderIcon />
+            {isPostBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </span>
           <span className="post_shareIcon">
             <ShareIcon />

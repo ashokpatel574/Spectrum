@@ -17,6 +17,7 @@ export const posts = [
       likeCount: 3,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Jane",
           lastname: "Doe",
           username: "janedoe",
@@ -32,6 +33,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         },
         {
+          _id: uuid(),
           firstname: "anna",
           lastname: "chase",
           username: "annachase",
@@ -88,6 +90,7 @@ export const posts = [
       likeCount: 4,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Hermione",
           lastname: "Granger",
           username: "hergranger",
@@ -95,6 +98,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         },
         {
+          _id: uuid(),
           firstname: "annabeth",
           lastname: "beth",
           username: "annabeth",
@@ -103,6 +107,7 @@ export const posts = [
           website: "https://riordan.fandom.com/wiki/Annabeth_Chase",
         },
         {
+          _id: uuid(),
           firstname: "ashok",
           lastname: "patel",
           username: "ashokpatel",
@@ -110,6 +115,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
         },
         {
+          _id: uuid(),
           firstname: "Bharati",
           lastname: "Subramanian",
           username: "bhaaratii",
@@ -168,6 +174,7 @@ export const posts = [
       likeCount: 2,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Shubham",
           lastname: "Soni",
           username: "shubhamsoni",
@@ -175,6 +182,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
         },
         {
+          _id: uuid(),
           firstname: "anna",
           lastname: "chase",
           username: "annachase",
@@ -233,6 +241,7 @@ export const posts = [
       likeCount: 4,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Hermione",
           lastname: "Granger",
           username: "hergranger",
@@ -240,6 +249,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Annabeth",
           lastname: "Chase",
           username: "annachase",
@@ -248,6 +258,7 @@ export const posts = [
           website: "https://riordan.fandom.com/wiki/Annabeth_Chase",
         },
         {
+          _id: uuid(),
           firstname: "ashok",
           lastname: "patel",
           username: "ashokpatel",
@@ -255,6 +266,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
         },
         {
+          _id: uuid(),
           firstname: "Bharati",
           lastname: "Subramanian",
           username: "bhaaratii",
@@ -311,6 +323,7 @@ export const posts = [
       likeCount: 2,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Alison",
           lastname: "Day",
           username: "aliiday",
@@ -318,6 +331,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858637/Allison-Day-1-2_skydx2.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Jennifer",
           lastname: "Jäger",
           username: "jennyj",
@@ -345,6 +359,7 @@ export const posts = [
       likeCount: 1,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Hermione",
           lastname: "Granger",
           username: "hergranger",
@@ -372,6 +387,7 @@ export const posts = [
       likeCount: 6,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Jane",
           lastname: "Doe",
           username: "janedoe",
@@ -379,6 +395,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722016/landingImg_dff0ku.png",
         },
         {
+          _id: uuid(),
           firstname: "Ryan",
           lastname: "Terry",
           username: "terrry",
@@ -386,6 +403,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652857916/photo-1527980965255-d3b416303d12_qg20fu.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Sheldon",
           lastname: "Borenstein",
           username: "shelbor",
@@ -393,6 +411,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Alison",
           lastname: "Day",
           username: "aliiday",
@@ -400,6 +419,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858637/Allison-Day-1-2_skydx2.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Alex",
           lastname: "Smith",
           username: "youknowwho",
@@ -407,6 +427,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722175/profile-img_nxszbk.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Dennis",
           lastname: "Snellenberg",
           username: "dennsnell",
@@ -467,6 +488,7 @@ export const posts = [
       likeCount: 4,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "anna",
           lastname: "chase",
           username: "annachase",
@@ -474,6 +496,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
         },
         {
+          _id: uuid(),
           firstname: "John",
           lastname: "Doe",
           username: "johndoe",
@@ -481,6 +504,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652721997/photo-1531427186611-ecfd6d936c79_tmpw71.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Jane",
           lastname: "Doe",
           username: "janedoe",
@@ -488,6 +512,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722016/landingImg_dff0ku.png",
         },
         {
+          _id: uuid(),
           firstname: "Hermione",
           lastname: "Granger",
           username: "hergranger",
@@ -532,6 +557,7 @@ export const posts = [
       likeCount: 1,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Sheldon",
           lastname: "Borenstein",
           username: "shelbor",
@@ -559,6 +585,7 @@ export const posts = [
       likeCount: 7,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "ashok",
           lastname: "patel",
           username: "ashokpatel",
@@ -566,6 +593,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
         },
         {
+          _id: uuid(),
           firstname: "Shubham",
           lastname: "Soni",
           username: "shubhamsoni",
@@ -573,6 +601,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Bharati",
           lastname: "Subramanian",
           username: "bhaaratii",
@@ -588,6 +617,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722175/profile-img_nxszbk.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Ryan",
           lastname: "Terry",
           username: "terrry",
@@ -603,6 +633,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Alison",
           lastname: "Day",
           username: "aliiday",
@@ -703,6 +734,7 @@ export const posts = [
       likeCount: 3,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Jane",
           lastname: "Doe",
           username: "janedoe",
@@ -718,6 +750,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         },
         {
+          _id: uuid(),
           firstname: "anna",
           lastname: "chase",
           username: "annachase",
@@ -759,6 +792,7 @@ export const posts = [
       likeCount: 1,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Dennis",
           lastname: "Snellenberg",
           username: "dennsnell",
@@ -803,6 +837,7 @@ export const posts = [
       likeCount: 3,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Ryan",
           lastname: "Terry",
           username: "terrry",
@@ -818,6 +853,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Alison",
           lastname: "Day",
           username: "aliiday",
@@ -894,6 +930,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
         },
         {
+          _id: uuid(),
           firstname: "Alison",
           lastname: "Day",
           username: "aliiday",
@@ -936,6 +973,7 @@ export const posts = [
       likeCount: 1,
       likedBy: [
         {
+          _id: uuid(),
           firstname: "Jennifer",
           lastname: "Jäger",
           username: "jennyj",
@@ -1003,6 +1041,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
         },
         {
+          _id: uuid(),
           firstname: "anna",
           lastname: "chase",
           username: "annachase",
@@ -1010,6 +1049,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
         },
         {
+          _id: uuid(),
           firstname: "ashok",
           lastname: "patel",
           username: "ashokpatel",
@@ -1017,6 +1057,7 @@ export const posts = [
             "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
         },
         {
+          _id: uuid(),
           firstname: "Shubham",
           lastname: "Soni",
           username: "shubhamsoni",
