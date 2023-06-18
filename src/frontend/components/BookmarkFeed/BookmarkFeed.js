@@ -1,6 +1,8 @@
 import React from "react";
 import Post from "../Post/Post";
 import { useData } from "../../context/DataContext";
+import FeedHeader from "../FeedHeader/FeedHeader";
+import "./bookmarkFeed.css";
 
 const BookmarkFeed = () => {
   const {
@@ -9,16 +11,16 @@ const BookmarkFeed = () => {
 
   return (
     <section className="postFeed_container">
-      <h3 className="postFeed_container-header">Bookmark</h3>
+      <FeedHeader headerState={"Bookmark"} />
 
       {bookmarks.length > 0 ? (
-        <ul>
+        <ul className="flex-column">
           {bookmarks?.map((post, id) => {
             return <Post key={id} post={post} />;
           })}
         </ul>
       ) : (
-        <p>You don't have any posts bookmarked!</p>
+        <p className="emptyBookmark">You don't have any posts bookmarked!</p>
       )}
     </section>
   );

@@ -4,6 +4,8 @@ import { useAuth } from "../../context/AuthContext";
 import Post from "../Post/Post";
 import AddPost from "../AddPost/AddPost";
 
+import FeedHeader from "../FeedHeader/FeedHeader";
+
 const HomeFeed = () => {
   const {
     state: { posts },
@@ -23,9 +25,9 @@ const HomeFeed = () => {
 
   return (
     <section className="postFeed_container">
-      <h3 className="postFeed_container-header">Home</h3>
       <AddPost />
-      <ul>
+      <FeedHeader headerState={"Home"} />
+      <ul className="flex-column">
         {homeFeedPost?.map((post, id) => {
           return <Post key={id} post={post} />;
         })}

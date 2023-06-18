@@ -27,10 +27,17 @@ export const getLoginCredentials = async (
     }
   } catch (error) {
     console.log("loginError", error);
+
+    if (error.response.status === 500) {
+      // setAuthError({
+      //   status: 500,
+      //   message: `Something went wrong! Try again later`,
+      // });
+    }
   }
 };
 
-export const setLoginCredentials = async (
+export const setSignUpCredentials = async (
   username,
   password,
   email,
@@ -39,7 +46,10 @@ export const setLoginCredentials = async (
   birthYear,
   gender,
   setToken,
-  setCurrentUser
+  setCurrentUser,
+  setAuthError,
+  setIsLoading,
+  navigate
 ) => {
   try {
     const {
@@ -55,6 +65,8 @@ export const setLoginCredentials = async (
       gender,
     });
 
+    setAuthError(null);
+
     if (status === 200 || status === 201) {
       localStorage.setItem(
         "loginCredentials",
@@ -62,8 +74,23 @@ export const setLoginCredentials = async (
       );
       setToken(encodedToken);
       setCurrentUser(createdUser);
+      navigate("/");
     }
   } catch (error) {
-    console.log("SignUpError", error);
+    console.error("SignUpError", error);
+
+    if (error.response.status === 422) {
+      setAuthError({
+        status: 422,
+        message: "Username Already Exists",
+      });
+    }
+
+    if (error.response.status === 500) {
+      setAuthError({
+        status: 500,
+        message: `Something went wrong! Try again later`,
+      });
+    }
   }
 };

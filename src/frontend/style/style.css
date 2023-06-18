@@ -4,6 +4,16 @@
 
 .sprectrumApp_container {
   width: 100%;
+  height: 100vh;
+}
+
+.homePage_container {
+  max-width: 140rem;
+  width: 100%;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.75fr 5.25fr 2.5fr;
+  grid-template-areas: "sidebar main suggestion";
+  gap: 1.5rem;
   height: 100vh;
 }

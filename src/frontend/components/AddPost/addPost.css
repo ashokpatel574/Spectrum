@@ -1,0 +1,140 @@
+.addPost_container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 2.5rem;
+  margin: 2rem 0;
+  width: 100%;
+  gap: 1.5rem;
+  background-color: var(--background-color-one);
+  border-radius: 0.8rem;
+}
+
+.addPost_InfoContainer {
+  display: flex;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.addPost_ImgContainer {
+  position: relative;
+  width: 8rem;
+  height: 6rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.addPost_ImgContainer img {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(1.2);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.addPost_message {
+  width: 100%;
+}
+
+.addPost_message textarea {
+  width: 100%;
+  min-height: 12rem;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.8rem;
+  font-family: inherit;
+}
+
+.addPost_message textarea:focus {
+  outline: none;
+}
+
+.addPost_BtnContainer {
+  width: 100%;
+  gap: 2.5rem;
+}
+
+.addPost_ImgUpload-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.newPostImg-container {
+  position: relative;
+  max-width: 15rem;
+  height: 100%;
+  width: 100%;
+}
+
+.newPostImg-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.newPostImg-container span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 7%;
+  right: -7%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  border: 1.5px solid var(--border-color-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--background-color-three);
+  color: var(--dark-color-one);
+  transition: all 0.25s;
+}
+
+.newPostImg-container span:hover {
+  color: var(--error-color);
+}
+
+.addPost_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1.5rem;
+}
+
+.addPost_footer svg {
+  font-size: 3.2rem;
+  margin-right: 1.5rem;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.addPost_footer svg:hover {
+  color: var(--primary-color-one);
+}
+
+.uploadImage {
+  display: none;
+}
+
+.postBtn {
+  padding: 0.4rem 0.8rem;
+  font-size: 1.8rem;
+  margin-left: auto;
+  border-radius: 0.5rem;
+  transition: all 0.25s;
+}
+
+.postBtn:hover {
+  background-color: var(--primary-color-two);
+}

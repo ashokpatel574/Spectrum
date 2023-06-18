@@ -15,9 +15,21 @@ import {
   removeLikedPost,
 } from "../../services/dataServices";
 import { useNavigate } from "react-router-dom";
+import "./post.css";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
+import { timeAgo } from "../../constant";
 
 const Post = ({ post }) => {
-  const { _id: postId, profileImage, username, createdAt, content } = post;
+  const {
+    _id: postId,
+    profileImage,
+    username,
+    createdAt,
+    content,
+    likes: { likeCount },
+    comments,
+  } = post;
   const { token, currentUser } = useAuth();
   const {
     state: { bookmarks, users, posts },
@@ -54,21 +66,42 @@ const Post = ({ post }) => {
   };
 
   return (
-    <li className="feedListItem">
-      <div onClick={profileHandler} className="feedListItem_ImgContainer">
-        <img src={profileImage} alt="profile" />
-      </div>
-      <div className="feedListItem_InfoContainer flex-column">
+    <li className="feedListItem flex-column">
+      <div className="feedListItem_header ">
+        <div onClick={profileHandler} className="feedListItem_ImgContainer">
+          <img src={profileImage} alt="profile" />
+        </div>
+
         <div
           onClick={profileHandler}
-          className="feedListItem_InfoContainer-header"
+          className="feedListItem_header-text flex-column"
         >
-          <span>
-            {post?.firstname} {post?.lastname}
-          </span>
-          <span>@{username}</span>
-          <span>{`${createdAt}`}</span>
+          <div className="feedListItem_header-text-partOne">
+            <span className="fullname">
+              {post?.firstname} {post?.lastname}
+            </span>
+          </div>
+
+          <div className="feedListItem_header-text-partTwo">
+            <span className="username">@{username}</span>
+            <span className="postDate">{`${timeAgo(createdAt)}`}</span>
+          </div>
         </div>
+
+        {currentUser.username === username && (
+          <div className="feedListItem_header-text-partThree">
+            <span>
+              <MoreHorizIcon />
+            </span>
+            <span className="post-settings flex-column">
+              <span>Edit</span>
+              <span>Delete</span>
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="feedListItem_main flex-column">
         <div className="feedListItem_InfoContainer-body flex-column">
           <p className="feedListItem_InfoContainer-body--content">{content}</p>
           {post?.postImage && (
@@ -83,9 +116,13 @@ const Post = ({ post }) => {
             onClick={() => postLikeHandler(postId)}
           >
             {isPostLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {likeCount > 0 && <span className="likeCount">{likeCount}</span>}
           </span>
-          <span className="post_commenIcon">
+          <span className="post_commentIcon">
             <ChatBubbleOutlineIcon />
+            {comments.length > 0 && (
+              <span className="commentCount">{comments.length}</span>
+            )}
           </span>
           <span
             className={`post_bookmarkIcon ${isPostBookmarked && "marked"}`}
