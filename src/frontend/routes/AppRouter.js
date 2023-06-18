@@ -67,7 +67,7 @@ const AppRouter = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: "/user",
     element: (
       <AuthContextProvider>
         <LandingPage />

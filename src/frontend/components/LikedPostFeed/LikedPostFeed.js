@@ -2,6 +2,8 @@ import React from "react";
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
 import Post from "../Post/Post";
+import FeedHeader from "../FeedHeader/FeedHeader";
+import "./likedPostFeed.css";
 
 const LikedPostFeed = () => {
   const {
@@ -17,15 +19,15 @@ const LikedPostFeed = () => {
 
   return (
     <section className="postFeed_container">
-      <h3 className="postFeed_container-header">Liked Posts</h3>
+      <FeedHeader headerState={"Liked Posts"} />
       {likedPostlist.length > 0 ? (
-        <ul>
+        <ul className="flex-column">
           {likedPostlist?.map((post, id) => {
             return <Post key={id} post={post} />;
           })}
         </ul>
       ) : (
-        <p>You don't have any liked posts!</p>
+        <p className="emptylikedPosts">You don't have any liked posts!</p>
       )}
     </section>
   );

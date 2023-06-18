@@ -4,15 +4,13 @@ import { useAuth } from "../../context/AuthContext";
 
 const SuggestionFeed = () => {
   const {
-    state: { posts, users },
+    state: { users },
   } = useData();
   const { currentUser } = useAuth();
 
-  const currentUserFollowing = currentUser.following.map(
+  const currentUserFollowing = currentUser?.following.map(
     ({ username }) => username
   );
-
-  console.log(currentUserFollowing);
 
   const suggestProfile = users.filter(
     (user) =>
@@ -22,16 +20,27 @@ const SuggestionFeed = () => {
 
   return (
     <section className="suggestion_container">
-      <h3 className="suggestion_title">Suggestion</h3>
-      {
-        <ul>
-          {suggestProfile?.map((profile) => (
-            <li key={profile.username}>
-              {profile.firstname + " " + profile.lastname}
-            </li>
-          ))}
-        </ul>
-      }
+      <p className="suggestion_title">Who to follow?</p>
+      <ul className="flex-column">
+        {suggestProfile?.map((profile) => (
+          <li key={profile.username} className="suggestionListItem">
+            <div className="suggestionListItem_ImgContainer">
+              <img src={profile.profileImage} alt="profile" />
+            </div>
+
+            <div className="suggestionListItem_textContainer flex-column">
+              <span className="fullname">
+                {profile?.firstname} {profile?.lastname}
+              </span>
+              <span className="username">@{profile.username}</span>
+            </div>
+
+            <div className="suggestionListItem_BtnContainer">
+              <button className="btn followBtn"> + Follow</button>
+            </div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

@@ -2,10 +2,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import ExploreIcon from "@mui/icons-material/Explore";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./sideBar.css";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const SideBar = () => {
+  const { currentUser } = useAuth();
   return (
     <section className="sideBar_container ">
       <ul className="sideBar_container-list flex-column ">
@@ -39,6 +42,14 @@ const SideBar = () => {
               <FavoriteIcon />
             </span>
             <span>Like Posts</span>
+          </NavLink>
+        </li>
+        <li className="sideBar_container-listItem">
+          <NavLink to={`/profile/${currentUser._id}`}>
+            <span>
+              <AccountCircleIcon />
+            </span>
+            <span>Profile</span>
           </NavLink>
         </li>
         <li className="sideBar_container-listItem">

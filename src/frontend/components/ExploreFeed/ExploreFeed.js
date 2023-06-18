@@ -2,6 +2,7 @@ import React from "react";
 import { useData } from "../../context/DataContext";
 
 import Post from "../Post/Post";
+import FeedHeader from "../FeedHeader/FeedHeader";
 
 const ExploreFeed = () => {
   const {
@@ -10,8 +11,8 @@ const ExploreFeed = () => {
 
   return (
     <section className="postFeed_container">
-      <h3 className="postFeed_container-header">Explore</h3>
-      <ul>
+      <FeedHeader headerState={"Explore"} />
+      <ul className="flex-column">
         {posts?.map((post, id) => {
           return <Post key={id} post={post} />;
         })}

@@ -102,10 +102,10 @@ ul {
   padding-inline-start: 0;
 }
 
-/* a {
+a {
   text-decoration: none;
   color: inherit;
-} */
+}
 
 /* flex and grid utilities */
 
@@ -326,4 +326,3 @@ ul {
 .Toastify__toast-body div:last-child {
   font-size: 1.6rem;
 }
-

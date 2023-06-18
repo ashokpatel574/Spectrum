@@ -8,10 +8,21 @@ const AuthContextProvider = ({ children }) => {
   );
   const [token, setToken] = useState(localStorageToken?.token);
   const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
+  const [isLoading, setIsLoading] = useState(false);
+  const [authError, setAuthError] = useState("");
 
   return (
     <AuthContext.Provider
-      value={{ token, currentUser, setToken, setCurrentUser }}
+      value={{
+        token,
+        currentUser,
+        setToken,
+        setCurrentUser,
+        isLoading,
+        authError,
+        setAuthError,
+        setIsLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>
