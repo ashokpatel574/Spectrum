@@ -1,8 +1,8 @@
 export const initialState = {
   posts: [],
   users: [],
-  bookmarks: [],
   userProfile: {},
+  profileDetails: {},
 };
 
 export const DataReducer = (state, action) => {
@@ -13,11 +13,24 @@ export const DataReducer = (state, action) => {
       }
 
       if (action.payload.type === "allUsers") {
-        return { ...state, users: action.payload.value };
+        return {
+          ...state,
+          users: action.payload.value,
+          userProfile: action.payload.currentUser,
+        };
       }
 
       if (action.payload.type === "userBookmarkData") {
-        return { ...state, bookmark: action.payload.value };
+        return {
+          ...state,
+          users: [
+            ...state.users.map((item) =>
+              item.id === action.payload.currentUser.id
+                ? { ...item, bookmarks: [...action.payload.value] }
+                : item
+            ),
+          ],
+        };
       }
 
       return state;
@@ -35,8 +48,11 @@ export const DataReducer = (state, action) => {
 
       return {
         ...state,
-        bookmarks: [...action.payload.bookmarkValue],
         users: updatedUserData,
+        userProfile: {
+          ...state.userProfile,
+          bookmarks: [...action.payload.bookmarkValue],
+        },
       };
     }
 
@@ -52,8 +68,11 @@ export const DataReducer = (state, action) => {
 
       return {
         ...state,
-        bookmarks: [...action.payload.bookmarkValue],
         users: updatedUserData,
+        userProfile: {
+          ...state.userProfile,
+          bookmarks: [...action.payload.bookmarkValue],
+        },
       };
     }
 
@@ -71,10 +90,35 @@ export const DataReducer = (state, action) => {
       };
     }
 
-    case "AddUserProfile": {
+    case "getProfileDetails": {
       return {
         ...state,
-        userProfile: action.payload,
+        profileDetails: action.payload,
+      };
+    }
+
+    case "updateUserFollower": {
+      return {
+        ...state,
+        users: [
+          ...state.users.map((item) => {
+            return item._id !== action.payload.updatedUser._id &&
+              item._id !== action.payload.updatedFollowedUser._id
+              ? item
+              : item._id === action.payload.updatedUser._id
+              ? action.payload.updatedUser
+              : action.payload.updatedFollowedUser;
+          }),
+        ],
+        userProfile: action.payload.updatedUser,
+        profileDetails:
+          state.profileDetails._id === action.payload.updatedUser._id
+            ? {
+                ...action.payload.updatedUser,
+              }
+            : {
+                ...action.payload.updatedFollowedUser,
+              },
       };
     }
 

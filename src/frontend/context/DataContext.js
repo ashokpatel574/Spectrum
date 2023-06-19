@@ -20,5 +20,4 @@ const DataContextProvider = ({ children }) => {
 };
 
 export default DataContextProvider;
-
 export const useData = () => useContext(DataContext);

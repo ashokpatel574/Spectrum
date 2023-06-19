@@ -16,4 +16,15 @@ const validatePassword = (input) => {
   return /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/gm.test(input);
 };
 
-export { validateEmail, validateNumber, validateOnlyString, validatePassword };
+const userFollowingList = (currentUser, users) => {
+  return users.find((user) => user.username === currentUser.username)
+    ?.following;
+};
+
+export {
+  validateEmail,
+  validateNumber,
+  validateOnlyString,
+  validatePassword,
+  userFollowingList,
+};
