@@ -7,7 +7,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const users = [
   {
-    _id: uuid(),
+    _id: "b0fb276d-0e13-4dd5-84fa-c72314f1dc21",
     firstname: "ashok",
     lastname: "patel",
     username: "ashokpatel",
@@ -89,7 +89,7 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "3cf48e2f-e199-46fc-86ea-804ca3ab49c9",
     firstname: "Shubham",
     lastname: "Soni",
     username: "shubhamsoni",
@@ -117,7 +117,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -159,7 +159,7 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "1de0af5d-8505-47be-9dfc-8e1a9c7261c2",
     firstname: "Bharati",
     lastname: "Subramanian",
     username: "bhaaratii",
@@ -225,7 +225,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -243,7 +243,8 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "18b6b5fe-2f11-4606-9777-8b172d8db165",
+
     firstname: "John",
     lastname: "Doe",
     username: "johndoe",
@@ -313,7 +314,8 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "21b6b5fe-2f11-4606-1487-8b172d8db145",
+
     firstname: "Jane",
     lastname: "Doe",
     username: "janedoe",
@@ -348,7 +350,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721997/photo-1531427186611-ecfd6d936c79_tmpw71.jpg",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -390,7 +392,7 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "4786b5fe-2f11-4606-9777-8b172d8db008",
     firstname: "Hermione",
     lastname: "Granger",
     username: "hergranger",
@@ -418,7 +420,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -448,7 +450,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721997/photo-1531427186611-ecfd6d936c79_tmpw71.jpg",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -466,8 +468,8 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
-    firstname: "Annachase",
+    _id: "8bb6b5fe-2f11-7429-1749-8b172d8db145",
+    firstname: "Anna",
     lastname: "Chase",
     username: "annachase",
     password: "grayeyes",
@@ -548,7 +550,7 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "b4b6b5fe-2f11-4606-1234-8b172d8db145",
     firstname: "Perseus",
     lastname: "Jackson",
     username: "percyblues",
@@ -575,7 +577,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -612,7 +614,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -623,7 +625,7 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "21b6b5fe-2f11-4606-9777-8b172d8db145",
     firstname: "Alex",
     lastname: "Smith",
     username: "youknowwho",
@@ -659,7 +661,7 @@ export const users = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
       },
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -684,7 +686,7 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "8e97f472-a5dc-4388-a6aa-384c83e5959b",
     firstname: "Ryan",
     lastname: "Terry",
     username: "terrry",
@@ -713,7 +715,7 @@ export const users = [
     ],
     following: [
       {
-        firstname: "Annachase",
+        firstname: "Anna",
         lastname: "Chase",
         username: "annachase",
         profileImage:
@@ -731,14 +733,14 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "7awqd122-a5dc-4388-a6aa-384c83e5959b",
     firstname: "Sheldon",
     lastname: "Borenstein",
     username: "shelbor",
     password: "CQutx25i8r",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    bio: "I teach at Sheldon’s art academy.",
+    bio: "I teach at Sheldon's art academy.",
     website: "https://www.artstation.com/sheldonborenstein",
     profileImage:
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652858279/photo-1507003211169-0a1dd7228f2d_zgfurs.jpg",
@@ -761,7 +763,7 @@ export const users = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "1e97f952-a5dc-8165-a6aa-384c83e5959b",
     firstname: "Alison",
     lastname: "Day",
     username: "aliiday",
@@ -794,7 +796,7 @@ export const users = [
     bookmarks: [],
   },
   {
-    _id: uuid(),
+    _id: "7qm7f952-a5dc-8165-7q1t-384c83e5959b",
     firstname: "Jennifer",
     lastname: "Jäger",
     username: "jennyj",
@@ -833,7 +835,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: "2e97f472-a5ef-0009-a6aa-157c83e5959b",
     firstname: "Dennis",
     lastname: "Snellenberg",
     username: "dennsnell",

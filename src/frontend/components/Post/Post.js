@@ -32,19 +32,19 @@ const Post = ({ post }) => {
   } = post;
   const { token, currentUser } = useAuth();
   const {
-    state: { bookmarks, users, posts },
+    state: { users, posts, userProfile },
     dispatch,
   } = useData();
 
   const navigate = useNavigate();
 
-  const isPostBookmarked = bookmarks?.some(
+  const isPostBookmarked = userProfile?.bookmarks?.some(
     (bookItem) => bookItem._id === postId
   );
 
   const isPostLiked = posts
     .find((post) => post._id === postId)
-    .likes.likedBy.some((post) => post.username === currentUser.username);
+    .likes.likedBy.some((post) => post.username === userProfile?.username);
 
   const postLikeHandler = (postId) => {
     isPostLiked
@@ -54,15 +54,15 @@ const Post = ({ post }) => {
 
   const postBookMarkHandler = (postId) => {
     isPostBookmarked
-      ? removeBookmark(postId, token, dispatch, currentUser.username)
-      : postBookmark(postId, token, dispatch, currentUser.username);
+      ? removeBookmark(postId, token, dispatch, userProfile?.username)
+      : postBookmark(postId, token, dispatch, userProfile?.username);
   };
 
-  const getProfileId = users.find((user) => user.username === username)?._id;
-
   const profileHandler = () => {
+    const getProfileId = users.find((user) => user.username === username)?._id;
+
     getuserProfile(getProfileId, dispatch);
-    navigate(`profile/${getProfileId}`);
+    navigate(`/profile/${getProfileId}`);
   };
 
   return (

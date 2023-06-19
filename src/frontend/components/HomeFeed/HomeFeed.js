@@ -1,25 +1,23 @@
 import "./homeFeed.css";
 import { useData } from "../../context/DataContext";
-import { useAuth } from "../../context/AuthContext";
 import Post from "../Post/Post";
 import AddPost from "../AddPost/AddPost";
-
 import FeedHeader from "../FeedHeader/FeedHeader";
 
 const HomeFeed = () => {
   const {
-    state: { posts },
+    state: { posts, userProfile },
   } = useData();
-  const { currentUser } = useAuth();
 
-  const currentUserFollowingList = currentUser.following.map(
-    (item) => item.username
+  const currentUserFollowingList = userProfile?.following?.map(
+    (item) => item?.username
   );
 
-  const homeFeedPost = posts.filter((post) => {
+  const homeFeedPost = posts?.filter((post) => {
     return (
-      currentUserFollowingList.some((listItem) => listItem === post.username) ||
-      post.username === currentUser.username
+      currentUserFollowingList?.some(
+        (listItem) => listItem === post?.username
+      ) || post?.username === userProfile?.username
     );
   });
 

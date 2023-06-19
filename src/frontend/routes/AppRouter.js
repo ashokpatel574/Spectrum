@@ -57,7 +57,7 @@ const AppRouter = createBrowserRouter([
         ),
       },
       {
-        path: "profile/:profileId",
+        path: "/profile/:profileId",
         element: (
           <RequireAuth>
             <ProfilePage />

@@ -14,7 +14,11 @@ export const getServerData = async (dispatch, token, currentUser) => {
     if (getAllUsers?.status === 200 || getAllUsers?.status === 201) {
       dispatch({
         type: "InitialServerData",
-        payload: { type: "allUsers", value: getAllUsers?.data?.users },
+        payload: {
+          type: "allUsers",
+          value: getAllUsers?.data?.users,
+          currentUser: currentUser,
+        },
       });
     }
 
@@ -30,6 +34,7 @@ export const getServerData = async (dispatch, token, currentUser) => {
         type: "InitialServerData",
         payload: {
           type: "userBookmarkData",
+          currentUser: currentUser,
           value: getUsersBookmarkedPost?.data?.bookmarks,
         },
       });
@@ -48,8 +53,6 @@ export const postBookmark = async (postId, token, dispatch, username) => {
         headers: { authorization: token },
       }
     );
-
-    console.log(data.bookmarks);
 
     if (status === 200 || status === 201) {
       dispatch({
@@ -135,12 +138,62 @@ export const getuserProfile = async (userId, dispatch) => {
   try {
     const { status, data } = await axios.get(`/api/users/${userId}`);
 
-    console.log(data.user);
-
     if (status === 200 || status === 201) {
-      dispatch({ type: "AddUserProfile", payload: data?.user });
+      dispatch({ type: "getProfileDetails", payload: data?.user });
     }
   } catch (error) {
     console.error("userprofile", error);
+  }
+};
+
+export const updateFollowList = async (followUserId, token, dispatch) => {
+  try {
+    const { status, data } = await axios.post(
+      `/api/users/follow/${followUserId}`,
+      {},
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    if (status === 200 || status === 201) {
+      console.log(data);
+      dispatch({
+        type: "updateUserFollower",
+        payload: {
+          updatedUser: data.user,
+          updatedFollowedUser: data.followUser,
+        },
+      });
+    }
+  } catch (error) {
+    console.error("addUserFollow", error);
+  }
+};
+
+export const updateUnFollowList = async (followUserId, token, dispatch) => {
+  try {
+    const { status, data } = await axios.post(
+      `/api/users/unfollow/${followUserId}`,
+      {},
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    console.log(data);
+
+    if (status === 200 || status === 201) {
+      console.log(data);
+      dispatch({
+        type: "updateUserFollower",
+        payload: {
+          updatedUser: data.user,
+          updatedFollowedUser: data.followUser,
+        },
+      });
+    }
+  } catch (error) {
+    console.error("removeUserFollow", error);
   }
 };

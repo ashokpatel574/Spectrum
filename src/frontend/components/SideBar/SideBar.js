@@ -5,10 +5,20 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./sideBar.css";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useData } from "../../context/DataContext";
+import { getuserProfile } from "../../services/dataServices";
 
 const SideBar = () => {
-  const { currentUser } = useAuth();
+  const {
+    state: { userProfile },
+    dispatch,
+  } = useData();
+
+  const userId = userProfile?._id;
+  const profileHandler = () => {
+    getuserProfile(userId, dispatch);
+  };
+
   return (
     <section className="sideBar_container ">
       <ul className="sideBar_container-list flex-column ">
@@ -45,7 +55,7 @@ const SideBar = () => {
           </NavLink>
         </li>
         <li className="sideBar_container-listItem">
-          <NavLink to={`/profile/${currentUser._id}`}>
+          <NavLink onClick={profileHandler} to={`profile/${userId}`}>
             <span>
               <AccountCircleIcon />
             </span>

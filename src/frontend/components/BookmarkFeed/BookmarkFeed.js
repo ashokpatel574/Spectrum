@@ -6,16 +6,17 @@ import "./bookmarkFeed.css";
 
 const BookmarkFeed = () => {
   const {
-    state: { bookmarks },
+    state: { userProfile },
   } = useData();
+
+  const bookmarksData = userProfile?.bookmarks;
 
   return (
     <section className="postFeed_container">
       <FeedHeader headerState={"Bookmark"} />
-
-      {bookmarks.length > 0 ? (
+      {bookmarksData?.length > 0 ? (
         <ul className="flex-column">
-          {bookmarks?.map((post, id) => {
+          {bookmarksData?.map((post, id) => {
             return <Post key={id} post={post} />;
           })}
         </ul>

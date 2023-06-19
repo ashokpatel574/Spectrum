@@ -149,6 +149,7 @@ export const bookmarkPostHandler = function (schema, request) {
       { _id: user._id },
       { ...user, updatedAt: formatDate() }
     );
+
     return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
@@ -247,13 +248,29 @@ export const followUserHandler = function (schema, request) {
       return new Response(400, {}, { errors: ["User Already following"] });
     }
 
+    const revisedFollowUser = {
+      _id: followUser._id,
+      firstname: followUser.firstname,
+      lastname: followUser.lastname,
+      username: followUser.username,
+      profileImage: followUser.profileImage,
+    };
+
+    const revisedUser = {
+      _id: user._id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      username: user.username,
+      profileImage: user.profileImage,
+    };
+
     const updatedUser = {
       ...user,
-      following: [...user.following, { ...followUser }],
+      following: [...user.following, { ...revisedFollowUser }],
     };
     const updatedFollowUser = {
       ...followUser,
-      followers: [...followUser.followers, { ...user }],
+      followers: [...followUser.followers, { ...revisedUser }],
     };
     this.db.users.update(
       { _id: user._id },
