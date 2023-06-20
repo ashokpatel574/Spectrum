@@ -1,7 +1,7 @@
 .postFeed_container {
   position: relative;
   grid-area: main;
-  height: 100vh;
+  height: 125vh;
   overflow-y: scroll;
 }
 

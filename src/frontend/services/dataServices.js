@@ -181,10 +181,7 @@ export const updateUnFollowList = async (followUserId, token, dispatch) => {
       }
     );
 
-    console.log(data);
-
     if (status === 200 || status === 201) {
-      console.log(data);
       dispatch({
         type: "updateUserFollower",
         payload: {
@@ -195,5 +192,146 @@ export const updateUnFollowList = async (followUserId, token, dispatch) => {
     }
   } catch (error) {
     console.error("removeUserFollow", error);
+  }
+};
+
+export const addNewPost = async (token, post, dispatch) => {
+  try {
+    const {
+      status,
+      data: { posts },
+    } = await axios.post(
+      `/api/posts`,
+      {
+        postData: post,
+      },
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "addNewPost",
+        payload: {
+          newpost: posts,
+        },
+      });
+    }
+  } catch (error) {
+    console.log("addnewpost", error);
+  }
+};
+
+export const getPostEditService = async (postId, dispatch) => {
+  try {
+    const {
+      status,
+      data: { post },
+    } = await axios.get(`/api/posts/${postId}`);
+
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "openPostModal",
+        payload: {
+          type: "edit",
+          value: post,
+        },
+      });
+    }
+  } catch (error) {
+    console.error("postEdit", error);
+  }
+};
+
+export const postEditService = async (token, postId, post, dispatch) => {
+  try {
+    const {
+      status,
+      data: { posts },
+    } = await axios.post(
+      `/api/posts/edit/${postId}`,
+      {
+        postData: post,
+      },
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "updateEditedPost",
+        payload: posts,
+      });
+    }
+  } catch (error) {
+    console.error("postEdit", error);
+  }
+};
+
+export const deletePostService = async (token, postId, dispatch) => {
+  try {
+    const {
+      status,
+      data: { posts },
+    } = await axios.delete(
+      `/api/posts/${postId}`,
+
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "deletePost",
+        payload: posts,
+      });
+    }
+  } catch (error) {
+    console.error("deletePostService", error);
+  }
+};
+
+export const getUserProfileService = async (userId, dispatch) => {
+  try {
+    const {
+      status,
+      data: { user },
+    } = await axios.get(`/api/users/${userId}`);
+
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "openProfileModal",
+        payload: user,
+      });
+    }
+  } catch (error) {
+    console.error("getUserProfileService", error);
+  }
+};
+
+export const updateUserProfileService = async (token, userData, dispatch) => {
+  try {
+    const {
+      status,
+      data: { user },
+    } = await axios.post(
+      `/api/users/edit`,
+      { userData: userData },
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "updateEditedProfile",
+        payload: user,
+      });
+    }
+  } catch (error) {
+    console.error("updateUserProfileService", error);
   }
 };

@@ -3,8 +3,9 @@
 @import url(../pages//Signup/signUpPage.css);
 
 .sprectrumApp_container {
+  position: relative;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
 }
 
 .homePage_container {
@@ -15,5 +16,38 @@
   grid-template-columns: 1.75fr 5.25fr 2.5fr;
   grid-template-areas: "sidebar main suggestion";
   gap: 1.5rem;
-  height: 100vh;
+  height: fit-content;
+  padding-bottom: 3.5rem;
+}
+
+.postModal_main-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  background-color: var(--background-color-one);
+  max-width: 45rem;
+  height: fit-content;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+}
+
+.profileModal_main-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  background-color: var(--background-color-one);
+  max-width: 45rem;
+  height: fit-content;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
 }

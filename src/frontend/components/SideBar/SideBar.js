@@ -19,6 +19,16 @@ const SideBar = () => {
     getuserProfile(userId, dispatch);
   };
 
+  const sideBarAddPostHandler = () => {
+    dispatch({
+      type: "openPostModal",
+      payload: {
+        type: "newPost",
+        value: null,
+      },
+    });
+  };
+
   return (
     <section className="sideBar_container ">
       <ul className="sideBar_container-list flex-column ">
@@ -63,7 +73,9 @@ const SideBar = () => {
           </NavLink>
         </li>
         <li className="sideBar_container-listItem">
-          <span className="btn postBtn">Post</span>
+          <span onClick={sideBarAddPostHandler} className="btn postBtn">
+            Post
+          </span>
         </li>
       </ul>
     </section>

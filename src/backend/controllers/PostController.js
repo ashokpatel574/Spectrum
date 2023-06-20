@@ -78,17 +78,23 @@ export const createPostHandler = function (schema, request) {
       );
     }
     const { postData } = JSON.parse(request.requestBody);
+
     const post = {
       _id: uuid(),
-      ...postData,
+      content: postData?.message,
+      postImage: (postData?.files?.length !== 0 && postData?.files) || null,
       likes: {
         likeCount: 0,
         likedBy: [],
         dislikedBy: [],
       },
       username: user.username,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      profileImage: user.profileImage,
       createdAt: formatDate(),
       updatedAt: formatDate(),
+      comments: [],
     };
     this.db.posts.insert(post);
     return new Response(201, {}, { posts: this.db.posts });
