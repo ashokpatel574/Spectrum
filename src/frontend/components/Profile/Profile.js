@@ -3,9 +3,13 @@ import React from "react";
 import LinkIcon from "@mui/icons-material/Link";
 import "./profile.css";
 import { useData } from "../../context/DataContext";
-import { updateFollowList } from "../../services/dataServices";
+import {
+  getUserProfileService,
+  updateFollowList,
+} from "../../services/dataServices";
 import { useAuth } from "../../context/AuthContext";
 import { updateUnFollowList } from "../../services/dataServices";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const {
@@ -19,8 +23,6 @@ const Profile = () => {
     (post) => post.username === profileDetails.username
   ).length;
 
-  console.log(profileDetails);
-
   const isFollowed =
     profileDetails._id !== userProfile._id &&
     userProfile.following.some((item) => item._id === profileDetails._id);
@@ -30,6 +32,10 @@ const Profile = () => {
     isFollowed
       ? updateUnFollowList(followUserId, token, dispatch)
       : updateFollowList(followUserId, token, dispatch);
+  };
+
+  const editProfileHandler = () => {
+    getUserProfileService(profileDetails._id, dispatch);
   };
 
   return (
@@ -48,7 +54,9 @@ const Profile = () => {
 
           <div>
             {userProfile.username === profileDetails.username ? (
-              <span className="profile-edit">Edit</span>
+              <span onClick={editProfileHandler} className="profile-edit">
+                Edit
+              </span>
             ) : (
               <span
                 className="profile-edit"
@@ -61,11 +69,7 @@ const Profile = () => {
         </div>
 
         <div className="profile_details-partTwo">
-          <span>
-            {profileDetails?.content} Dream big, work hard, and make it happen.
-            #Motivation Every day is a new opportunity to make a positive
-            change. #NewDay #Inspiration
-          </span>
+          <span>{profileDetails?.bio}</span>
         </div>
         <div className="profile_details-partThree">
           <span>{userPosts} Posts</span>
@@ -75,7 +79,7 @@ const Profile = () => {
         <div className="profile_details-partFour">
           <span>
             <LinkIcon />
-            https
+            <Link to={profileDetails.website}>{profileDetails.website}</Link>
           </span>
         </div>
       </div>

@@ -11,8 +11,9 @@ export const posts = [
     _id: uuid(),
     content: `Dream big, work hard, and make it happen. #Motivation
     Every day is a new opportunity to make a positive change. #NewDay #Inspiration`,
-    postImage:
+    postImage: [
       "https://res.cloudinary.com/dylkclyom/image/upload/v1653879802/FEvyvsiXsAY6Yjc_mg5kmj.jpg",
+    ],
     likes: {
       likeCount: 3,
       likedBy: [
@@ -84,8 +85,9 @@ export const posts = [
   {
     _id: uuid(),
     content: "I'm so so evil...",
-    postImage:
+    postImage: [
       "https://res.cloudinary.com/dylkclyom/image/upload/v1653880350/464153067332845568-png__700_dlx1wo.jpg",
+    ],
     likes: {
       likeCount: 4,
       likedBy: [

@@ -1,17 +1,104 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 import { useAuth } from "../../context/AuthContext";
+import "./postmodal.css";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import EmojiPicker, { Theme, SuggestionMode } from "emoji-picker-react";
+import { useData } from "../../context/DataContext";
+import { postEditService } from "../../services/dataServices";
+import { addNewPost } from "../../services/dataServices";
 
 const PostModal = () => {
-  const [newPostData, setNewPostData] = useState({
+  const [postModalData, setPostModalData] = useState({
     message: "",
     files: [],
   });
-  const { currentUser } = useAuth();
+  const [emojiModalOpen, setEmojiModalOpen] = useState(false);
+  const { token } = useAuth();
+
+  const {
+    dispatch,
+    state: { postModalDetails, isPostEdited },
+  } = useData();
+
+  console.log(postModalDetails, isPostEdited);
+
+  const postModalHandler = (e) => {
+    e.stopPropagation();
+    const { name, value, files } = e.target;
+    const filesUrl =
+      files && [...files]?.map((file) => URL.createObjectURL(file));
+
+    setPostModalData({
+      ...postModalData,
+      [name]: name === "message" ? value : [...postModalData.files, filesUrl],
+    });
+  };
+
+  const emojiModalHandler = () => {
+    setEmojiModalOpen(!emojiModalOpen);
+  };
+
+  const emojiPickerHandler = (emojidata) => {
+    const updatedPostMessage = postModalData?.message + emojidata.emoji;
+    setPostModalData({
+      ...postModalData,
+      message: updatedPostMessage,
+    });
+    setEmojiModalOpen(!emojiModalOpen);
+  };
+
+  const deletePreviewHandler = (id) => {
+    setPostModalData({
+      ...postModalData,
+      files: postModalData.files.filter((item, index) => index !== id),
+    });
+  };
+
+  const closePostModalHandler = () => {
+    dispatch({
+      type: "closePostModal",
+    });
+  };
+
+  const updatePostModalDataHandler = () => {
+    const updatedPost = {
+      ...postModalDetails,
+      content: postModalData?.message,
+      postImage:
+        postModalData?.files?.length === 0 ? null : postModalData?.files,
+    };
+    postEditService(token, postModalDetails._id, updatedPost, dispatch);
+  };
+
+  const addNewPostHandler = () => {
+    postModalData.message.length > 1 &&
+      addNewPost(token, postModalData, dispatch);
+
+    setPostModalData({
+      message: "",
+      files: [],
+    });
+  };
+
+  useEffect(() => {
+    if (isPostEdited) {
+      setPostModalData({
+        message: postModalDetails?.content,
+        files: postModalDetails?.postImage || [],
+      });
+    }
+  }, [isPostEdited]);
 
   return (
     <div className="postModal_container flex-column">
+      <div className="postModal_container-header">
+        <span className="title">Edit Post</span>
+        <span onClick={closePostModalHandler} className="closeModal">
+          <HighlightOffIcon />
+        </span>
+      </div>
       <div className="postModal_InfoContainer ">
         <label htmlFor="postModalMessage"></label>
         <textarea
@@ -19,50 +106,75 @@ const PostModal = () => {
           id="postModalMessage"
           maxLength={200}
           name="message"
-          value={newPostData.message}
+          value={postModalData.message}
+          onChange={postModalHandler}
         >
-          {newPostData.message}
+          {postModalData.message}
         </textarea>
       </div>
 
       <div className="postModal_BtnContainer flex-column">
-        <div className="postModal_ImgUpload-container">
-          {newPostData?.files?.map((file, id) => {
+        <ul className="postModal_ImgUpload-container">
+          {postModalData?.files?.map((file, id) => {
             return (
-              <div className="newPostImg-container" key={id}>
+              <li className="newPostModalImg-container" key={id}>
                 {file && (
                   <img
                     src={file}
                     alt="post files"
-                    width="200px"
-                    height="200px"
+                    width="150px"
+                    height="150px"
                     className="newpostImg"
                   />
                 )}
-                <span> X</span>
-              </div>
+                <span onClick={() => deletePreviewHandler(id)}> X</span>
+              </li>
             );
           })}
-        </div>
+        </ul>
         <div className="postModal_footer">
           <span>
-            <label className="uploadImageLabel" htmlFor="postFile">
+            <label className="uploadImageLabel" htmlFor="postModalFile">
               <AddPhotoAlternateIcon />
             </label>
             <input
               type="file"
-              id="postFile"
+              id="postModalFile"
               accept="image/*"
               name="files"
               className="uploadImage"
+              onChange={postModalHandler}
             />
 
-            <span>
-              <AddReactionIcon />
+            <span className="emojiPicker_container">
+              <AddReactionIcon onClick={emojiModalHandler} />
+              {emojiModalOpen && (
+                <span className="emojiPicker_container-box">
+                  <EmojiPicker
+                    onEmojiClick={emojiPickerHandler}
+                    suggestedEmojisMode={SuggestionMode.RECENT}
+                    autoFocusSearch={false}
+                    // theme={Theme.AUTO}
+                    // height={350}
+                    // width="50%"
+                  />
+                </span>
+              )}
             </span>
           </span>
 
-          <button className="btn postBtn">Post</button>
+          {isPostEdited ? (
+            <button
+              onClick={updatePostModalDataHandler}
+              className="btn updatepostBtn"
+            >
+              Update
+            </button>
+          ) : (
+            <button onClick={addNewPostHandler} className="btn updatepostBtn">
+              Post
+            </button>
+          )}
         </div>
       </div>
     </div>

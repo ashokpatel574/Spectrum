@@ -1,0 +1,107 @@
+.profileModal_container {
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.profileModal_container-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileModal_container-header .title {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.profileModal_container-header svg {
+  font-size: 2.8rem;
+  cursor: pointer;
+}
+
+.profileModal_ImgContainer {
+  margin: auto;
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-color-dark);
+  margin-bottom: 1rem;
+}
+
+.profileModal_ImgContainer img {
+  position: absolute;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.97);
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.profileModal_ImgContainer span {
+  position: absolute;
+  z-index: 10;
+  bottom: -15%;
+  right: 0%;
+}
+
+.profileModal_ImgContainer span input {
+  display: none;
+}
+
+.profileModal_ImgContainer svg {
+  font-size: 2.8rem;
+  color: var(--text-color-dark);
+  cursor: pointer;
+}
+
+.profileModal_section.type-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+}
+
+.profileModal_section.type-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.profileModal_section-one {
+  width: 100%;
+}
+
+.profileModal_section label,
+.profileModal_section input,
+.profileModal_section textarea {
+  width: 100%;
+  font-size: 1.8rem;
+  font-family: inherit;
+}
+
+.profileModal_section input,
+.profileModal_section textarea {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color-dark);
+  border-radius: 0.5rem;
+}
+
+.profileModal_section textarea {
+  resize: none;
+  height: 10rem;
+}
+
+.updateProfileBtn {
+  margin-left: auto;
+  font-size: 1.8rem;
+  padding: 0.6rem 1.2rem;
+}

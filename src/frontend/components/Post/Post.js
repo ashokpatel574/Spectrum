@@ -9,14 +9,17 @@ import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
 import {
   addLikedPost,
+  deletePostService,
   getuserProfile,
   postBookmark,
+  postEditService,
   removeBookmark,
   removeLikedPost,
 } from "../../services/dataServices";
 import { useNavigate } from "react-router-dom";
 import "./post.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { getPostEditService } from "../../services/dataServices";
 
 import { timeAgo } from "../../constant";
 
@@ -60,9 +63,16 @@ const Post = ({ post }) => {
 
   const profileHandler = () => {
     const getProfileId = users.find((user) => user.username === username)?._id;
-
     getuserProfile(getProfileId, dispatch);
     navigate(`/profile/${getProfileId}`);
+  };
+
+  const postEditHandler = (postId) => {
+    getPostEditService(postId, dispatch);
+  };
+
+  const postDeleteHandler = (postId) => {
+    deletePostService(token, postId, dispatch);
   };
 
   return (
@@ -94,8 +104,8 @@ const Post = ({ post }) => {
               <MoreHorizIcon />
             </span>
             <span className="post-settings flex-column">
-              <span>Edit</span>
-              <span>Delete</span>
+              <span onClick={() => postEditHandler(postId, post)}>Edit</span>
+              <span onClick={() => postDeleteHandler(postId)}>Delete</span>
             </span>
           </div>
         )}
@@ -104,11 +114,15 @@ const Post = ({ post }) => {
       <div className="feedListItem_main flex-column">
         <div className="feedListItem_InfoContainer-body flex-column">
           <p className="feedListItem_InfoContainer-body--content">{content}</p>
-          {post?.postImage && (
-            <div className="feedListItem_InfoContainer-body--postImage">
-              <img src={post?.postImage} alt={content} />
-            </div>
-          )}
+          {post?.postImage?.length > 0 &&
+            post?.postImage.map((image, id) => (
+              <div
+                key={id}
+                className="feedListItem_InfoContainer-body--postImage"
+              >
+                <img src={image} alt={content} />
+              </div>
+            ))}
         </div>
         <div className="feedListItem_InfoContainer-footer">
           <span

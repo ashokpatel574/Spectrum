@@ -3,6 +3,11 @@ export const initialState = {
   users: [],
   userProfile: {},
   profileDetails: {},
+  isPostModalOpen: false,
+  postModalDetails: null,
+  isPostEdited: false,
+  isProfileModalOpen: false,
+  profileModalDetails: null,
 };
 
 export const DataReducer = (state, action) => {
@@ -119,6 +124,95 @@ export const DataReducer = (state, action) => {
             : {
                 ...action.payload.updatedFollowedUser,
               },
+      };
+    }
+
+    case "addNewPost": {
+      return {
+        ...state,
+        posts: action.payload.newpost,
+        isPostModalOpen: false,
+        isPostEdited: false,
+        postModalDetails: null,
+      };
+    }
+
+    case "deletePost": {
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    }
+
+    case "updateEditedPost": {
+      return {
+        ...state,
+        isPostModalOpen: false,
+        isPostEdited: false,
+        postModalDetails: null,
+        posts: action.payload,
+      };
+    }
+
+    case "closePostModal": {
+      return {
+        ...state,
+        isPostModalOpen: false,
+        isPostEdited: false,
+        postModalDetails: null,
+      };
+    }
+
+    case "openPostModal": {
+      return {
+        ...state,
+        isPostModalOpen: true,
+        isPostEdited: action.payload.type === "edit",
+        postModalDetails: action?.payload?.value,
+      };
+    }
+
+    case "closeProfileModal": {
+      return {
+        ...state,
+        isProfileModalOpen: false,
+        profileModalDetails: null,
+      };
+    }
+
+    case "openProfileModal": {
+      return {
+        ...state,
+        isProfileModalOpen: true,
+        profileModalDetails: action.payload,
+      };
+    }
+
+    case "updateEditedProfile": {
+      const updatedUserPost = {
+        firstname: action.payload.firstname,
+        lastname: action.payload.lastname,
+        profileImage: action.payload.profileImage,
+      };
+
+      return {
+        ...state,
+        users: [
+          ...state.users.map((item) =>
+            item._id === action.payload._id ? action.payload : item
+          ),
+        ],
+        profileDetails: action.payload,
+        userProfile: action.payload,
+        posts: [
+          ...state.posts.map((item) =>
+            item.username === action.payload.username
+              ? { ...item, ...updatedUserPost }
+              : item
+          ),
+        ],
+        isProfileModalOpen: false,
+        profileModalDetails: null,
       };
     }
 

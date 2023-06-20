@@ -1,48 +1,34 @@
-.addPost_container {
-  display: flex;
+.postModal_container {
   align-items: flex-start;
-  justify-content: center;
-  padding: 2rem 2.5rem;
-  margin: 2rem 0;
-  width: 100%;
+  justify-content: flex-start;
   gap: 1.5rem;
-  background-color: var(--background-color-one);
-  border-radius: 0.8rem;
 }
 
-.addPost_InfoContainer {
+.postModal_container-header {
+  width: 100%;
   display: flex;
-  width: 100%;
-  gap: 1.5rem;
+  justify-content: space-between;
 }
 
-.addPost_ImgContainer {
-  position: relative;
-  width: 8rem;
-  height: 6rem;
-  border-radius: 50%;
-  overflow: hidden;
+.postModal_container-header .title {
+  font-size: 2.4rem;
+  font-weight: 500;
 }
 
-.addPost_ImgContainer img {
-  position: absolute;
-  top: 10%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transform: scale(1.2);
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.postModal_container-header svg {
+  font-size: 2.8rem;
 }
 
-.addPost_message {
+.postModal_InfoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
-.addPost_message textarea {
+.postModal_InfoContainer textarea {
   width: 100%;
-  min-height: 12rem;
+  min-height: 15rem;
   resize: none;
   border: none;
   outline: none;
@@ -55,12 +41,13 @@
   outline: none;
 }
 
-.addPost_BtnContainer {
+.postModal_BtnContainer {
   width: 100%;
-  gap: 2.5rem;
+  gap: 2rem;
+  justify-content: flex-end;
 }
 
-.addPost_BtnContainer .addPost_ImgUpload-container {
+.postModal_BtnContainer .postModal_ImgUpload-container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -69,7 +56,7 @@
   width: 100%;
 }
 
-.addPost_ImgUpload-container .newPostImg-container {
+.postModal_ImgUpload-container .newPostModalImg-container {
   position: relative;
   max-width: 15rem;
   height: 15rem;
@@ -79,7 +66,7 @@
   padding: 0.25rem;
 }
 
-.newPostImg-container img {
+.newPostModalImg-container img {
   position: absolute;
   top: 0;
   left: 0;
@@ -91,7 +78,7 @@
   transform: scale(0.96);
 }
 
-.newPostImg-container span {
+.newPostModalImg-container span {
   position: absolute;
   display: flex;
   align-items: center;
@@ -110,11 +97,11 @@
   transition: all 0.25s;
 }
 
-.newPostImg-container span:hover {
+.newPostModalImg-container span:hover {
   color: var(--error-color);
 }
 
-.addPost_footer {
+.postModal_footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,22 +109,22 @@
   padding: 0 1.5rem;
 }
 
-.addPost_footer svg {
+.postModal_footer svg {
   font-size: 3.2rem;
   margin-right: 1.5rem;
   transition: all 0.25s;
   cursor: pointer;
 }
 
-.addPost_footer svg:hover {
+.postModal_footer svg:hover {
   color: var(--primary-color-one);
 }
 
-.uploadImage {
+.postModal_footer .uploadImage {
   display: none;
 }
 
-.postBtn {
+.postModal_footer .updatepostBtn {
   padding: 0.4rem 0.8rem;
   font-size: 1.8rem;
   margin-left: auto;
@@ -157,4 +144,14 @@
   position: absolute;
   top: 0%;
   left: 65%;
+}
+
+.sprectrumApp_container.postModalActive {
+  background-color: var(--text-color-one);
+  z-index: -50;
+}
+
+.sprectrumApp_container.postModalActive .homePage_container {
+  background-color: var(--text-color-one) !important;
+  z-index: -50;
 }
