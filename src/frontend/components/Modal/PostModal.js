@@ -4,63 +4,40 @@ import AddReactionIcon from "@mui/icons-material/AddReaction";
 import { useAuth } from "../../context/AuthContext";
 import "./postmodal.css";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import EmojiPicker, { Theme, SuggestionMode } from "emoji-picker-react";
+import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 import { useData } from "../../context/DataContext";
-import { postEditService } from "../../services/dataServices";
-import { addNewPost } from "../../services/dataServices";
+import { postEditService } from "../../services/postServices";
+import { useEmoji } from "../../utils/helper";
+import {
+  addNewPostFunc,
+  deletePreviewFunc,
+  postDataFunc,
+} from "../../utils/utils";
 
 const PostModal = () => {
   const [postModalData, setPostModalData] = useState({
     message: "",
     files: [],
   });
-  const [emojiModalOpen, setEmojiModalOpen] = useState(false);
-  const { token } = useAuth();
 
+  const { token } = useAuth();
   const {
     dispatch,
     state: { postModalDetails, isPostEdited },
   } = useData();
+  const { emojiModalOpen, emojiModalHandler, emojiPickerHandler } = useEmoji(
+    postModalData,
+    setPostModalData
+  );
 
-  console.log(postModalDetails, isPostEdited);
+  const postModalHandler = (e) =>
+    postDataFunc(e, setPostModalData, postModalData);
 
-  const postModalHandler = (e) => {
-    e.stopPropagation();
-    const { name, value, files } = e.target;
-    const filesUrl =
-      files && [...files]?.map((file) => URL.createObjectURL(file));
+  const addNewPostHandler = () =>
+    addNewPostFunc(postModalData, setPostModalData, token, dispatch);
 
-    setPostModalData({
-      ...postModalData,
-      [name]: name === "message" ? value : [...postModalData.files, filesUrl],
-    });
-  };
-
-  const emojiModalHandler = () => {
-    setEmojiModalOpen(!emojiModalOpen);
-  };
-
-  const emojiPickerHandler = (emojidata) => {
-    const updatedPostMessage = postModalData?.message + emojidata.emoji;
-    setPostModalData({
-      ...postModalData,
-      message: updatedPostMessage,
-    });
-    setEmojiModalOpen(!emojiModalOpen);
-  };
-
-  const deletePreviewHandler = (id) => {
-    setPostModalData({
-      ...postModalData,
-      files: postModalData.files.filter((item, index) => index !== id),
-    });
-  };
-
-  const closePostModalHandler = () => {
-    dispatch({
-      type: "closePostModal",
-    });
-  };
+  const deletePreviewHandler = (id) =>
+    deletePreviewFunc(id, setPostModalData, postModalData);
 
   const updatePostModalDataHandler = () => {
     const updatedPost = {
@@ -72,13 +49,9 @@ const PostModal = () => {
     postEditService(token, postModalDetails._id, updatedPost, dispatch);
   };
 
-  const addNewPostHandler = () => {
-    postModalData.message.length > 1 &&
-      addNewPost(token, postModalData, dispatch);
-
-    setPostModalData({
-      message: "",
-      files: [],
+  const closePostModalHandler = () => {
+    dispatch({
+      type: "closePostModal",
     });
   };
 

@@ -3,12 +3,12 @@ import React from "react";
 import LinkIcon from "@mui/icons-material/Link";
 import "./profile.css";
 import { useData } from "../../context/DataContext";
+import { useAuth } from "../../context/AuthContext";
 import {
+  updateUnFollowList,
   getUserProfileService,
   updateFollowList,
-} from "../../services/dataServices";
-import { useAuth } from "../../context/AuthContext";
-import { updateUnFollowList } from "../../services/dataServices";
+} from "../../services/userServices";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
@@ -16,7 +16,6 @@ const Profile = () => {
     state: { profileDetails, userProfile, posts },
     dispatch,
   } = useData();
-
   const { token } = useAuth();
 
   const userPosts = posts?.filter(

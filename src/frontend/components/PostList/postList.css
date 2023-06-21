@@ -1,0 +1,67 @@
+.postFeed_container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2.5rem;
+  margin-top: 1rem;
+}
+
+.postFeed_container-header span {
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--primary-color-one);
+}
+
+.postFeed_container-header svg {
+  display: flex;
+  align-items: center;
+  font-size: 3.2rem;
+  cursor: pointer;
+}
+
+.postFeed_container-filterIcon {
+  position: relative;
+}
+
+.postFeed_settings span {
+  font-size: 1.8rem;
+  padding: 0.5rem 1.6rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.postFeed_settings {
+  position: absolute;
+  top: 55%;
+  right: 4%;
+  gap: 0.5rem;
+  z-index: 60;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color-dark);
+  background-color: var(--background-color-one);
+  display: none;
+}
+
+.postFeed_settings::before {
+  content: "";
+  position: absolute;
+  width: 1.3rem;
+  height: 1.3rem;
+  top: -5%;
+  right: 5%;
+  transform: rotate(45deg);
+  background-color: var(--background-color-one);
+  border-top: 1px solid var(--border-color-dark);
+  border-left: 1px solid var(--border-color-dark);
+  z-index: -1;
+}
+
+.postFeed_container-filterIcon-container:hover .postFeed_settings {
+  display: flex;
+}
+
+.postFeed_settings span:hover {
+  background-color: var(--primary-color-shade);
+  border-radius: 0.3rem;
+}

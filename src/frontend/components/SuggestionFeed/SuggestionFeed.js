@@ -1,22 +1,19 @@
 import "./sugestionFeed.css";
 import { useData } from "../../context/DataContext";
-import { getuserProfile, updateFollowList } from "../../services/dataServices";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { getuserProfile, updateFollowList } from "../../services/userServices";
+import { getUserFollowingList } from "../../utils/utils";
 
 const SuggestionFeed = () => {
   const {
     state: { users, userProfile },
     dispatch,
   } = useData();
-
   const { token } = useAuth();
-
-  const currentUserFollowing = userProfile?.following?.map(
-    ({ username }) => username
-  );
-
   const navigate = useNavigate();
+
+  const currentUserFollowing = getUserFollowingList(userProfile);
 
   const suggestProfile = users?.filter(
     (user) =>
@@ -26,7 +23,6 @@ const SuggestionFeed = () => {
 
   const profileHandler = (username) => {
     const getProfileId = users.find((user) => user.username === username)?._id;
-
     getuserProfile(getProfileId, dispatch);
     navigate(`/profile/${getProfileId}`);
   };

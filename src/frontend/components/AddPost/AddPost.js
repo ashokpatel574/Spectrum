@@ -2,63 +2,40 @@ import React, { useState } from "react";
 import "./addPost.css";
 import { useAuth } from "../../context/AuthContext";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import EmojiPicker, { Theme, SuggestionMode } from "emoji-picker-react";
+import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
-import { addNewPost } from "../../services/dataServices";
+
 import { useData } from "../../context/DataContext";
+import { useEmoji } from "../../utils/helper";
+import {
+  addNewPostFunc,
+  deletePreviewFunc,
+  postDataFunc,
+} from "../../utils/utils";
 
 const AddPost = () => {
   const [newPostData, setNewPostData] = useState({
     message: "",
     files: [],
   });
-  const [emojiModalOpen, setEmojiModalOpen] = useState(false);
+
   const { token } = useAuth();
   const {
     state: { userProfile },
     dispatch,
   } = useData();
+  const { emojiModalOpen, emojiModalHandler, emojiPickerHandler } = useEmoji(
+    newPostData,
+    setNewPostData
+  );
 
-  const postHandler = (e) => {
-    e.stopPropagation();
-    const { name, value, files } = e.target;
-    const filesUrl =
-      files && [...files]?.map((file) => URL.createObjectURL(file));
+  const postHandler = (e) => postDataFunc(e, setNewPostData, newPostData);
 
-    setNewPostData({
-      ...newPostData,
-      [name]: name === "message" ? value : [...newPostData.files, filesUrl],
-    });
-  };
+  const deletePreviewHandler = (id) =>
+    deletePreviewFunc(id, setNewPostData, newPostData);
 
-  const deletePreviewHandler = (id) => {
-    setNewPostData({
-      ...newPostData,
-      files: newPostData.files.filter((item, index) => index !== id),
-    });
-  };
-
-  const emojiModalHandler = () => {
-    setEmojiModalOpen(!emojiModalOpen);
-  };
-
-  const emojiPickerHandler = (emojidata) => {
-    const updatedPostMessage = newPostData?.message + emojidata.emoji;
-    setNewPostData({
-      ...newPostData,
-      message: updatedPostMessage,
-    });
-    setEmojiModalOpen(!emojiModalOpen);
-  };
-
-  const addPostHandler = () => {
-    newPostData.message.length > 1 && addNewPost(token, newPostData, dispatch);
-
-    setNewPostData({
-      message: "",
-      files: [],
-    });
-  };
+  const addNewPostHandler = () =>
+    addNewPostFunc(newPostData, setNewPostData, token, dispatch);
 
   return (
     <div className="addPost_container flex-column">
@@ -131,7 +108,7 @@ const AddPost = () => {
             </span>
           </span>
 
-          <button onClick={addPostHandler} className="btn postBtn">
+          <button onClick={addNewPostHandler} className="btn postBtn">
             Post
           </button>
         </div>

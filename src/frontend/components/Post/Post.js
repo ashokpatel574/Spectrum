@@ -7,19 +7,18 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
-import {
-  addLikedPost,
-  deletePostService,
-  getuserProfile,
-  postBookmark,
-  postEditService,
-  removeBookmark,
-  removeLikedPost,
-} from "../../services/dataServices";
+import { getuserProfile } from "../../services/userServices";
 import { useNavigate } from "react-router-dom";
 import "./post.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { getPostEditService } from "../../services/dataServices";
+import {
+  getPostEditService,
+  postBookmarkService,
+  deletePostService,
+  addLikedPost,
+  removeBookmarkService,
+  removeLikedPost,
+} from "../../services/postServices";
 
 import { timeAgo } from "../../constant";
 
@@ -57,8 +56,8 @@ const Post = ({ post }) => {
 
   const postBookMarkHandler = (postId) => {
     isPostBookmarked
-      ? removeBookmark(postId, token, dispatch, userProfile?.username)
-      : postBookmark(postId, token, dispatch, userProfile?.username);
+      ? removeBookmarkService(postId, token, dispatch, userProfile?.username)
+      : postBookmarkService(postId, token, dispatch, userProfile?.username);
   };
 
   const profileHandler = () => {
