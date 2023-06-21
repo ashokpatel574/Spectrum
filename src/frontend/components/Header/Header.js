@@ -5,6 +5,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useSearch } from "../../utils/helper";
 
 const Header = () => {
   const { currentUser } = useAuth();
@@ -13,6 +14,8 @@ const Header = () => {
   const profileHandler = () => {
     navigate(`profile/${currentUser._id}`);
   };
+
+  const { searchInput, searchHandler, searchResult } = useSearch();
 
   return (
     <header className="header">
@@ -27,6 +30,8 @@ const Header = () => {
             type="text"
             className="searchInput"
             placeholder="Search"
+            value={searchInput}
+            onChange={searchHandler}
           />
         </div>
         <div className="nav_settings flex-center">

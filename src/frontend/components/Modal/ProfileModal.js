@@ -3,7 +3,7 @@ import { useData } from "../../context/DataContext";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import "./profileModal.css";
-import { updateUserProfileService } from "../../services/dataServices";
+import { updateUserProfileService } from "../../services/userServices";
 import { useAuth } from "../../context/AuthContext";
 
 const ProfileModal = () => {

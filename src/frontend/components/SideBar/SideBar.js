@@ -6,7 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./sideBar.css";
 import { NavLink } from "react-router-dom";
 import { useData } from "../../context/DataContext";
-import { getuserProfile } from "../../services/dataServices";
+import { getuserProfile } from "../../services/userServices";
 
 const SideBar = () => {
   const {

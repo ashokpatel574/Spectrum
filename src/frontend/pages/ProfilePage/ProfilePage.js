@@ -1,10 +1,8 @@
 import React from "react";
 import { useData } from "../../context/DataContext";
-import FeedHeader from "../../components/FeedHeader/FeedHeader";
-import Post from "../../components/Post/Post";
-
 import "./profilePage.css";
 import Profile from "../../components/Profile/Profile";
+import PostList from "../../components/PostList/PostList";
 
 const ProfilePage = () => {
   const {
@@ -18,12 +16,7 @@ const ProfilePage = () => {
   return (
     <section className="postFeed_container flex-column">
       <Profile />
-      <FeedHeader headerState={"Profile"} />
-      <ul className="flex-column">
-        {userPosts?.map((post, id) => {
-          return <Post key={id} post={post} />;
-        })}
-      </ul>
+      <PostList postListData={userPosts} headerState={"Profile"} />
     </section>
   );
 };

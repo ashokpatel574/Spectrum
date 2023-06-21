@@ -1,17 +1,15 @@
 import "./homeFeed.css";
 import { useData } from "../../context/DataContext";
-import Post from "../Post/Post";
 import AddPost from "../AddPost/AddPost";
-import FeedHeader from "../FeedHeader/FeedHeader";
+import { getUserFollowingList } from "../../utils/utils";
+import PostList from "../PostList/PostList";
 
 const HomeFeed = () => {
   const {
     state: { posts, userProfile },
   } = useData();
 
-  const currentUserFollowingList = userProfile?.following?.map(
-    (item) => item?.username
-  );
+  const currentUserFollowingList = getUserFollowingList(userProfile);
 
   const homeFeedPost = posts?.filter((post) => {
     return (
@@ -24,12 +22,7 @@ const HomeFeed = () => {
   return (
     <section className="postFeed_container">
       <AddPost />
-      <FeedHeader headerState={"Home"} />
-      <ul className="flex-column">
-        {homeFeedPost?.map((post, id) => {
-          return <Post key={id} post={post} />;
-        })}
-      </ul>
+      <PostList postListData={homeFeedPost} headerState={"Home"} />
     </section>
   );
 };

@@ -16,25 +16,6 @@
   scrollbar-width: none; /* Firefox */
 }
 
-.postFeed_container-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2.5rem;
-  margin-top: 1rem;
-}
-
-.postFeed_container-header span {
-  font-size: 2.2rem;
-  font-weight: 500;
-  color: var(--primary-color-one);
-}
-
-.postFeed_container-header svg {
-  font-size: 3.2rem;
-  cursor: pointer;
-}
-
 .postFeed_container ul {
   width: 100%;
   align-items: flex-start;
