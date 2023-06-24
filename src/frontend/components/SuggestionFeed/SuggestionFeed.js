@@ -2,7 +2,7 @@ import "./sugestionFeed.css";
 import { useData } from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { getuserProfile, updateFollowList } from "../../services/userServices";
+import { updateFollowList } from "../../services/userServices";
 import { getUserFollowingList } from "../../utils/utils";
 
 const SuggestionFeed = () => {
@@ -14,17 +14,14 @@ const SuggestionFeed = () => {
   const navigate = useNavigate();
 
   const currentUserFollowing = getUserFollowingList(userProfile);
-
   const suggestProfile = users?.filter(
     (user) =>
       !currentUserFollowing?.includes(user.username) &&
       user.username !== userProfile?.username
   );
 
-  const profileHandler = (username) => {
-    const getProfileId = users.find((user) => user.username === username)?._id;
-    getuserProfile(getProfileId, dispatch);
-    navigate(`/profile/${getProfileId}`);
+  const profileHandler = (profileId) => {
+    navigate(`/profile/${profileId}`);
   };
 
   const followHandler = (e, followUserId) => {
@@ -36,11 +33,11 @@ const SuggestionFeed = () => {
     <section className="suggestion_container">
       <p className="suggestion_title">Who to follow?</p>
       <ul className="flex-column">
-        {suggestProfile?.map((profile) => (
+        {suggestProfile.slice(0, 5)?.map((profile) => (
           <li
             key={profile.username}
             className="suggestionListItem"
-            onClick={() => profileHandler(profile.username)}
+            onClick={() => profileHandler(profile._id)}
           >
             <div className="suggestionListItem_ImgContainer">
               <img src={profile.profileImage} alt="profile" />
@@ -58,8 +55,7 @@ const SuggestionFeed = () => {
                 className="btn followBtn"
                 onClick={(e) => followHandler(e, profile._id)}
               >
-                {" "}
-                + Follow
+                follow
               </button>
             </div>
           </li>

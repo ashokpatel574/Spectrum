@@ -3,11 +3,12 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import "./sideBar.css";
+import "./floatingMenu.css";
 import { NavLink } from "react-router-dom";
 import { useData } from "../../context/DataContext";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
-const SideBar = () => {
+const FloatingMenu = () => {
   const {
     state: { userProfile },
     dispatch,
@@ -22,58 +23,52 @@ const SideBar = () => {
       },
     });
   };
-
   return (
-    <section className="sideBar_container ">
-      <ul className="sideBar_container-list flex-column ">
-        <li className="sideBar_container-listItem">
+    <section className="floatMenu_container ">
+      <ul className="floatMenu_container-list  ">
+        <li className="floatMenu_container-listItem">
           <NavLink to="/">
             <span>
               <HomeIcon />
             </span>
-            <span className="home">Home</span>
           </NavLink>
         </li>
-        <li className="sideBar_container-listItem">
+        <li className="floatMenu_container-listItem">
           <NavLink to="/explore">
             <span>
               <ExploreIcon />
             </span>
-            <span className="explore">Explore</span>
           </NavLink>
         </li>
-        <li className="sideBar_container-listItem">
+        <li className="floatMenu_container-listItem">
+          <span onClick={sideBarAddPostHandler} className=" postBtn">
+            <AddBoxIcon />
+          </span>
+        </li>
+        <li className="floatMenu_container-listItem">
           <NavLink to="/bookmark">
             <span>
               <BookmarkIcon />
             </span>
-            <span className="bookmarks">Bookmarks</span>
           </NavLink>
         </li>
-        <li className="sideBar_container-listItem">
+        <li className="floatMenu_container-listItem">
           <NavLink to="/likedPost">
             <span>
               <FavoriteIcon />
             </span>
-            <span className="likeposts">Like Posts</span>
           </NavLink>
         </li>
-        <li className="sideBar_container-listItem">
+        <li className="floatMenu_container-listItem">
           <NavLink to={`profile/${userProfile?._id}`}>
             <span>
               <AccountCircleIcon />
             </span>
-            <span className="profile">Profile</span>
           </NavLink>
-        </li>
-        <li className="sideBar_container-listItem">
-          <span onClick={sideBarAddPostHandler} className="btn postBtn">
-            Post
-          </span>
         </li>
       </ul>
     </section>
   );
 };
 
-export default SideBar;
+export default FloatingMenu;

@@ -7,6 +7,14 @@
   border-radius: 1rem;
 }
 
+.signUpPage_container .app-title {
+  display: none;
+  font-size: 3.6rem;
+  font-weight: 600;
+  color: var(--primary-color-one);
+  text-align: center;
+}
+
 .signUp_title {
   text-align: center;
   font-size: 2.8rem;
@@ -77,4 +85,55 @@
 .goto_login-text a {
   margin-left: 0.5rem;
   font-size: 1.7rem;
+  color: var(--primary-color-one);
+  text-decoration: underline;
+}
+
+.signUpBtn:hover {
+  transform: scale(1.01);
+}
+
+/* 48em === 768px */
+@media (max-width: 48em) {
+  .signUpPage_container {
+    gap: 0.75rem;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/*  720px = 45rem */
+
+@media (max-width: 45em) {
+  .signUpPage_container {
+    padding: 2rem 3rem;
+  }
+
+  .signUpPage_container .app-title {
+    display: block;
+  }
+}
+
+/*  432px = 27rem */
+
+@media (max-width: 27em) {
+  .signUpPage_container {
+    padding: 2rem;
+  }
+
+  .signUpPage_container .app-title {
+    font-size: 3.2rem;
+  }
+
+  .signUpBtn {
+    padding: 0.7rem 1.4rem;
+    font-size: 1.8rem;
+  }
+}
+
+/*  384px = 24rem */
+
+@media (max-width: 27em) {
+  .signUpPage_container {
+    padding: 2rem 1rem;
+  }
 }

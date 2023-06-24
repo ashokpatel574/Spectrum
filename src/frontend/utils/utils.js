@@ -1,4 +1,5 @@
 import { addNewPostService } from "../services/postServices";
+import { toast } from "react-toastify";
 
 const validateNumber = (input) => {
   return /^[0-9]+$/.test(input);
@@ -51,6 +52,64 @@ const postDataFunc = (e, setNewPostData, newPostData) => {
   });
 };
 
+const getfilterDataBySort = (dataToBeFiltered, sortOptions) => {
+  switch (sortOptions) {
+    case "Trending": {
+      return [...dataToBeFiltered]?.sort(
+        (a, b) => b.likes.likeCount - a.likes.likeCount
+      );
+    }
+
+    case "Latest": {
+      return [...dataToBeFiltered]?.sort((a, b) => {
+        return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+      });
+    }
+
+    case "Oldest": {
+      return [...dataToBeFiltered]?.sort(
+        (a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)
+      );
+    }
+
+    case "ClearFilter": {
+      return [...dataToBeFiltered];
+    }
+
+    default: {
+      return [...dataToBeFiltered];
+    }
+  }
+};
+
+export const ToastType = {
+  Warn: "warn",
+  Success: "success",
+  Info: "info",
+  Error: "error",
+};
+
+export const ToastHandler = (type, message) => {
+  const toastConfigObj = {
+    position: "top-right",
+    autoClose: 1000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: `${"light"}`,
+  };
+  if (type === "error") {
+    toast.error(message, toastConfigObj);
+  } else if (type === "warn") {
+    toast.warn(message, toastConfigObj);
+  } else if (type === "success") {
+    toast.success(message, toastConfigObj);
+  } else if (type === "info") {
+    toast.info(message, toastConfigObj);
+  }
+};
+
 export {
   validateEmail,
   validateNumber,
@@ -60,4 +119,5 @@ export {
   addNewPostFunc,
   deletePreviewFunc,
   postDataFunc,
+  getfilterDataBySort,
 };

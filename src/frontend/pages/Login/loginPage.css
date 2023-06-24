@@ -7,6 +7,14 @@
   border-radius: 1rem;
 }
 
+.login_container .app-title {
+  display: none;
+  font-size: 3.6rem;
+  font-weight: 600;
+  color: var(--primary-color-one);
+  text-align: center;
+}
+
 .login_title {
   text-align: center;
   font-size: 2.8rem;
@@ -24,7 +32,7 @@
 }
 
 .login_form-section {
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .login_form-section label {
@@ -96,4 +104,62 @@
 .goto_signUp-text a {
   margin-left: 0.5rem;
   font-size: 1.8rem;
+  color: var(--primary-color-one);
+  text-decoration: underline;
+}
+
+.loginBtn:hover,
+.guestLoginBtn:hover {
+  transform: scale(1.01);
+}
+
+/* 48em === 768px */
+@media (max-width: 48em) {
+  .login_container {
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/*  720px = 45rem */
+
+@media (max-width: 45em) {
+  .login_container {
+    gap: 1rem;
+    padding: 2rem 3rem;
+  }
+
+  .login_container .app-title {
+    display: block;
+  }
+}
+
+/*  432px = 27rem */
+
+@media (max-width: 27em) {
+  .login_container {
+    padding: 2rem;
+  }
+
+  .login_container .app-title {
+    font-size: 3.2rem;
+  }
+
+  .password-icon svg {
+    font-size: 2.2rem;
+  }
+
+  .loginBtn,
+  .guestLoginBtn {
+    padding: 0.7rem 1.4rem;
+    font-size: 1.8rem;
+  }
+}
+
+/*  384px = 24rem */
+
+@media (max-width: 27em) {
+  .login_container {
+    padding: 2rem 1rem;
+  }
 }

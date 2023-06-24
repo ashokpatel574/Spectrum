@@ -294,8 +294,8 @@ a {
 
 /* Container and section utils */
 
-.page-containerWidth {
-  max-width: 140rem;
+.container_section-width {
+  max-width: 145rem;
   margin: 0 auto;
 }
 

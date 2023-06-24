@@ -74,6 +74,8 @@ const Post = ({ post }) => {
     deletePostService(token, postId, dispatch);
   };
 
+  const postCommentHandler = () => {};
+
   return (
     <li className="feedListItem flex-column">
       <div className="feedListItem_header ">
@@ -134,7 +136,12 @@ const Post = ({ post }) => {
           <span className="post_commentIcon">
             <ChatBubbleOutlineIcon />
             {comments.length > 0 && (
-              <span className="commentCount">{comments.length}</span>
+              <span
+                className="commentCount"
+                onClick={() => postCommentHandler(postId)}
+              >
+                {comments.length}
+              </span>
             )}
           </span>
           <span
