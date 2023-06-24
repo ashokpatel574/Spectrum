@@ -2,7 +2,6 @@ export const initialState = {
   posts: [],
   users: [],
   userProfile: {},
-  profileDetails: {},
   isPostModalOpen: false,
   postModalDetails: null,
   isPostEdited: false,
@@ -95,13 +94,6 @@ export const DataReducer = (state, action) => {
       };
     }
 
-    case "getProfileDetails": {
-      return {
-        ...state,
-        profileDetails: action.payload,
-      };
-    }
-
     case "updateUserFollower": {
       return {
         ...state,
@@ -116,14 +108,6 @@ export const DataReducer = (state, action) => {
           }),
         ],
         userProfile: action.payload.updatedUser,
-        profileDetails:
-          state.profileDetails._id === action.payload.updatedUser._id
-            ? {
-                ...action.payload.updatedUser,
-              }
-            : {
-                ...action.payload.updatedFollowedUser,
-              },
       };
     }
 
@@ -202,7 +186,7 @@ export const DataReducer = (state, action) => {
             item._id === action.payload._id ? action.payload : item
           ),
         ],
-        profileDetails: action.payload,
+
         userProfile: action.payload,
         posts: [
           ...state.posts.map((item) =>

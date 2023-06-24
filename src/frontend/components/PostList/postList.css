@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2.5rem;
-  margin-top: 1rem;
+  padding: 1rem 1rem;
+  margin-top: 0.5rem;
 }
 
 .postFeed_container-header span {
@@ -19,21 +19,23 @@
   cursor: pointer;
 }
 
-.postFeed_container-filterIcon {
+.postFeed_container-filterIcon-container {
   position: relative;
 }
 
 .postFeed_settings span {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   padding: 0.5rem 1.6rem;
   border-radius: 0.3rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-.postFeed_settings {
+.postFeed_container-filterIcon-container .postFeed_settings {
   position: absolute;
-  top: 55%;
-  right: 4%;
+  top: 100%;
+  right: 0%;
+  /* transform: translate(-50%, -50%); */
   gap: 0.5rem;
   z-index: 60;
   padding: 0.5rem;
@@ -48,9 +50,9 @@
   position: absolute;
   width: 1.3rem;
   height: 1.3rem;
-  top: -5%;
+  top: 0%;
   right: 5%;
-  transform: rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
   background-color: var(--background-color-one);
   border-top: 1px solid var(--border-color-dark);
   border-left: 1px solid var(--border-color-dark);

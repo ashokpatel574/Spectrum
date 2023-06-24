@@ -15,6 +15,7 @@ const SignUp = () => {
 
   return (
     <section className="signUpPage_container flex-column">
+      <h2 className="app-title">spectrum</h2>
       <h3 className="signUp_title">Sign Up</h3>
 
       {authError && (

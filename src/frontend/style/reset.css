@@ -1,8 +1,9 @@
 /* Initial setup */
 
 :root {
-  --text-color-one: #333;
+  --text-color-one: ##333;
   --text-color-two: #5b5b5b;
+  --text-color-three: #9a9b9a;
   --primary-color-one: #3c0ac2;
   --primary-color-shade: rgba(59, 10, 194, 0.15);
   --primary-color-two: #30089b;

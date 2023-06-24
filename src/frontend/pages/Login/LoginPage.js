@@ -18,6 +18,7 @@ const LoginPage = () => {
 
   return (
     <section className="login_container flex-column">
+      <h2 className="app-title">spectrum</h2>
       <h3 className="login_title">Log In</h3>
       {logInErrorDetails && false && (
         <p className=" loginError_server-message">Error message</p>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useData } from "../context/DataContext";
+import { getUserFollowingList } from "./utils";
 
 export const useEmoji = (newPostData, setNewPostData) => {
   const [emojiModalOpen, setEmojiModalOpen] = useState(false);
@@ -20,21 +21,41 @@ export const useEmoji = (newPostData, setNewPostData) => {
   return { emojiModalOpen, emojiModalHandler, emojiPickerHandler };
 };
 
-export const useSearch = () => {
+export const useSearch = (currentUser) => {
   const [searchInput, setSearchInput] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [isSearchResultUserFollowed, setIsSearchResultUserFollowed] =
+    useState("");
+
   const {
     state: { users },
   } = useData();
 
   const searchHandler = (e) => {
     setSearchInput(e.target.value);
+
+    const result = users.filter((user) => {
+      return user.firstname
+        .toLowerCase()
+        .toString()
+        .startsWith(e.target.value.trim().toLowerCase());
+    });
+
+    const currentUserFollowing = getUserFollowingList(currentUser);
+    const followingList = result.map(
+      (item) =>
+        currentUserFollowing?.includes(item.username) &&
+        currentUser.username !== item.username
+    );
+
+    setIsSearchResultUserFollowed(followingList);
+    setSearchResult(result);
   };
 
-  const searchResult = users.filter((user) => {
-    return user.username
-      .toLowerCase()
-      .includes(searchInput.trim().toLowerCase());
-  });
-
-  return { searchInput, searchHandler, searchResult };
+  return {
+    searchInput,
+    searchHandler,
+    searchResult,
+    isSearchResultUserFollowed,
+  };
 };
