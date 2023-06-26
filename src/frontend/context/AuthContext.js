@@ -9,7 +9,7 @@ const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorageToken?.token);
   const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
   const [isLoading, setIsLoading] = useState(false);
-  const [authError, setAuthError] = useState("");
+  const [authError, setAuthError] = useState(null);
 
   return (
     <AuthContext.Provider
@@ -30,5 +30,4 @@ const AuthContextProvider = ({ children }) => {
 };
 
 export default AuthContextProvider;
-
 export const useAuth = () => useContext(AuthContext);

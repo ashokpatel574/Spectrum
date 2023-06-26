@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { getLoginCredentials } from "../services/authServices";
 import { validateEmail, validateOnlyString, validatePassword } from "./utils";
-import { setSignUpCredentials } from "../services/authServices";
+import {
+  getLoginCredentialsService,
+  setSignUpCredentialsService,
+} from "../services/authServices";
 import { useNavigate } from "react-router-dom";
 
-export const useLogin = (setToken, setCurrentUser) => {
+export const useLogin = (setToken, setCurrentUser, setAuthError) => {
   const [logInUserInput, setLogInUserInput] = useState({
     username: "",
     password: "",
@@ -51,12 +53,13 @@ export const useLogin = (setToken, setCurrentUser) => {
     });
 
     !flag
-      ? getLoginCredentials(
+      ? getLoginCredentialsService(
           username,
           password,
           setToken,
           setCurrentUser,
-          navigate
+          navigate,
+          setAuthError
         )
       : setLogInErrorDetails(logInError);
 
@@ -73,12 +76,13 @@ export const useLogin = (setToken, setCurrentUser) => {
       password: "Ashokpatel123",
     };
     setLogInUserInput(guestLogInData);
-    getLoginCredentials(
+    getLoginCredentialsService(
       guestLogInData.username,
       guestLogInData.password,
       setToken,
       setCurrentUser,
-      navigate
+      navigate,
+      setAuthError
     );
   };
 
@@ -226,8 +230,7 @@ export const useSignUp = (
         errorMessage[element] =
           element !== "confirmPassword"
             ? `${element.at(0).toUpperCase() + element.slice(1)} is Required!`
-            : `Password is required!`;
-
+            : ``;
         flag = true;
       }
     });
@@ -241,7 +244,7 @@ export const useSignUp = (
     }
 
     !flag
-      ? setSignUpCredentials(
+      ? setSignUpCredentialsService(
           username,
           password,
           email,

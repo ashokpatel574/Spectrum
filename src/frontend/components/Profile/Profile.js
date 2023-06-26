@@ -17,7 +17,7 @@ const Profile = () => {
   } = useData();
   const { token } = useAuth();
   const { profileId } = useParams();
-  const profileDetails = users.find((user) => user?._id === String(profileId));
+  const profileDetails = users?.find((user) => user?._id === String(profileId));
 
   const isFollowed =
     profileDetails?._id !== userProfile?._id &&

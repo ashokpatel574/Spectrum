@@ -5,6 +5,9 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import "./profileModal.css";
 import { updateUserProfileService } from "../../services/userServices";
 import { useAuth } from "../../context/AuthContext";
+import { validateOnlyString } from "../../utils/utils";
+
+import AvatarModal from "./AvatarModal";
 
 const ProfileModal = () => {
   const [updatedProfileData, setUpdatedProfileData] = useState({
@@ -17,12 +20,11 @@ const ProfileModal = () => {
   });
 
   const [profileDataError, setProfileDataError] = useState({
-    profileImage: "",
     firstname: "",
     lastname: "",
-    email: "",
-    bio: "",
   });
+
+  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
 
   const { token } = useAuth();
 
@@ -37,30 +39,61 @@ const ProfileModal = () => {
       ...updatedProfileData,
       [name]: value,
     });
-  };
 
-  const alternateUserImageHandler = (e) => {
-    e.stopPropagation();
-    const { files } = e.target;
-    const filesUrl =
-      files && [...files]?.map((file) => URL.createObjectURL(file));
+    if (name === "firstname") {
+      let firstnameText = value.length;
+      setProfileDataError({ ...profileDataError, [name]: "" });
 
-    setUpdatedProfileData({
-      ...updatedProfileData,
-      profileImage: filesUrl.at(0),
-    });
+      if (!validateOnlyString(value)) {
+        setProfileDataError({
+          ...profileDataError,
+          [name]: "Firstname should be in text!",
+        });
+      }
+
+      if (firstnameText < 3) {
+        setProfileDataError({
+          ...profileDataError,
+          [name]: "Firstname should have atleast 3 character!",
+        });
+      }
+    }
+
+    if (name === "lastname") {
+      setProfileDataError({ ...profileDataError, [name]: "" });
+
+      if (!validateOnlyString(value)) {
+        setProfileDataError({
+          ...profileDataError,
+          [name]: "Lastname should be in text!",
+        });
+      }
+    }
   };
 
   const updateUserProfileHandler = () => {
-    updateUserProfileService(token, updatedProfileData, dispatch);
-    setUpdatedProfileData({
-      profileImage: "",
-      firstname: "",
-      lastname: "",
-      email: "",
-      bio: "",
-      link: "",
+    let flag = false;
+    let errorMessage = {};
+
+    Object.keys(updatedProfileData).forEach((element) => {
+      if (updatedProfileData[element] === "") {
+        errorMessage[element] = `${
+          element.at(0).toUpperCase() + element.slice(1)
+        } is required!`;
+        flag = true;
+      }
     });
+
+    !flag
+      ? updateUserProfileService(token, updatedProfileData, dispatch)
+      : setProfileDataError(errorMessage);
+
+    !flag &&
+      setProfileDataError({
+        firstname: "",
+        lastname: "",
+      }) &&
+      setIsAvatarModalOpen(!isAvatarModalOpen);
   };
 
   const closeProfileModalHandler = () => {
@@ -75,6 +108,27 @@ const ProfileModal = () => {
       bio: "",
       link: "",
     });
+    setProfileDataError({
+      firstname: "",
+      lastname: "",
+    });
+  };
+
+  const alternateUserImageHandler = (e) => {
+    e.stopPropagation();
+
+    const { files } = e.target;
+    const filesUrl =
+      files && [...files]?.map((file) => URL.createObjectURL(file));
+
+    setUpdatedProfileData({
+      ...updatedProfileData,
+      profileImage: filesUrl.at(0),
+    });
+  };
+
+  const editUserImgHandler = (e) => {
+    setIsAvatarModalOpen(!isAvatarModalOpen);
   };
 
   useEffect(() => {
@@ -101,10 +155,10 @@ const ProfileModal = () => {
       </div>
       <div className="profileModal_ImgContainer">
         <img src={updatedProfileData?.profileImage} alt="profile" />
-        <span className="alternateImg">
-          <label className="uploadImageLabel" htmlFor="alternateProfileFile">
+        {/* <span className="alternateImg">
+          <span className="uploadImageLabel" htmlFor="alternateProfileFile">
             <AddPhotoAlternateIcon />
-          </label>
+          </span>
           <input
             type="file"
             id="alternateProfileFile"
@@ -113,7 +167,19 @@ const ProfileModal = () => {
             className="uploadProfileImage"
             onChange={alternateUserImageHandler}
           />
+        </span> */}
+
+        <span className="alternateImg" onClick={(e) => editUserImgHandler(e)}>
+          <AddPhotoAlternateIcon />
         </span>
+        {isAvatarModalOpen && (
+          <AvatarModal
+            isAvatarModalOpen={isAvatarModalOpen}
+            setIsAvatarModalOpen={setIsAvatarModalOpen}
+            setUpdatedProfileData={setUpdatedProfileData}
+            updatedProfileData={updatedProfileData}
+          />
+        )}
       </div>
 
       <div className="profileModal_section type-1">
@@ -156,7 +222,6 @@ const ProfileModal = () => {
           value={updatedProfileData.email}
           onChange={profileDataChangeHandler}
         />
-        <span>{profileDataError.email}</span>
       </div>
 
       <div className="profileModal_section type-2">
@@ -182,7 +247,9 @@ const ProfileModal = () => {
           value={updatedProfileData.bio}
           onChange={profileDataChangeHandler}
         ></textarea>
-        <span>{profileDataError.bio}</span>
+        <span className="bioLength">
+          {Number(100 - updatedProfileData.bio.length)}
+        </span>
       </div>
 
       <button

@@ -1,13 +1,15 @@
 import axios from "axios";
 
-export const getLoginCredentials = async (
+export const getLoginCredentialsService = async (
   username,
   password,
   setToken,
   setCurrentUser,
-  navigate
+  navigate,
+  setAuthError
 ) => {
   try {
+    setAuthError(null);
     const {
       data: { foundUser, encodedToken },
       status,
@@ -17,27 +19,46 @@ export const getLoginCredentials = async (
     });
 
     if (status === 200 || status === 201) {
+      console.log(foundUser);
       localStorage.setItem(
         "loginCredentials",
-        JSON.stringify({ token: encodedToken, user: foundUser })
+        JSON.stringify({
+          token: encodedToken,
+          user: {
+            ...foundUser,
+            password: "########",
+          },
+        })
       );
       setToken(encodedToken);
       setCurrentUser(foundUser);
       navigate("/");
     }
   } catch (error) {
-    console.log("loginError", error);
+    console.error("loginError", error);
 
-    if (error.response.status === 500) {
-      // setAuthError({
-      //   status: 500,
-      //   message: `Something went wrong! Try again later`,
-      // });
+    setAuthError({
+      status: error.response.status,
+      message: `Something went wrong! Try again later`,
+    });
+
+    if (error.response.status === 404) {
+      setAuthError({
+        status: 404,
+        message: `The username is not Registered`,
+      });
+    }
+
+    if (error.response.status === 401) {
+      setAuthError({
+        status: 401,
+        message: `Password is incorrect!`,
+      });
     }
   }
 };
 
-export const setSignUpCredentials = async (
+export const setSignUpCredentialsService = async (
   username,
   password,
   email,
@@ -52,6 +73,7 @@ export const setSignUpCredentials = async (
   navigate
 ) => {
   try {
+    setAuthError(null);
     const {
       data: { createdUser, encodedToken },
       status,
@@ -65,12 +87,16 @@ export const setSignUpCredentials = async (
       gender,
     });
 
-    setAuthError(null);
-
     if (status === 200 || status === 201) {
       localStorage.setItem(
         "loginCredentials",
-        JSON.stringify({ token: encodedToken, user: createdUser })
+        JSON.stringify({
+          token: encodedToken,
+          user: {
+            ...createdUser,
+            password: "########",
+          },
+        })
       );
       setToken(encodedToken);
       setCurrentUser(createdUser);
@@ -79,17 +105,15 @@ export const setSignUpCredentials = async (
   } catch (error) {
     console.error("SignUpError", error);
 
+    setAuthError({
+      status: error.response.status,
+      message: `Something went wrong! Try again later`,
+    });
+
     if (error.response.status === 422) {
       setAuthError({
         status: 422,
         message: "Username Already Exists",
-      });
-    }
-
-    if (error.response.status === 500) {
-      setAuthError({
-        status: 500,
-        message: `Something went wrong! Try again later`,
       });
     }
   }

@@ -1,6 +1,5 @@
-@import url(../pages/LandingPage/landingPage.css);
-@import url(../pages/Login/loginPage.css);
-@import url(../pages//Signup/signUpPage.css);
+@import url(../pages/style/pages.css);
+@import url(../components/style/components.css);
 
 .sprectrumApp_container {
   position: relative;
@@ -40,20 +39,17 @@
   padding: 1.5rem;
 }
 
-.profileModal_main-container {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 500;
-  background-color: var(--background-color-one);
-  max-width: 45rem;
-  height: fit-content;
-  width: 100%;
-  margin: 0 auto;
-  border: 1px solid #000;
-  border-radius: 0.8rem;
-  padding: 1.5rem;
+.profileModal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
 /*  1312px === 82em  */
