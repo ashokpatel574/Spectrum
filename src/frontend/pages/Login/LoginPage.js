@@ -5,7 +5,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useLogin } from "../../utils/authUtils";
 
 const LoginPage = () => {
-  const { setToken, setCurrentUser } = useAuth();
+  const { setToken, setCurrentUser, setAuthError, authError } = useAuth();
   const {
     logInUserInput,
     logInErrorDetails,
@@ -14,14 +14,16 @@ const LoginPage = () => {
     logInformSubmit,
     guestLoginformSubmit,
     passwordViewHandler,
-  } = useLogin(setToken, setCurrentUser);
+  } = useLogin(setToken, setCurrentUser, setAuthError);
 
   return (
     <section className="login_container flex-column">
       <h2 className="app-title">spectrum</h2>
       <h3 className="login_title">Log In</h3>
-      {logInErrorDetails && false && (
-        <p className=" loginError_server-message">Error message</p>
+      {authError && (
+        <p className=" loginError_server-message">
+          {`(${authError?.status})`} {authError?.message}
+        </p>
       )}
 
       <div className="login_form-section flex-column">

@@ -23,7 +23,7 @@
 
 .signUpError_server-message {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.65rem;
   padding: 0.5rem 1rem;
   color: var(--secondary-color-one);
   background-color: var(--error-color);

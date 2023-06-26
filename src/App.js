@@ -12,9 +12,19 @@ import FloatingMenu from "./frontend/components/FloatingMenu/FloatingMenu";
 const App = () => {
   const {
     state: { isPostModalOpen, isProfileModalOpen },
+    dispatch,
   } = useData();
+
+  const profileModalOverlayHandler = (e) => {
+    if (e.target.className === "profileModal_overlay") {
+      dispatch({
+        type: "closeProfileModal",
+      });
+    }
+  };
+
   return (
-    <main className={`sprectrumApp_container  ${false && "postModalActive"}  `}>
+    <main className="sprectrumApp_container">
       <Header />
       <article className="homePage_container ">
         <SideBar />
@@ -24,13 +34,18 @@ const App = () => {
       <FloatingMenu />
 
       {isPostModalOpen && (
-        <div className="postModal_main-container">
+        <div className="postModal_overlay">
           <PostModal />
         </div>
       )}
 
       {isProfileModalOpen && (
-        <div className="profileModal_main-container">
+        <div
+          className="profileModal_overlay"
+          onClick={(e) => {
+            profileModalOverlayHandler(e);
+          }}
+        >
           <ProfileModal />
         </div>
       )}

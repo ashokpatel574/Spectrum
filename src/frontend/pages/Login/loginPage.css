@@ -23,7 +23,7 @@
 
 .loginError_server-message {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.65rem;
   padding: 0.5rem 1rem;
   color: var(--secondary-color-one);
   background-color: var(--error-color);
@@ -95,6 +95,7 @@
   color: var(--primary-color-one);
   background-color: var(--background-color-one);
   border: 1.5px solid var(--primary-color-one);
+  font-size: 1.85rem;
 }
 
 .goto_signUp-text {
