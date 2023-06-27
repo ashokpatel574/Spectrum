@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./addPost.css";
 import { useAuth } from "../../context/AuthContext";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -24,6 +24,7 @@ const AddPost = () => {
     state: { userProfile },
     dispatch,
   } = useData();
+
   const { emojiModalOpen, emojiModalHandler, emojiPickerHandler } = useEmoji(
     newPostData,
     setNewPostData
@@ -48,7 +49,7 @@ const AddPost = () => {
           <textarea
             placeholder="What's on your mind?"
             id="addPostMessage"
-            maxLength={200}
+            maxLength={1000}
             name="message"
             value={newPostData.message}
             onChange={postHandler}
@@ -99,9 +100,16 @@ const AddPost = () => {
                     onEmojiClick={emojiPickerHandler}
                     suggestedEmojisMode={SuggestionMode.RECENT}
                     autoFocusSearch={false}
+                    previewConfig={{
+                      showPreview: false,
+                    }}
+                    searchDisabled
+                    emojiStyle="native"
+                    emojiVersion="1.0"
+                    lazyLoadEmojis
+                    skinTonesDisabled
+                    height={250}
                     // theme={Theme.AUTO}
-                    // height={350}
-                    // width="50%"
                   />
                 </span>
               )}

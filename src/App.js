@@ -15,10 +15,16 @@ const App = () => {
     dispatch,
   } = useData();
 
-  const profileModalOverlayHandler = (e) => {
+  const closeModalOverlayHandler = (e) => {
     if (e.target.className === "profileModal_overlay") {
       dispatch({
         type: "closeProfileModal",
+      });
+    }
+
+    if (e.target.className === "postModal_overlay") {
+      dispatch({
+        type: "closePostModal",
       });
     }
   };
@@ -34,7 +40,12 @@ const App = () => {
       <FloatingMenu />
 
       {isPostModalOpen && (
-        <div className="postModal_overlay">
+        <div
+          className="postModal_overlay"
+          onClick={(e) => {
+            closeModalOverlayHandler(e);
+          }}
+        >
           <PostModal />
         </div>
       )}
@@ -43,7 +54,7 @@ const App = () => {
         <div
           className="profileModal_overlay"
           onClick={(e) => {
-            profileModalOverlayHandler(e);
+            closeModalOverlayHandler(e);
           }}
         >
           <ProfileModal />
