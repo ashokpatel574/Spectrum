@@ -77,7 +77,7 @@ const PostModal = () => {
         <textarea
           placeholder="What's on your mind?"
           id="postModalMessage"
-          maxLength={200}
+          maxLength={1000}
           name="message"
           value={postModalData.message}
           onChange={postModalHandler}
@@ -122,16 +122,23 @@ const PostModal = () => {
             <span className="emojiPicker_container">
               <AddReactionIcon onClick={emojiModalHandler} />
               {emojiModalOpen && (
-                <span className="emojiPicker_container-box">
+                <div className="emojiPicker_container-box">
                   <EmojiPicker
                     onEmojiClick={emojiPickerHandler}
                     suggestedEmojisMode={SuggestionMode.RECENT}
                     autoFocusSearch={false}
+                    previewConfig={{
+                      showPreview: false,
+                    }}
+                    searchDisabled
+                    emojiStyle="native"
+                    emojiVersion="1.0"
+                    lazyLoadEmojis
+                    skinTonesDisabled
+                    height={250}
                     // theme={Theme.AUTO}
-                    // height={350}
-                    // width="50%"
                   />
-                </span>
+                </div>
               )}
             </span>
           </span>
@@ -140,11 +147,16 @@ const PostModal = () => {
             <button
               onClick={updatePostModalDataHandler}
               className="btn updatepostBtn"
+              disabled={postModalData.message.length === 0}
             >
               Update
             </button>
           ) : (
-            <button onClick={addNewPostHandler} className="btn updatepostBtn">
+            <button
+              onClick={addNewPostHandler}
+              className="btn updatepostBtn "
+              disabled={postModalData.message.length === 0}
+            >
               Post
             </button>
           )}

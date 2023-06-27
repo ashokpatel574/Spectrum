@@ -1,7 +1,32 @@
 .postModal_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  background-color: var(--background-color-one);
+  max-width: 45rem;
+  width: 100%;
+  height: 34rem;
+  margin: 0 auto;
+  display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.5rem;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.postModal_container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.postModal_container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .postModal_container-header {
@@ -15,8 +40,17 @@
   font-weight: 500;
 }
 
+.postModal_container-header .closeModal {
+  cursor: pointer;
+}
+
 .postModal_container-header svg {
   font-size: 2.8rem;
+  transition: all 0.3s;
+}
+
+.postModal_container-header svg:hover {
+  color: var(--error-color);
 }
 
 .postModal_InfoContainer {
@@ -41,9 +75,22 @@
   outline: none;
 }
 
+.postModal_InfoContainer textarea::-webkit-scrollbar {
+  width: 0.35rem;
+}
+
+.postModal_InfoContainer textarea::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color-one);
+  border-radius: 5px;
+}
+
+.postModal_InfoContainer textarea::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 .postModal_BtnContainer {
   width: 100%;
-  gap: 2rem;
+  gap: 1.5rem;
   justify-content: flex-end;
 }
 
@@ -132,26 +179,38 @@
   transition: all 0.25s;
 }
 
-.postBtn:hover {
+.updatepostBtn:hover {
   background-color: var(--primary-color-two);
 }
 
-.emojiPicker_container {
+.postModal_footer .updatepostBtn:disabled {
+  background-color: var(--text-color-two);
+}
+
+.postModal_container .emojiPicker_container {
   position: relative;
+  width: 100%;
 }
 
-.emojiPicker_container-box {
+.postModal_container .emojiPicker_container-box {
   position: absolute;
-  top: 0%;
-  left: 65%;
+  top: 100%;
+  left: -100%;
 }
 
-.sprectrumApp_container.postModalActive {
-  background-color: var(--text-color-one);
-  z-index: -50;
+.EmojiPickerReact {
+  font-size: 1.5rem;
 }
 
-.sprectrumApp_container.postModalActive .homePage_container {
-  background-color: var(--text-color-one) !important;
-  z-index: -50;
+.EmojiPickerReact::-webkit-scrollbar {
+  width: 2px;
+}
+
+.EmojiPickerReact::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color-one);
+  border-radius: 2px;
+}
+
+.EmojiPickerReact::-webkit-scrollbar-track {
+  background-color: transparent;
 }

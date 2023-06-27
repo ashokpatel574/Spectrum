@@ -148,7 +148,6 @@ export const DataReducer = (state, action) => {
     }
 
     case "openPostModal": {
-      console.log(1);
       return {
         ...state,
         isPostModalOpen: true,

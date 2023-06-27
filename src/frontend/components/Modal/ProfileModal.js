@@ -114,19 +114,6 @@ const ProfileModal = () => {
     });
   };
 
-  const alternateUserImageHandler = (e) => {
-    e.stopPropagation();
-
-    const { files } = e.target;
-    const filesUrl =
-      files && [...files]?.map((file) => URL.createObjectURL(file));
-
-    setUpdatedProfileData({
-      ...updatedProfileData,
-      profileImage: filesUrl.at(0),
-    });
-  };
-
   const editUserImgHandler = (e) => {
     setIsAvatarModalOpen(!isAvatarModalOpen);
   };
@@ -155,19 +142,6 @@ const ProfileModal = () => {
       </div>
       <div className="profileModal_ImgContainer">
         <img src={updatedProfileData?.profileImage} alt="profile" />
-        {/* <span className="alternateImg">
-          <span className="uploadImageLabel" htmlFor="alternateProfileFile">
-            <AddPhotoAlternateIcon />
-          </span>
-          <input
-            type="file"
-            id="alternateProfileFile"
-            accept="image/*"
-            name="profileImageFiles"
-            className="uploadProfileImage"
-            onChange={alternateUserImageHandler}
-          />
-        </span> */}
 
         <span className="alternateImg" onClick={(e) => editUserImgHandler(e)}>
           <AddPhotoAlternateIcon />
