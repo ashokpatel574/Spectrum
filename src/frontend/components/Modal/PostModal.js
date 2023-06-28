@@ -25,10 +25,12 @@ const PostModal = () => {
     dispatch,
     state: { postModalDetails, isPostEdited },
   } = useData();
-  const { emojiModalOpen, emojiModalHandler, emojiPickerHandler } = useEmoji(
-    postModalData,
-    setPostModalData
-  );
+  const {
+    emojiModalOpen,
+    setEmojiModalOpen,
+    emojiModalHandler,
+    emojiPickerHandler,
+  } = useEmoji(postModalData, setPostModalData);
 
   const postModalHandler = (e) =>
     postDataFunc(e, setPostModalData, postModalData);
@@ -72,7 +74,10 @@ const PostModal = () => {
           <HighlightOffIcon />
         </span>
       </div>
-      <div className="postModal_InfoContainer ">
+      <div
+        className="postModal_InfoContainer"
+        onClick={() => setEmojiModalOpen(false)}
+      >
         <label htmlFor="postModalMessage"></label>
         <textarea
           placeholder="What's on your mind?"
@@ -119,27 +124,8 @@ const PostModal = () => {
               onChange={postModalHandler}
             />
 
-            <span className="emojiPicker_container">
+            <span className="emojiPickerIcon">
               <AddReactionIcon onClick={emojiModalHandler} />
-              {emojiModalOpen && (
-                <div className="emojiPicker_container-box">
-                  <EmojiPicker
-                    onEmojiClick={emojiPickerHandler}
-                    suggestedEmojisMode={SuggestionMode.RECENT}
-                    autoFocusSearch={false}
-                    previewConfig={{
-                      showPreview: false,
-                    }}
-                    searchDisabled
-                    emojiStyle="native"
-                    emojiVersion="1.0"
-                    lazyLoadEmojis
-                    skinTonesDisabled
-                    height={250}
-                    // theme={Theme.AUTO}
-                  />
-                </div>
-              )}
             </span>
           </span>
 
@@ -147,7 +133,10 @@ const PostModal = () => {
             <button
               onClick={updatePostModalDataHandler}
               className="btn updatepostBtn"
-              disabled={postModalData.message.length === 0}
+              disabled={
+                postModalData.message.length === 0 ??
+                postModalData.files.length === 0
+              }
             >
               Update
             </button>
@@ -155,10 +144,33 @@ const PostModal = () => {
             <button
               onClick={addNewPostHandler}
               className="btn updatepostBtn "
-              disabled={postModalData.message.length === 0}
+              disabled={Boolean(
+                postModalData.files.length === 0 &&
+                  postModalData.message.length === 0
+              )}
             >
               Post
             </button>
+          )}
+
+          {emojiModalOpen && (
+            <div className="emojiPicker_container-box">
+              <EmojiPicker
+                onEmojiClick={emojiPickerHandler}
+                suggestedEmojisMode={SuggestionMode.RECENT}
+                autoFocusSearch={false}
+                previewConfig={{
+                  showPreview: false,
+                }}
+                searchDisabled
+                emojiStyle="native"
+                emojiVersion="1.0"
+                lazyLoadEmojis
+                skinTonesDisabled
+                height={250}
+                // theme={Theme.AUTO}
+              />
+            </div>
           )}
         </div>
       </div>

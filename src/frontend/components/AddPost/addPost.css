@@ -162,6 +162,10 @@
   background-color: var(--primary-color-two);
 }
 
+.postBtn:disabled {
+  background-color: var(--text-color-two);
+}
+
 .emojiPicker_container {
   position: relative;
 }

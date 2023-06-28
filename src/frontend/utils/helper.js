@@ -18,7 +18,12 @@ export const useEmoji = (newPostData, setNewPostData) => {
     setEmojiModalOpen(!emojiModalOpen);
   };
 
-  return { emojiModalOpen, emojiModalHandler, emojiPickerHandler };
+  return {
+    emojiModalOpen,
+    setEmojiModalOpen,
+    emojiModalHandler,
+    emojiPickerHandler,
+  };
 };
 
 export const useSearch = (currentUser) => {
