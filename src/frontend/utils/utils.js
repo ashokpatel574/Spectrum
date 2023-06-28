@@ -29,7 +29,7 @@ const deletePreviewFunc = (id, data, setData) => {
   });
 };
 
-const postDataFunc = (e, setData, data) => {
+const postDataFunc = (e, data, setData) => {
   e.stopPropagation();
   const { name, value, files } = e.target;
   const filesUrl =
