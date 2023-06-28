@@ -1,23 +1,27 @@
 import axios from "axios";
+import { ActionType } from "../constant";
 
 export const getServerData = async (dispatch, token, currentUser) => {
   try {
     const getAllPosts = await axios.get(`/api/posts`);
     if (getAllPosts?.status === 200 || getAllPosts?.status === 201) {
       dispatch({
-        type: "InitialServerData",
-        payload: { type: "allPosts", value: getAllPosts?.data?.posts },
+        type: ActionType.InitialServerFetch,
+        payload: {
+          type: ActionType.AllPosts,
+          value: getAllPosts?.data?.posts,
+        },
       });
     }
 
     const getAllUsers = await axios.get(`/api/users`);
     if (getAllUsers?.status === 200 || getAllUsers?.status === 201) {
       dispatch({
-        type: "InitialServerData",
+        type: ActionType.InitialServerFetch,
         payload: {
-          type: "allUsers",
+          type: ActionType.AllUsers,
           value: getAllUsers?.data?.users,
-          currentUser: currentUser,
+          loggedInUser: currentUser,
         },
       });
     }
@@ -31,10 +35,10 @@ export const getServerData = async (dispatch, token, currentUser) => {
       getUsersBookmarkedPost?.status === 201
     ) {
       dispatch({
-        type: "InitialServerData",
+        type: ActionType.InitialServerFetch,
         payload: {
-          type: "userBookmarkData",
-          currentUser: currentUser,
+          type: ActionType.UserBookmarkFetch,
+          loggedInUser: currentUser,
           value: getUsersBookmarkedPost?.data?.bookmarks,
         },
       });

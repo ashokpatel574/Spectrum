@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import { useLogin } from "../../utils/authUtils";
+import { useAuth } from "../../context/AuthContext";
 
 const LoginPage = () => {
   const { setToken, setCurrentUser, setAuthError, authError } = useAuth();

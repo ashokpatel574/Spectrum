@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { AVATAR_IMGS } from "../../constant";
-import "./avatarModal.css";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { AVATAR_IMGS } from "../../constant";
 
 const AvatarModal = ({
   isAvatarModalOpen,

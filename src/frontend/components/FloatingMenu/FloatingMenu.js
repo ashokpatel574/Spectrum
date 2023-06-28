@@ -1,12 +1,12 @@
+import { NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreIcon from "@mui/icons-material/Explore";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import "./floatingMenu.css";
-import { NavLink } from "react-router-dom";
-import { useData } from "../../context/DataContext";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+
+import { useData } from "../../context/DataContext";
 
 const FloatingMenu = () => {
   const {

@@ -19,10 +19,6 @@
   padding: 1.5rem 1.5rem 3rem 1.5rem;
 }
 
-.postFeed_container {
-  width: 100%;
-}
-
 .profileModal_overlay,
 .postModal_overlay {
   position: fixed;

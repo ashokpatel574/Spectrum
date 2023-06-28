@@ -1,8 +1,8 @@
-import "./sugestionFeed.css";
-import { useData } from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
+import { useData } from "../../context/DataContext";
+
 import { useAuth } from "../../context/AuthContext";
-import { updateFollowList } from "../../services/userServices";
+import { followService } from "../../services/userServices";
 import { getUserFollowingList } from "../../utils/utils";
 
 const SuggestionFeed = () => {
@@ -26,7 +26,7 @@ const SuggestionFeed = () => {
 
   const followHandler = (e, followUserId) => {
     e.stopPropagation();
-    updateFollowList(followUserId, token, dispatch);
+    followService(followUserId, token, dispatch);
   };
 
   return (

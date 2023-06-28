@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
-import Post from "../Post/Post";
+
 import SortIcon from "@mui/icons-material/Sort";
-import "./postList.css";
+import Post from "../Post/Post";
 import { getfilterDataBySort } from "../../utils/utils";
+
 
 const PostList = ({ postListData, headerState }) => {
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [filterPostType, setFilterPostType] = useState("");
+  const [showfilterMenu, setShowFilterMenu] = useState(false);
 
   const postFilterHandler = (sortOptions) => {
     const UpdatedfilterData = getfilterDataBySort(postListData, sortOptions);
+    setFilterPostType(sortOptions === "ClearFilter" ? "" : sortOptions);
     setFilteredPosts([...UpdatedfilterData]);
+    setShowFilterMenu(!showfilterMenu);
+  };
+
+  const filterMenuHandler = (e) => {
+    setShowFilterMenu(!showfilterMenu);
   };
 
   useEffect(() => {
@@ -19,19 +28,28 @@ const PostList = ({ postListData, headerState }) => {
   return (
     <>
       <header className="postFeed_container-header">
-        <span>{headerState} | Latest posts</span>
+        <span>
+          {headerState} {filterPostType && `| ${filterPostType}`}
+        </span>
         <span className="postFeed_container-filterIcon-container">
-          <span className="postFeed_container-filterIcon">
+          <span
+            className="postFeed_container-filterIcon"
+            onClick={filterMenuHandler}
+          >
             <SortIcon />
           </span>
-          <span className="postFeed_settings flex-column">
-            <span onClick={() => postFilterHandler("Trending")}>Trending</span>
-            <span onClick={() => postFilterHandler("Latest")}>Latest</span>
-            <span onClick={() => postFilterHandler("Oldest")}>Oldest</span>
-            <span onClick={() => postFilterHandler("ClearFilter")}>
-              Clear Filter
+          {showfilterMenu && (
+            <span className="postFeed_settings flex-column">
+              <span onClick={() => postFilterHandler("Trending")}>
+                Trending
+              </span>
+              <span onClick={() => postFilterHandler("Latest")}>Latest</span>
+              <span onClick={() => postFilterHandler("Oldest")}>Oldest</span>
+              <span onClick={() => postFilterHandler("ClearFilter")}>
+                Clear Filter
+              </span>
             </span>
-          </span>
+          )}
         </span>
       </header>
       <ul className="flex-column">

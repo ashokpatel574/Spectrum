@@ -1,136 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useData } from "../../context/DataContext";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import "./profileModal.css";
-import { updateUserProfileService } from "../../services/userServices";
-import { useAuth } from "../../context/AuthContext";
-import { validateOnlyString } from "../../utils/utils";
 
 import AvatarModal from "./AvatarModal";
+import { useProfile } from "../../utils/helper";
+
 
 const ProfileModal = () => {
-  const [updatedProfileData, setUpdatedProfileData] = useState({
-    profileImage: "",
-    firstname: "",
-    lastname: "",
-    email: "",
-    bio: "",
-    link: "",
-  });
-
-  const [profileDataError, setProfileDataError] = useState({
-    firstname: "",
-    lastname: "",
-  });
-
-  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
-
-  const { token } = useAuth();
-
   const {
-    dispatch,
-    state: { profileModalDetails },
-  } = useData();
-
-  const profileDataChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setUpdatedProfileData({
-      ...updatedProfileData,
-      [name]: value,
-    });
-
-    if (name === "firstname") {
-      let firstnameText = value.length;
-      setProfileDataError({ ...profileDataError, [name]: "" });
-
-      if (!validateOnlyString(value)) {
-        setProfileDataError({
-          ...profileDataError,
-          [name]: "Firstname should be in text!",
-        });
-      }
-
-      if (firstnameText < 3) {
-        setProfileDataError({
-          ...profileDataError,
-          [name]: "Firstname should have atleast 3 character!",
-        });
-      }
-    }
-
-    if (name === "lastname") {
-      setProfileDataError({ ...profileDataError, [name]: "" });
-
-      if (!validateOnlyString(value)) {
-        setProfileDataError({
-          ...profileDataError,
-          [name]: "Lastname should be in text!",
-        });
-      }
-    }
-  };
-
-  const updateUserProfileHandler = () => {
-    let flag = false;
-    let errorMessage = {};
-
-    Object.keys(updatedProfileData).forEach((element) => {
-      if (updatedProfileData[element] === "") {
-        errorMessage[element] = `${
-          element.at(0).toUpperCase() + element.slice(1)
-        } is required!`;
-        flag = true;
-      }
-    });
-
-    !flag
-      ? updateUserProfileService(token, updatedProfileData, dispatch)
-      : setProfileDataError(errorMessage);
-
-    !flag &&
-      setProfileDataError({
-        firstname: "",
-        lastname: "",
-      }) &&
-      setIsAvatarModalOpen(!isAvatarModalOpen);
-  };
-
-  const closeProfileModalHandler = () => {
-    dispatch({
-      type: "closeProfileModal",
-    });
-    setUpdatedProfileData({
-      profileImage: "",
-      firstname: "",
-      lastname: "",
-      email: "",
-      bio: "",
-      link: "",
-    });
-    setProfileDataError({
-      firstname: "",
-      lastname: "",
-    });
-  };
-
-  const editUserImgHandler = (e) => {
-    setIsAvatarModalOpen(!isAvatarModalOpen);
-  };
-
-  useEffect(() => {
-    if (profileModalDetails) {
-      setUpdatedProfileData({
-        ...updatedProfileData,
-        profileImage: profileModalDetails?.profileImage,
-        firstname: profileModalDetails?.firstname,
-        lastname: profileModalDetails?.lastname,
-        email: profileModalDetails?.email,
-        bio: profileModalDetails?.bio,
-        link: profileModalDetails?.website,
-      });
-    }
-  }, []);
+    updatedProfileData,
+    setUpdatedProfileData,
+    profileDataError,
+    isAvatarModalOpen,
+    setIsAvatarModalOpen,
+    profileDataChangeHandler,
+    updateUserProfileHandler,
+    closeProfileModalHandler,
+    editUserImgHandler,
+  } = useProfile();
 
   return (
     <div className="profileModal_container flex-column">

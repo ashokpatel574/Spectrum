@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
-import { useAuth } from "../../context/AuthContext";
-import "./postmodal.css";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
+
+import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
-import { postEditService } from "../../services/postServices";
 import { useEmoji } from "../../utils/helper";
+
 import {
-  addNewPostFunc,
-  deletePreviewFunc,
-  postDataFunc,
-} from "../../utils/utils";
+  postUpdateService,
+  addNewPostService,
+} from "../../services/postServices";
+import { deletePreviewFunc, postDataFunc } from "../../utils/utils";
+import { ActionType } from "../../constant";
+import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
+
 
 const PostModal = () => {
   const [postModalData, setPostModalData] = useState({
@@ -25,6 +27,7 @@ const PostModal = () => {
     dispatch,
     state: { postModalDetails, isPostEdited },
   } = useData();
+
   const {
     emojiModalOpen,
     setEmojiModalOpen,
@@ -33,13 +36,13 @@ const PostModal = () => {
   } = useEmoji(postModalData, setPostModalData);
 
   const postModalHandler = (e) =>
-    postDataFunc(e, setPostModalData, postModalData);
+    postDataFunc(e, postModalData, setPostModalData);
 
   const addNewPostHandler = () =>
-    addNewPostFunc(postModalData, setPostModalData, token, dispatch);
+    addNewPostService(postModalData, token, dispatch);
 
   const deletePreviewHandler = (id) =>
-    deletePreviewFunc(id, setPostModalData, postModalData);
+    deletePreviewFunc(id, postModalData, setPostModalData);
 
   const updatePostModalDataHandler = () => {
     const updatedPost = {
@@ -48,12 +51,12 @@ const PostModal = () => {
       postImage:
         postModalData?.files?.length === 0 ? null : postModalData?.files,
     };
-    postEditService(token, postModalDetails._id, updatedPost, dispatch);
+    postUpdateService(postModalDetails._id, updatedPost, token, dispatch);
   };
 
   const closePostModalHandler = () => {
     dispatch({
-      type: "closePostModal",
+      type: ActionType.ClosePostModal,
     });
   };
 

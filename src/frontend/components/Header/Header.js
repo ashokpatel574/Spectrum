@@ -1,14 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 //import LightModeIcon from "@mui/icons-material/LightMode";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
-import "./header.css";
-import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../../context/AuthContext";
 import { useSearch } from "../../utils/helper";
 import { useData } from "../../context/DataContext";
-import { updateFollowList } from "../../services/userServices";
+import { followService } from "../../services/userServices";
 
 const Header = () => {
   const {
@@ -27,13 +27,14 @@ const Header = () => {
 
   const followHandler = (e, followUserId) => {
     e.stopPropagation();
-    updateFollowList(followUserId, token, dispatch);
+    followService(followUserId, token, dispatch);
   };
 
   const {
     searchInput,
     searchHandler,
     searchResult,
+    clearSearchHandler,
     isSearchResultUserFollowed,
   } = useSearch(userProfile);
 
@@ -54,7 +55,11 @@ const Header = () => {
               onChange={searchHandler}
             />
             <span className="flex-center">
-              {searchInput.length === 0 ? <SearchIcon /> : <CloseIcon />}
+              {searchInput.length === 0 ? (
+                <SearchIcon />
+              ) : (
+                <CloseIcon onClick={clearSearchHandler} />
+              )}
             </span>
           </label>
 
@@ -64,7 +69,7 @@ const Header = () => {
             }`}
           >
             {searchResult.length > 0 ? (
-              searchResult?.map((item, id) => (
+              searchResult?.map((item) => (
                 <span
                   key={item.username}
                   className="searchResult_container-section"

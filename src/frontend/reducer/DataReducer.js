@@ -1,3 +1,5 @@
+import { ActionType } from "../constant";
+
 export const initialState = {
   posts: [],
   users: [],
@@ -11,25 +13,25 @@ export const initialState = {
 
 export const DataReducer = (state, action) => {
   switch (action.type) {
-    case "InitialServerData": {
-      if (action.payload.type === "allPosts") {
+    case ActionType.InitialServerFetch: {
+      if (action.payload.type === ActionType.AllPosts) {
         return { ...state, posts: action.payload.value };
       }
 
-      if (action.payload.type === "allUsers") {
+      if (action.payload.type === ActionType.AllUsers) {
         return {
           ...state,
           users: action.payload.value,
-          userProfile: action.payload.currentUser,
+          userProfile: action.payload.loggedInUser,
         };
       }
 
-      if (action.payload.type === "userBookmarkData") {
+      if (action.payload.type === ActionType.UserBookmarkFetch) {
         return {
           ...state,
           users: [
             ...state.users.map((item) =>
-              item.id === action.payload.currentUser.id
+              item._id === action.payload.loggedInUser._id
                 ? { ...item, bookmarks: [...action.payload.value] }
                 : item
             ),
@@ -40,12 +42,12 @@ export const DataReducer = (state, action) => {
       return state;
     }
 
-    case "addBookmark": {
+    case ActionType.SetBookmarkData: {
       const updatedUserData = state.users.map((user) => {
         return user.username === action.payload.username
           ? {
               ...user,
-              bookmarks: [...action.payload.bookmarkValue],
+              bookmarks: [...action.payload.value],
             }
           : user;
       });
@@ -55,46 +57,19 @@ export const DataReducer = (state, action) => {
         users: updatedUserData,
         userProfile: {
           ...state.userProfile,
-          bookmarks: [...action.payload.bookmarkValue],
+          bookmarks: [...action.payload.value],
         },
       };
     }
 
-    case "removeBookmark": {
-      const updatedUserData = state.users.map((user) => {
-        return user.username === action.payload.username
-          ? {
-              ...user,
-              bookmarks: [...action.payload.bookmarkValue],
-            }
-          : user;
-      });
-
-      return {
-        ...state,
-        users: updatedUserData,
-        userProfile: {
-          ...state.userProfile,
-          bookmarks: [...action.payload.bookmarkValue],
-        },
-      };
-    }
-
-    case "likedPost": {
+    case ActionType.TogglePostLike: {
       return {
         ...state,
         posts: [...action.payload],
       };
     }
 
-    case "removeLikedPost": {
-      return {
-        ...state,
-        posts: [...action.payload],
-      };
-    }
-
-    case "updateUserFollower": {
+    case ActionType.UpdateUserFollowerList: {
       return {
         ...state,
         users: [
@@ -111,52 +86,52 @@ export const DataReducer = (state, action) => {
       };
     }
 
-    case "addNewPost": {
+    case ActionType.AddPost: {
       return {
         ...state,
-        posts: action.payload.newpost,
+        posts: action.payload,
         isPostModalOpen: false,
         isPostEdited: false,
         postModalDetails: null,
       };
     }
 
-    case "deletePost": {
+    case ActionType.DeletePost: {
       return {
         ...state,
         posts: action.payload,
       };
     }
 
-    case "updateEditedPost": {
-      return {
-        ...state,
-        isPostModalOpen: false,
-        isPostEdited: false,
-        postModalDetails: null,
-        posts: action.payload,
-      };
-    }
-
-    case "closePostModal": {
-      return {
-        ...state,
-        isPostModalOpen: false,
-        isPostEdited: false,
-        postModalDetails: null,
-      };
-    }
-
-    case "openPostModal": {
+    case ActionType.OpenPostModal: {
       return {
         ...state,
         isPostModalOpen: true,
         isPostEdited: action.payload.type === "edit",
-        postModalDetails: action?.payload?.value,
+        postModalDetails: action.payload.value,
       };
     }
 
-    case "closeProfileModal": {
+    case ActionType.ClosePostModal: {
+      return {
+        ...state,
+        isPostModalOpen: false,
+        isPostEdited: false,
+        postModalDetails: null,
+      };
+    }
+
+    case ActionType.UpdatePost: {
+      return {
+        ...state,
+        isPostModalOpen: false,
+        isPostEdited: false,
+        postModalDetails: null,
+        posts: action.payload,
+      };
+    }
+
+    case ActionType.CloseProfileModal: {
       return {
         ...state,
         isProfileModalOpen: false,
@@ -164,7 +139,7 @@ export const DataReducer = (state, action) => {
       };
     }
 
-    case "openProfileModal": {
+    case ActionType.OpenProfileModal: {
       return {
         ...state,
         isProfileModalOpen: true,
@@ -172,7 +147,7 @@ export const DataReducer = (state, action) => {
       };
     }
 
-    case "updateEditedProfile": {
+    case ActionType.UpdateProfile: {
       const updatedUserPost = {
         firstname: action.payload.firstname,
         lastname: action.payload.lastname,
