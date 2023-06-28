@@ -62,11 +62,10 @@
 
 .post-settings {
   position: absolute;
-  top: 125%;
-  right: -125%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  right: 5%;
   gap: 0.5rem;
-  z-index: 50;
+  z-index: 5;
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color-dark);
@@ -79,7 +78,7 @@
   position: absolute;
   width: 1.3rem;
   height: 1.3rem;
-  top: -15%;
+  top: -14%;
   right: 5%;
   transform: translate(-50%, 50%) rotate(45deg);
   background-color: var(--background-color-one);

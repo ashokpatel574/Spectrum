@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const getServerData = async (dispatch, token, currentUser) => {
-  console.log(currentUser);
   try {
     const getAllPosts = await axios.get(`/api/posts`);
     if (getAllPosts?.status === 200 || getAllPosts?.status === 201) {

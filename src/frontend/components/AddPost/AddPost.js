@@ -116,7 +116,13 @@ const AddPost = () => {
             </span>
           </span>
 
-          <button onClick={addNewPostHandler} className="btn postBtn">
+          <button
+            onClick={addNewPostHandler}
+            className="btn postBtn"
+            disabled={
+              newPostData.message.length === 0 && newPostData.files.length === 0
+            }
+          >
             Post
           </button>
         </div>
