@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
-import "./addPost.css";
-import { useAuth } from "../../context/AuthContext";
+import React, { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 
+import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
 import { useEmoji } from "../../utils/helper";
-import {
-  addNewPostFunc,
-  deletePreviewFunc,
-  postDataFunc,
-} from "../../utils/utils";
+
+import { addNewPostService } from "../../services/postServices";
+import { deletePreviewFunc, postDataFunc } from "../../utils/utils";
+
+import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 
 const AddPost = () => {
   const [newPostData, setNewPostData] = useState({
@@ -30,13 +28,18 @@ const AddPost = () => {
     setNewPostData
   );
 
-  const postHandler = (e) => postDataFunc(e, setNewPostData, newPostData);
+  const postHandler = (e) => postDataFunc(e, newPostData, setNewPostData);
 
   const deletePreviewHandler = (id) =>
-    deletePreviewFunc(id, setNewPostData, newPostData);
+    deletePreviewFunc(id, newPostData, setNewPostData);
 
-  const addNewPostHandler = () =>
-    addNewPostFunc(newPostData, setNewPostData, token, dispatch);
+  const addNewPostHandler = () => {
+    addNewPostService(newPostData, token, dispatch);
+    setNewPostData({
+      message: "",
+      files: [],
+    });
+  };
 
   return (
     <div className="addPost_container flex-column">

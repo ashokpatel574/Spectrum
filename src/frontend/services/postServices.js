@@ -1,6 +1,7 @@
 import axios from "axios";
+import { ActionType } from "../constant";
 
-export const addNewPostService = async (token, post, dispatch) => {
+export const addNewPostService = async (post, token, dispatch) => {
   try {
     const {
       status,
@@ -17,10 +18,8 @@ export const addNewPostService = async (token, post, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "addNewPost",
-        payload: {
-          newpost: posts,
-        },
+        type: ActionType.AddPost,
+        payload: posts,
       });
     }
   } catch (error) {
@@ -37,7 +36,7 @@ export const getPostEditService = async (postId, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "openPostModal",
+        type: ActionType.OpenPostModal,
         payload: {
           type: "edit",
           value: post,
@@ -49,7 +48,7 @@ export const getPostEditService = async (postId, dispatch) => {
   }
 };
 
-export const postEditService = async (token, postId, post, dispatch) => {
+export const postUpdateService = async (postId, post, token, dispatch) => {
   try {
     const {
       status,
@@ -66,7 +65,7 @@ export const postEditService = async (token, postId, post, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "updateEditedPost",
+        type: ActionType.UpdatePost,
         payload: posts,
       });
     }
@@ -75,7 +74,7 @@ export const postEditService = async (token, postId, post, dispatch) => {
   }
 };
 
-export const deletePostService = async (token, postId, dispatch) => {
+export const postDeleteService = async (postId, token, dispatch) => {
   try {
     const {
       status,
@@ -90,7 +89,7 @@ export const deletePostService = async (token, postId, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "deletePost",
+        type: ActionType.DeletePost,
         payload: posts,
       });
     }
@@ -99,7 +98,7 @@ export const deletePostService = async (token, postId, dispatch) => {
   }
 };
 
-export const addLikedPost = async (postId, token, dispatch) => {
+export const addLikedPostService = async (postId, token, dispatch) => {
   try {
     const { status, data } = await axios.post(
       `/api/posts/like/${postId}`,
@@ -111,7 +110,7 @@ export const addLikedPost = async (postId, token, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "likedPost",
+        type: ActionType.TogglePostLike,
         payload: data?.posts,
       });
     }
@@ -120,7 +119,7 @@ export const addLikedPost = async (postId, token, dispatch) => {
   }
 };
 
-export const removeLikedPost = async (postId, token, dispatch) => {
+export const removeLikedPostService = async (postId, token, dispatch) => {
   try {
     const { status, data } = await axios.post(
       `/api/posts/dislike/${postId}`,
@@ -132,7 +131,7 @@ export const removeLikedPost = async (postId, token, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "removeLikedPost",
+        type: ActionType.TogglePostLike,
         payload: data?.posts,
       });
     }
@@ -141,12 +140,7 @@ export const removeLikedPost = async (postId, token, dispatch) => {
   }
 };
 
-export const postBookmarkService = async (
-  postId,
-  token,
-  dispatch,
-  username
-) => {
+export const addBookmarkService = async (postId, token, dispatch, username) => {
   try {
     const { status, data } = await axios.post(
       `/api/users/bookmark/${postId}`,
@@ -158,10 +152,10 @@ export const postBookmarkService = async (
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "addBookmark",
+        type: ActionType.SetBookmarkData,
         payload: {
           username: username,
-          bookmarkValue: data?.bookmarks,
+          value: data?.bookmarks,
         },
       });
     }
@@ -187,10 +181,10 @@ export const removeBookmarkService = async (
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "removeBookmark",
+        type: ActionType.SetBookmarkData,
         payload: {
           username: username,
-          bookmarkValue: data?.bookmarks,
+          value: data?.bookmarks,
         },
       });
     }

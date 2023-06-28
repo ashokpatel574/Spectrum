@@ -1,9 +1,9 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useData } from "../../context/DataContext";
-import "./profilePage.css";
+
 import Profile from "../../components/Profile/Profile";
 import PostList from "../../components/PostList/PostList";
-import { useParams } from "react-router-dom";
 
 const ProfilePage = () => {
   const {

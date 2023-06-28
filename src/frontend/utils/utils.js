@@ -1,4 +1,3 @@
-import { addNewPostService } from "../services/postServices";
 import { toast } from "react-toastify";
 
 const validateNumber = (input) => {
@@ -23,32 +22,22 @@ const getUserFollowingList = (currentUser) => {
   return currentUser?.following?.map((item) => item?.username);
 };
 
-const addNewPostFunc = (newPostData, setNewPostData, token, dispatch) => {
-  newPostData.message.length > 1 &&
-    addNewPostService(token, newPostData, dispatch);
-
-  setNewPostData({
-    message: "",
-    files: [],
+const deletePreviewFunc = (id, data, setData) => {
+  setData({
+    ...data,
+    files: data.files.filter((item, index) => index !== id),
   });
 };
 
-const deletePreviewFunc = (id, setNewPostData, newPostData) => {
-  setNewPostData({
-    ...newPostData,
-    files: newPostData.files.filter((item, index) => index !== id),
-  });
-};
-
-const postDataFunc = (e, setNewPostData, newPostData) => {
+const postDataFunc = (e, setData, data) => {
   e.stopPropagation();
   const { name, value, files } = e.target;
   const filesUrl =
     files && [...files]?.map((file) => URL.createObjectURL(file));
 
-  setNewPostData({
-    ...newPostData,
-    [name]: name === "message" ? value : [...newPostData.files, filesUrl],
+  setData({
+    ...data,
+    [name]: name === "message" ? value : [...data.files, filesUrl],
   });
 };
 
@@ -82,6 +71,28 @@ const getfilterDataBySort = (dataToBeFiltered, sortOptions) => {
   }
 };
 
+const timeAgo = (date) => {
+  let currentDate = new Date();
+  let yearDiff = currentDate.getFullYear() - new Date(date).getFullYear();
+
+  if (yearDiff > 0) return `${yearDiff} year${yearDiff === 1 ? "" : "s"} ago`;
+
+  let monthDiff = currentDate.getMonth() - new Date(date).getMonth();
+  if (monthDiff > 0)
+    return `${monthDiff} month${monthDiff === 1 ? "" : "s"} ago`;
+
+  let dateDiff = currentDate.getDate() - new Date(date).getDate();
+  if (dateDiff > 0) return `${dateDiff} day${dateDiff === 1 ? "" : "s"} ago`;
+
+  let hourDiff = currentDate.getHours() - new Date(date).getHours();
+  if (hourDiff > 0) return `${hourDiff} hour${hourDiff === 1 ? "" : "s"} ago`;
+
+  let minuteDiff = currentDate.getMinutes() - new Date(date).getMinutes();
+  if (minuteDiff > 0)
+    return `${minuteDiff} minute${minuteDiff === 1 ? "" : "s"} ago`;
+  return `a few seconds ago`;
+};
+
 export const ToastType = {
   Warn: "warn",
   Success: "success",
@@ -111,12 +122,12 @@ export const ToastHandler = (type, message) => {
 };
 
 export {
+  timeAgo,
   validateEmail,
   validateNumber,
   validateOnlyString,
   validatePassword,
   getUserFollowingList,
-  addNewPostFunc,
   deletePreviewFunc,
   postDataFunc,
   getfilterDataBySort,

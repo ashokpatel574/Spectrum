@@ -1,16 +1,5 @@
 import axios from "axios";
-
-export const getuserProfile = async (userId, dispatch) => {
-  try {
-    const { status, data } = await axios.get(`/api/users/${userId}`);
-
-    if (status === 200 || status === 201) {
-      dispatch({ type: "getProfileDetails", payload: data?.user });
-    }
-  } catch (error) {
-    console.error("userprofile", error);
-  }
-};
+import { ActionType } from "../constant";
 
 export const getUserProfileService = async (userId, dispatch) => {
   try {
@@ -21,7 +10,7 @@ export const getUserProfileService = async (userId, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "openProfileModal",
+        type: ActionType.OpenProfileModal,
         payload: user,
       });
     }
@@ -45,7 +34,7 @@ export const updateUserProfileService = async (token, userData, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "updateEditedProfile",
+        type: ActionType.UpdateProfile,
         payload: user,
       });
     }
@@ -54,7 +43,7 @@ export const updateUserProfileService = async (token, userData, dispatch) => {
   }
 };
 
-export const updateFollowList = async (followUserId, token, dispatch) => {
+export const followService = async (followUserId, token, dispatch) => {
   try {
     const { status, data } = await axios.post(
       `/api/users/follow/${followUserId}`,
@@ -65,9 +54,8 @@ export const updateFollowList = async (followUserId, token, dispatch) => {
     );
 
     if (status === 200 || status === 201) {
-      console.log(data);
       dispatch({
-        type: "updateUserFollower",
+        type: ActionType.UpdateUserFollowerList,
         payload: {
           updatedUser: data.user,
           updatedFollowedUser: data.followUser,
@@ -79,7 +67,7 @@ export const updateFollowList = async (followUserId, token, dispatch) => {
   }
 };
 
-export const updateUnFollowList = async (followUserId, token, dispatch) => {
+export const unFollowService = async (followUserId, token, dispatch) => {
   try {
     const { status, data } = await axios.post(
       `/api/users/unfollow/${followUserId}`,
@@ -91,7 +79,7 @@ export const updateUnFollowList = async (followUserId, token, dispatch) => {
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "updateUserFollower",
+        type: ActionType.UpdateUserFollowerList,
         payload: {
           updatedUser: data.user,
           updatedFollowedUser: data.followUser,

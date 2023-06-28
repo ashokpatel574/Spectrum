@@ -35,14 +35,12 @@
   position: absolute;
   top: 100%;
   right: 0%;
-  /* transform: translate(-50%, -50%); */
   gap: 0.5rem;
   z-index: 60;
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color-dark);
   background-color: var(--background-color-one);
-  display: none;
 }
 
 .postFeed_settings::before {
@@ -57,10 +55,6 @@
   border-top: 1px solid var(--border-color-dark);
   border-left: 1px solid var(--border-color-dark);
   z-index: -1;
-}
-
-.postFeed_container-filterIcon-container:hover .postFeed_settings {
-  display: flex;
 }
 
 .postFeed_settings span:hover {

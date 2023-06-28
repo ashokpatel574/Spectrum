@@ -1,14 +1,15 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import LinkIcon from "@mui/icons-material/Link";
-import "./profile.css";
+
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
 import {
-  updateUnFollowList,
   getUserProfileService,
-  updateFollowList,
+  followService,
+  unFollowService,
 } from "../../services/userServices";
-import { Link, useParams } from "react-router-dom";
+
 
 const Profile = () => {
   const {
@@ -26,8 +27,8 @@ const Profile = () => {
   const followHandler = (e, followUserId) => {
     e.stopPropagation();
     isFollowed
-      ? updateUnFollowList(followUserId, token, dispatch)
-      : updateFollowList(followUserId, token, dispatch);
+      ? followService(followUserId, token, dispatch)
+      : unFollowService(followUserId, token, dispatch);
   };
 
   const editProfileHandler = () => {

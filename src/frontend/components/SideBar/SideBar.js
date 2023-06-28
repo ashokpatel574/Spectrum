@@ -1,10 +1,9 @@
+import { NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreIcon from "@mui/icons-material/Explore";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import "./sideBar.css";
-import { NavLink } from "react-router-dom";
 import { useData } from "../../context/DataContext";
 
 const SideBar = () => {

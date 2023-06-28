@@ -1,8 +1,16 @@
 import React from "react";
-import ExploreFeed from "../../components/ExploreFeed/ExploreFeed";
+import { useData } from "../../context/DataContext";
+import PostList from "../../components/PostList/PostList";
 
 const ExplorePage = () => {
-  return <ExploreFeed />;
+  const {
+    state: { posts },
+  } = useData();
+  return (
+    <section className="postFeed_container">
+      <PostList postListData={posts} headerState={"Explore"} />
+    </section>
+  );
 };
 
 export default ExplorePage;
