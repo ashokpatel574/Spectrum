@@ -8,7 +8,6 @@ import { useEmoji } from "../../utils/helper";
 
 import { addNewPostService } from "../../services/postServices";
 import { deletePreviewFunc, postDataFunc } from "../../utils/utils";
-
 import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 
 const AddPost = () => {

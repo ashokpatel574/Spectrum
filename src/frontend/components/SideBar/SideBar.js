@@ -5,6 +5,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useData } from "../../context/DataContext";
+import { ActionType } from "../../constant";
 
 const SideBar = () => {
   const {
@@ -14,7 +15,7 @@ const SideBar = () => {
 
   const sideBarAddPostHandler = () => {
     dispatch({
-      type: "openPostModal",
+      type: ActionType.OpenPostModal,
       payload: {
         type: "newPost",
         value: null,
