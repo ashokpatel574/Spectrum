@@ -7,6 +7,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
 import { useData } from "../../context/DataContext";
+import { ActionType } from "../../constant";
 
 const FloatingMenu = () => {
   const {
@@ -16,7 +17,7 @@ const FloatingMenu = () => {
 
   const sideBarAddPostHandler = () => {
     dispatch({
-      type: "openPostModal",
+      type: ActionType.OpenPostModal,
       payload: {
         type: "newPost",
         value: null,

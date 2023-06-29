@@ -15,12 +15,12 @@
 }
 
 .sideBar_container-listItem:hover {
-  border-radius: 1.2rem;
+  border-radius: 1rem;
   background-color: var(--primary-color-shade);
 }
 
 .sideBar_container-listItem:last-child:hover {
-  border-radius: 1.2rem;
+  border-radius: 1rem;
   background-color: transparent;
 }
 
@@ -82,6 +82,11 @@
     border-radius: 0.8rem;
   }
 
+  .sideBar_container-listItem:hover,
+  .sideBar_container-listItem:last-child:hover {
+    border-radius: 0.8rem;
+  }
+
   .sideBar_container-listItem .postBtn {
     padding: 0.4rem 1rem;
     border-radius: 8px;
@@ -93,6 +98,13 @@
   .sideBar_container-listItem .likeposts,
   .sideBar_container-listItem .profile {
     display: none;
+  }
+}
+
+/*  768px === 45em  */
+@media (max-width: 48em) {
+  .sideBar_container-listItem .postBtn {
+    font-size: 1.7rem;
   }
 }
 

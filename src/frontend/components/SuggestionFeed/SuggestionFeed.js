@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/DataContext";
-
 import { useAuth } from "../../context/AuthContext";
 import { followService } from "../../services/userServices";
 import { getUserFollowingList } from "../../utils/utils";

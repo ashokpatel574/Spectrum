@@ -4,7 +4,6 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AvatarModal from "./AvatarModal";
 import { useProfile } from "../../utils/helper";
 
-
 const ProfileModal = () => {
   const {
     updatedProfileData,
@@ -69,19 +68,6 @@ const ProfileModal = () => {
           />
           <span>{profileDataError.lastname}</span>
         </div>
-      </div>
-
-      <div className="profileModal_section type-2">
-        <label htmlFor="profileModalemail">Email</label>
-        <input
-          id="profileModalemail"
-          placeholder="Email"
-          type="email"
-          name="email"
-          className="profileModal_email"
-          value={updatedProfileData.email}
-          onChange={profileDataChangeHandler}
-        />
       </div>
 
       <div className="profileModal_section type-2">

@@ -2,40 +2,39 @@
   position: sticky;
   bottom: 0;
   left: 0;
-  z-index: 50;
+  z-index: 75;
   display: none;
   width: 100%;
-  padding: 0.8rem 1rem;
-  background-color: #fff;
+  padding: 0.8rem;
+  background-color: var(--secondary-color-one);
 }
 
 .floatMenu_container-list {
   display: flex;
-  gap: 2rem;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .floatMenu_container-listItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   transition: all 0.1s;
 }
 
 .floatMenu_container-listItem:hover {
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   background-color: var(--primary-color-shade);
-}
-
-.floatMenu_container-listItem:last-child:hover {
-  border-radius: 1rem;
-  background-color: transparent;
 }
 
 .floatMenu_container-listItem a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   text-decoration: none;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 0.8rem;
   color: initial;
   width: 100%;
@@ -51,19 +50,17 @@
 }
 
 .floatMenu_container-listItem span {
-  font-size: 1.8rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
 }
 
-.floatMenu_container-listItem svg {
-  font-size: 2.8rem;
+.floatMenu_container-listItem .postBtn {
+  padding: 0.4rem 0.8rem;
 }
 
-.floatMenu_container-listItem .postBtn {
-  padding: 0.4rem 2rem;
-  border-radius: 8px;
+.floatMenu_container-listItem svg {
+  font-size: 2.8rem;
 }
 
 /*  544px === 34em  */

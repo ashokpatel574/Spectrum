@@ -7,7 +7,7 @@
   width: 100%;
   position: relative;
   grid-area: main;
-  height: 125vh;
+  height: 100vh;
   overflow-y: scroll;
 }
 
@@ -35,4 +35,15 @@
   font-size: 2rem;
   font-weight: 500;
   margin-top: 5rem;
+}
+
+/*  768px === 48em  */
+@media (max-width: 48em) {
+  .postFeed_container ul {
+    gap: 1.75rem;
+  }
+
+  .emptyFeed {
+    font-size: 1.9rem;
+  }
 }
