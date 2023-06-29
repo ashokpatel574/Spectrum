@@ -9,7 +9,6 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { timeAgo } from "../../utils/utils";
 import { usePost } from "../../utils/helper";
 
-
 const Post = ({ post }) => {
   const {
     _id: postId,
@@ -50,11 +49,11 @@ const Post = ({ post }) => {
             <span className="fullname">
               {post?.firstname} {post?.lastname}
             </span>
+            <span className="postDate">{`${timeAgo(createdAt)}`}</span>
           </div>
 
           <div className="feedListItem_header-text-partTwo">
             <span className="username">@{username}</span>
-            <span className="postDate">{`${timeAgo(createdAt)}`}</span>
           </div>
         </div>
 
@@ -82,7 +81,7 @@ const Post = ({ post }) => {
                 key={id}
                 className="feedListItem_InfoContainer-body--postImage"
               >
-                <img src={image} alt={content} />
+                <img src={image} alt={content} width="500px" height="500px" />
               </div>
             ))}
         </div>

@@ -10,7 +10,10 @@ import {
   getPostEditService,
   postDeleteService,
 } from "../services/postServices";
-import { updateUserProfileService } from "../services/userServices";
+import {
+  updateUserProfileService,
+  followService,
+} from "../services/userServices";
 
 import { validateOnlyString, getUserFollowingList } from "./utils";
 import { ActionType } from "../constant";
@@ -39,11 +42,9 @@ export const useEmoji = (newPostData, setNewPostData) => {
   };
 };
 
-export const useSearch = (currentUser) => {
+export const useSearch = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  const [isSearchResultUserFollowed, setIsSearchResultUserFollowed] =
-    useState("");
 
   const {
     state: { users },
@@ -58,19 +59,10 @@ export const useSearch = (currentUser) => {
         .toString()
         .startsWith(e.target.value.trim().toLowerCase());
     });
-
-    const currentUserFollowing = getUserFollowingList(currentUser);
-    const followingList = result.map(
-      (item) =>
-        currentUserFollowing?.includes(item.username) &&
-        currentUser.username !== item.username
-    );
-
-    setIsSearchResultUserFollowed(followingList);
     setSearchResult(result);
   };
 
-  const clearSearchHandler = (e) => {
+  const clearSearchHandler = () => {
     setSearchInput("");
   };
 
@@ -79,7 +71,6 @@ export const useSearch = (currentUser) => {
     searchHandler,
     searchResult,
     clearSearchHandler,
-    isSearchResultUserFollowed,
   };
 };
 
@@ -95,11 +86,11 @@ export const usePost = (selectedPost) => {
   let navigate = useNavigate();
 
   const isPostLiked = posts
-    ?.find((post) => post?._id === selectedPost.postId)
+    ?.find((post) => post?._id === selectedPost._id)
     ?.likes?.likedBy?.some((post) => post?.username === userProfile?.username);
 
   const isPostBookmarked = userProfile?.bookmarks?.some(
-    (bookItem) => bookItem?._id === selectedPost.postId
+    (bookItem) => bookItem?._id === selectedPost._id
   );
 
   const postLikeHandler = (postId) => {
@@ -153,7 +144,6 @@ export const useProfile = () => {
     profileImage: "",
     firstname: "",
     lastname: "",
-    email: "",
     bio: "",
     link: "",
   });
@@ -243,7 +233,6 @@ export const useProfile = () => {
       profileImage: "",
       firstname: "",
       lastname: "",
-      email: "",
       bio: "",
       link: "",
     });
@@ -264,7 +253,6 @@ export const useProfile = () => {
         profileImage: profileModalDetails?.profileImage,
         firstname: profileModalDetails?.firstname,
         lastname: profileModalDetails?.lastname,
-        email: profileModalDetails?.email,
         bio: profileModalDetails?.bio,
         link: profileModalDetails?.website,
       });

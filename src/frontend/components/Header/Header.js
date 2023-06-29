@@ -1,46 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 //import LightModeIcon from "@mui/icons-material/LightMode";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { useAuth } from "../../context/AuthContext";
 import { useSearch } from "../../utils/helper";
-import { useData } from "../../context/DataContext";
-import { followService } from "../../services/userServices";
 
 const Header = () => {
-  const {
-    state: { userProfile },
-    dispatch,
-  } = useData();
-
-  const { token } = useAuth();
   const navigate = useNavigate();
+
+  const { searchInput, searchHandler, searchResult, clearSearchHandler } =
+    useSearch();
 
   const profileHandler = (navigateStatus, profileId) => {
     navigateStatus === "home"
       ? navigate("/")
       : navigate(`profile/${profileId}`);
+    clearSearchHandler();
   };
-
-  const followHandler = (e, followUserId) => {
-    e.stopPropagation();
-    followService(followUserId, token, dispatch);
-  };
-
-  const {
-    searchInput,
-    searchHandler,
-    searchResult,
-    clearSearchHandler,
-    isSearchResultUserFollowed,
-  } = useSearch(userProfile);
 
   return (
     <header className="header">
-      <nav className="header_nav  ">
+      <nav className="header_nav  container_section-width ">
         <div onClick={() => profileHandler("home")} className="nav_logo ">
           Spectrum
         </div>
@@ -64,15 +46,15 @@ const Header = () => {
           </label>
 
           <span
-            className={`searchResult_container ${
+            className={`searchResult_container  ${
               searchInput.length !== 0 && "active"
-            }`}
+            } `}
           >
             {searchResult.length > 0 ? (
-              searchResult?.map((item) => (
+              searchResult?.map((item, id) => (
                 <span
                   key={item.username}
-                  className="searchResult_container-section"
+                  className="searchResult_container-section "
                 >
                   <span onClick={() => profileHandler("profile", item?._id)}>
                     <span className=" searchResult_Imgcontainer">
@@ -82,15 +64,6 @@ const Header = () => {
                       {item.firstname} {item.lastname}
                     </span>
                   </span>
-
-                  {/* {userProfile.username !== item.username && (
-                    <span
-                      onClick={(e) => followHandler(e, item?._id)}
-                      className="searchResult_container-followBtn"
-                    >
-                      {isSearchResultUserFollowed[id] ? "" : "Follow"}
-                    </span>
-                  )} */}
                 </span>
               ))
             ) : (
@@ -101,10 +74,10 @@ const Header = () => {
           </span>
         </div>
         <div className="nav_settings flex-center">
-          <span>{<DarkModeIcon />}</span>
-          <span onClick={profileHandler}>
+          <span className="flex-center">{<DarkModeIcon />}</span>
+          {/* <span onClick={() => profileHandler("profile", userProfile?._id)}>
             <AccountCircleIcon />
-          </span>
+          </span> */}
         </div>
       </nav>
     </header>

@@ -8,6 +8,7 @@ import ProfileModal from "./frontend/components/Modal/ProfileModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FloatingMenu from "./frontend/components/FloatingMenu/FloatingMenu";
+import { ActionType } from "./frontend/constant";
 
 const App = () => {
   const {
@@ -18,13 +19,13 @@ const App = () => {
   const closeModalOverlayHandler = (e) => {
     if (e.target.className === "profileModal_overlay") {
       dispatch({
-        type: "closeProfileModal",
+        type: ActionType.CloseProfileModal,
       });
     }
 
     if (e.target.className === "postModal_overlay") {
       dispatch({
-        type: "closePostModal",
+        type: ActionType.ClosePostModal,
       });
     }
   };
@@ -32,7 +33,7 @@ const App = () => {
   return (
     <main className="sprectrumApp_container">
       <Header />
-      <article className="homePage_container ">
+      <article className="homePage_container container_section-width ">
         <SideBar />
         <Outlet />
         <SuggestionFeed />

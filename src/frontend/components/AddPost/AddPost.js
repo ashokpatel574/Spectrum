@@ -75,7 +75,12 @@ const AddPost = () => {
                     className="newpostImg"
                   />
                 )}
-                <span onClick={() => deletePreviewHandler(id)}> X</span>
+                <span
+                  onClick={() => deletePreviewHandler(id)}
+                  className="flex-center"
+                >
+                  X
+                </span>
               </li>
             );
           })}
