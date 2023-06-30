@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ActionType } from "../constant";
 
 export const getLoginCredentialsService = async (
   username,
@@ -19,7 +20,6 @@ export const getLoginCredentialsService = async (
     });
 
     if (status === 200 || status === 201) {
-      console.log(foundUser);
       localStorage.setItem(
         "loginCredentials",
         JSON.stringify({
@@ -117,4 +117,12 @@ export const setSignUpCredentialsService = async (
       });
     }
   }
+};
+
+export const logoutService = (setToken, setCurrentUser, dispatch) => {
+  localStorage.removeItem("loginCredentials");
+  localStorage.removeItem("epr_suggested");
+  setToken("");
+  setCurrentUser("");
+  dispatch({ type: ActionType.LogOut });
 };

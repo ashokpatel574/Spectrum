@@ -10,12 +10,9 @@ import {
   getPostEditService,
   postDeleteService,
 } from "../services/postServices";
-import {
-  updateUserProfileService,
-  followService,
-} from "../services/userServices";
+import { updateUserProfileService } from "../services/userServices";
 
-import { validateOnlyString, getUserFollowingList } from "./utils";
+import { validateOnlyString } from "./utils";
 import { ActionType } from "../constant";
 
 export const useEmoji = (newPostData, setNewPostData) => {

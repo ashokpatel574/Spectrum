@@ -156,22 +156,22 @@
   background-color: var(--text-color-two);
 }
 
-.emojiPicker_container {
+.addPost_container .emojiPicker_container {
   position: relative;
 }
 
-.emojiPicker_container-box {
+.addPost_container .emojiPicker_container-box {
   position: absolute;
   z-index: 50;
   top: 0%;
   left: 65%;
 }
 
-.EmojiPickerReact .epr-body .epr-emoji-native {
+.addPost_container .EmojiPickerReact .epr-body .epr-emoji-native {
   font-size: 2.4rem;
 }
 
-.EmojiPickerReact .epr-body::-webkit-scrollbar {
+.addPost_container .EmojiPickerReact .epr-body::-webkit-scrollbar {
   width: 0.5rem;
 }
 
@@ -180,7 +180,7 @@
   border-radius: 2px;
 }
 
-.EmojiPickerReact .epr-body::-webkit-scrollbar-track {
+.addPost_container .EmojiPickerReact .epr-body::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
@@ -239,16 +239,16 @@
     font-size: 1.7rem;
   }
 
-  .emojiPicker_container-box {
+  .addPost_container .emojiPicker_container-box {
     top: 0%;
     left: 65%;
   }
 
-  .emojiPicker_container-box .EmojiPickerReact.epr-main {
+  .addPost_container .emojiPicker_container-box .EmojiPickerReact.epr-main {
     width: 30rem !important;
   }
 
-  .EmojiPickerReact .epr-body .epr-emoji-native {
+  .addPost_container .EmojiPickerReact .epr-body .epr-emoji-native {
     font-size: 2.1rem;
   }
 }
@@ -296,7 +296,7 @@
     font-size: 1.65rem;
   }
 
-  .emojiPicker_container-box {
+  .addPost_container .emojiPicker_container-box {
     top: 90%;
     left: -125%;
   }

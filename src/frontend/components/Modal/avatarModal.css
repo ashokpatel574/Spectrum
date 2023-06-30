@@ -17,7 +17,7 @@
 }
 
 .avatarModal_container span {
-  font-size: 1.7rem;
+  font-size: 1.65rem;
   cursor: pointer;
 }
 
@@ -132,4 +132,21 @@
 
 .avatarModal_upload-container .uploadProfileImage {
   display: none;
+}
+
+/*  384px === 24em  */
+@media (max-width: 24em) {
+  .avatarModal_container {
+    left: 25%;
+    padding: 0.75rem;
+  }
+
+  .avatarOptions-container {
+    max-width: 28rem;
+  }
+
+  .avatarOptions-Img {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
 }

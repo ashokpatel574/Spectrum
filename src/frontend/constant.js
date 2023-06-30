@@ -25,4 +25,5 @@ export const ActionType = {
   OpenProfileModal: "OPEN_PROFILE_MODAL",
   CloseProfileModal: "CLOSE_PROFILE_MODAL",
   UpdateProfile: "UPDATE_PROFILE",
+  LogOut: "LOG_OUT",
 };

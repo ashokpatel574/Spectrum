@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import LinkIcon from "@mui/icons-material/Link";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
@@ -9,14 +10,15 @@ import {
   followService,
   unFollowService,
 } from "../../services/userServices";
-
+import { logoutService } from "../../services/authServices";
 
 const Profile = () => {
   const {
     state: { users, posts, userProfile },
     dispatch,
   } = useData();
-  const { token } = useAuth();
+
+  const { token, setToken, setCurrentUser } = useAuth();
   const { profileId } = useParams();
   const profileDetails = users?.find((user) => user?._id === String(profileId));
 
@@ -39,6 +41,10 @@ const Profile = () => {
     (post) => post?.username === profileDetails?.username
   )?.length;
 
+  const logoutHandler = () => {
+    logoutService(setToken, setCurrentUser, dispatch);
+  };
+
   if (profileDetails) {
     return (
       <div className="profile_container">
@@ -56,8 +62,16 @@ const Profile = () => {
 
             <div>
               {userProfile?.username === profileDetails?.username ? (
-                <span onClick={editProfileHandler} className="profile-edit">
-                  Edit
+                <span className="profileIcon">
+                  <span onClick={editProfileHandler} className="profile-edit">
+                    Edit
+                  </span>
+                  <span
+                    className="logoutIcon flex-center"
+                    onClick={logoutHandler}
+                  >
+                    <LogoutIcon />
+                  </span>
                 </span>
               ) : (
                 <span
