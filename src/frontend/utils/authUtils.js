@@ -120,8 +120,6 @@ export const useSignUp = (
     username: "",
     password: "",
     confirmPassword: "",
-    birthYear: "",
-    gender: "",
   });
 
   const [signUpErrorDetails, setSignUpErrorDetails] = useState({
@@ -131,8 +129,6 @@ export const useSignUp = (
     username: "",
     password: "",
     confirmPassword: "",
-    birthYear: "",
-    gender: "",
   });
 
   const navigate = useNavigate();
@@ -225,6 +221,14 @@ export const useSignUp = (
     let flag = false;
     let errorMessage = {};
 
+    if (password !== confirmPassword) {
+      errorMessage[confirmPassword] = "Password does not match";
+      flag = true;
+    } else {
+      setSignUpErrorDetails({ ...signUpErrorDetails, confirmPassword: `` });
+      flag = false;
+    }
+
     Object.keys(userSignUpDetails).forEach((element) => {
       if (userSignUpDetails[element] === "") {
         errorMessage[element] =
@@ -234,14 +238,6 @@ export const useSignUp = (
         flag = true;
       }
     });
-
-    if (password !== confirmPassword) {
-      errorMessage["confirmPassword"] = "Password does not match";
-      flag = true;
-    } else {
-      setSignUpErrorDetails({ ...signUpErrorDetails, confirmPassword: `` });
-      flag = false;
-    }
 
     !flag
       ? setSignUpCredentialsService(
