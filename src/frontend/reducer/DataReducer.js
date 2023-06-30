@@ -175,6 +175,19 @@ export const DataReducer = (state, action) => {
       };
     }
 
+    case ActionType.LogOut: {
+      return {
+        posts: [],
+        users: [],
+        userProfile: {},
+        isPostModalOpen: false,
+        postModalDetails: null,
+        isPostEdited: false,
+        isProfileModalOpen: false,
+        profileModalDetails: null,
+      };
+    }
+
     default:
       return state;
   }
