@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ActionType } from "../constant";
+import { ToastHandler } from "../utils/utils";
+import { ToastType } from "../constant";
 
 export const getUserProfileService = async (userId, dispatch) => {
   try {
@@ -16,6 +18,10 @@ export const getUserProfileService = async (userId, dispatch) => {
     }
   } catch (error) {
     console.error("getUserProfileService", error);
+    ToastHandler(
+      ToastType.Error,
+      `Something went wrong!, Try Logging In again!`
+    );
   }
 };
 
@@ -37,13 +43,25 @@ export const updateUserProfileService = async (token, userData, dispatch) => {
         type: ActionType.UpdateProfile,
         payload: user,
       });
+
+      ToastHandler(ToastType.Success, `Profile Updated`);
     }
   } catch (error) {
     console.error("updateUserProfileService", error);
+    ToastHandler(
+      ToastType.Error,
+      `Something went wrong!, Try Logging In again!`
+    );
   }
 };
 
-export const followService = async (followUserId, token, dispatch) => {
+export const followService = async (
+  followUserId,
+  token,
+  dispatch,
+  userfirstname,
+  userLastname
+) => {
   try {
     const { status, data } = await axios.post(
       `/api/users/follow/${followUserId}`,
@@ -61,13 +79,23 @@ export const followService = async (followUserId, token, dispatch) => {
           updatedFollowedUser: data.followUser,
         },
       });
+      ToastHandler(
+        ToastType.Success,
+        `Followed ${userfirstname + " " + userLastname}`
+      );
     }
   } catch (error) {
     console.error("addUserFollow", error);
   }
 };
 
-export const unFollowService = async (followUserId, token, dispatch) => {
+export const unFollowService = async (
+  followUserId,
+  token,
+  dispatch,
+  userfirstname,
+  userLastname
+) => {
   try {
     const { status, data } = await axios.post(
       `/api/users/unfollow/${followUserId}`,
@@ -85,6 +113,10 @@ export const unFollowService = async (followUserId, token, dispatch) => {
           updatedFollowedUser: data.followUser,
         },
       });
+      ToastHandler(
+        ToastType.Success,
+        `Unfollowed ${userfirstname + " " + userLastname}`
+      );
     }
   } catch (error) {
     console.error("removeUserFollow", error);

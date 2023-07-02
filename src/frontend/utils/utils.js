@@ -114,14 +114,7 @@ const timeAgo = (date) => {
   return `a few seconds ago`;
 };
 
-export const ToastType = {
-  Warn: "warn",
-  Success: "success",
-  Info: "info",
-  Error: "error",
-};
-
-export const ToastHandler = (type, message) => {
+export const ToastHandler = (type, message, theme) => {
   const toastConfigObj = {
     position: "top-right",
     autoClose: 1000,
@@ -129,7 +122,7 @@ export const ToastHandler = (type, message) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: `${"light"}`,
+    // theme: theme,
   };
   if (type === "error") {
     toast.error(message, toastConfigObj);
@@ -140,6 +133,10 @@ export const ToastHandler = (type, message) => {
   } else if (type === "info") {
     toast.info(message, toastConfigObj);
   }
+};
+
+export const getStringCaptialize = (string) => {
+  return string.at(0).toUpperCase() + string.slice(1);
 };
 
 export {

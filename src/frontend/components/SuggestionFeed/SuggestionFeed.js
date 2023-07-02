@@ -23,9 +23,9 @@ const SuggestionFeed = () => {
     navigate(`/profile/${profileId}`);
   };
 
-  const followHandler = (e, followUserId) => {
+  const followHandler = (e, followUserId, userfirstname, userLastname) => {
     e.stopPropagation();
-    followService(followUserId, token, dispatch);
+    followService(followUserId, token, dispatch, userfirstname, userLastname);
   };
 
   return (
@@ -52,7 +52,14 @@ const SuggestionFeed = () => {
             <div className="suggestionListItem_BtnContainer">
               <button
                 className="btn followBtn"
-                onClick={(e) => followHandler(e, profile._id)}
+                onClick={(e) =>
+                  followHandler(
+                    e,
+                    profile._id,
+                    profile?.firstname,
+                    profile?.lastname
+                  )
+                }
               >
                 follow
               </button>

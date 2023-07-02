@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useParams } from "react-router-dom";
 import LinkIcon from "@mui/icons-material/Link";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -26,11 +25,23 @@ const Profile = () => {
     profileDetails?._id !== userProfile?._id &&
     userProfile?.following.some((item) => item?._id === profileDetails?._id);
 
-  const followHandler = (e, followUserId) => {
+  const followHandler = (e, followUserId, userfirstname, userLastname) => {
     e.stopPropagation();
     isFollowed
-      ? unFollowService(followUserId, token, dispatch)
-      : followService(followUserId, token, dispatch);
+      ? unFollowService(
+          followUserId,
+          token,
+          dispatch,
+          userfirstname,
+          userLastname
+        )
+      : followService(
+          followUserId,
+          token,
+          dispatch,
+          userfirstname,
+          userLastname
+        );
   };
 
   const editProfileHandler = () => {
@@ -80,7 +91,14 @@ const Profile = () => {
               ) : (
                 <span
                   className="profile-edit"
-                  onClick={(e) => followHandler(e, profileDetails?._id)}
+                  onClick={(e) =>
+                    followHandler(
+                      e,
+                      profileDetails?._id,
+                      profileDetails?.firstname,
+                      profileDetails?.lastname
+                    )
+                  }
                 >
                   {isFollowed ? "Unfollow" : "Follow"}
                 </span>
@@ -114,14 +132,12 @@ const Profile = () => {
       </div>
     </>
   ) : (
-    <>
-      <div className="emptyFeed">
-        <p>Something went wrong!</p>
-        <button className="btn reloadBtn" onClick={reloadBtnHandler}>
-          Reload
-        </button>
-      </div>
-    </>
+    <div className="emptyFeed">
+      <p>Something went wrong!</p>
+      <button className="btn reloadBtn" onClick={reloadBtnHandler}>
+        Reload
+      </button>
+    </div>
   );
 };
 

@@ -45,12 +45,12 @@ export const signupHandler = function (schema, request) {
       username: username,
       password: password,
       bio: "",
+      website: "",
       followers: [],
       following: [],
       bookmarks: [],
     };
 
-    console.log(newUser);
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign(
       { _id, username },

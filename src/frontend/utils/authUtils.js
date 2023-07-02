@@ -5,8 +5,9 @@ import {
   setSignUpCredentialsService,
 } from "../services/authServices";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-export const useLogin = (setToken, setCurrentUser, setAuthError) => {
+export const useLogin = () => {
   const [logInUserInput, setLogInUserInput] = useState({
     username: "",
     password: "",
@@ -18,6 +19,8 @@ export const useLogin = (setToken, setCurrentUser, setAuthError) => {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
+  const { setToken, setCurrentUser, setAuthError, setIsLoadingAuth } =
+    useAuth();
 
   const loginFormHandler = (e) => {
     const { name, value } = e.target;
@@ -59,7 +62,8 @@ export const useLogin = (setToken, setCurrentUser, setAuthError) => {
           setToken,
           setCurrentUser,
           navigate,
-          setAuthError
+          setAuthError,
+          setIsLoadingAuth
         )
       : setLogInErrorDetails(logInError);
 
@@ -82,7 +86,8 @@ export const useLogin = (setToken, setCurrentUser, setAuthError) => {
       setToken,
       setCurrentUser,
       navigate,
-      setAuthError
+      setAuthError,
+      setIsLoadingAuth
     );
   };
 
@@ -107,12 +112,7 @@ export const useLogin = (setToken, setCurrentUser, setAuthError) => {
   };
 };
 
-export const useSignUp = (
-  setToken,
-  setCurrentUser,
-  setAuthError,
-  setIsLoading
-) => {
+export const useSignUp = () => {
   const [userSignUpDetails, setUserSignUpDetails] = useState({
     firstname: "",
     lastname: "",
@@ -131,6 +131,8 @@ export const useSignUp = (
     confirmPassword: "",
   });
 
+  const { setToken, setCurrentUser, setAuthError, setIsLoadingAuth } =
+    useAuth();
   const navigate = useNavigate();
 
   const signUpDataHandler = (e) => {
@@ -207,22 +209,14 @@ export const useSignUp = (
   };
 
   const signUpFormSubmit = () => {
-    const {
-      firstname,
-      lastname,
-      email,
-      username,
-      password,
-      confirmPassword,
-      birthYear,
-      gender,
-    } = userSignUpDetails;
+    const { firstname, lastname, email, username, password, confirmPassword } =
+      userSignUpDetails;
 
     let flag = false;
     let errorMessage = {};
 
     if (password !== confirmPassword) {
-      errorMessage[confirmPassword] = "Password does not match";
+      errorMessage["confirmPassword"] = "Password does not match";
       flag = true;
     } else {
       setSignUpErrorDetails({ ...signUpErrorDetails, confirmPassword: `` });
@@ -246,12 +240,10 @@ export const useSignUp = (
           email,
           firstname,
           lastname,
-          birthYear,
-          gender,
           setToken,
           setCurrentUser,
           setAuthError,
-          setIsLoading,
+          setIsLoadingAuth,
           navigate
         )
       : setSignUpErrorDetails({ ...signUpErrorDetails, ...errorMessage });
@@ -264,8 +256,6 @@ export const useSignUp = (
         username: "",
         password: "",
         confirmPassword: "",
-        birthYear: "",
-        gender: "",
       });
   };
 
