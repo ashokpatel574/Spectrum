@@ -31,3 +31,10 @@ export const ActionType = {
   FilterFeedLiked: "FILTER_FEED_LIKED",
   FilterFeedBookmark: "FILTER_FEED_BOOKMARK",
 };
+
+export const ToastType = {
+  Warn: "warn",
+  Success: "success",
+  Info: "info",
+  Error: "error",
+};

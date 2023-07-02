@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ActionType } from "../constant";
+import { ToastHandler } from "../utils/utils";
+import { ToastType } from "../constant";
 
 export const addNewPostService = async (post, token, dispatch) => {
   try {
@@ -21,9 +23,14 @@ export const addNewPostService = async (post, token, dispatch) => {
         type: ActionType.AddPost,
         payload: posts,
       });
+      ToastHandler(ToastType.Success, `Created Post!`);
     }
   } catch (error) {
-    console.log("addnewpost", error);
+    console.error("addnewpost", error);
+    ToastHandler(
+      ToastType.Error,
+      `Something went wrong!, Try Logging In again!`
+    );
   }
 };
 
@@ -45,6 +52,10 @@ export const getPostEditService = async (postId, dispatch) => {
     }
   } catch (error) {
     console.error("postEdit", error);
+    ToastHandler(
+      ToastType.Error,
+      `Something went wrong!, Try Logging In again!`
+    );
   }
 };
 
@@ -68,9 +79,14 @@ export const postUpdateService = async (postId, post, token, dispatch) => {
         type: ActionType.UpdatePost,
         payload: posts,
       });
+      ToastHandler(ToastType.Success, `Updated Post!`);
     }
   } catch (error) {
     console.error("postEdit", error);
+    ToastHandler(
+      ToastType.Error,
+      `Something went wrong!, Try Logging In again!`
+    );
   }
 };
 
@@ -92,9 +108,14 @@ export const postDeleteService = async (postId, token, dispatch) => {
         type: ActionType.DeletePost,
         payload: posts,
       });
+      ToastHandler(ToastType.Success, `Deleted Post!`);
     }
   } catch (error) {
     console.error("deletePostService", error);
+    ToastHandler(
+      ToastType.Error,
+      `Something went wrong!, Try Logging In again!`
+    );
   }
 };
 
@@ -158,6 +179,7 @@ export const addBookmarkService = async (postId, token, dispatch, username) => {
           value: data?.bookmarks,
         },
       });
+      ToastHandler(ToastType.Success, `Added To Bookmarks`);
     }
   } catch (error) {
     console.error("postBookmark", error);
@@ -187,6 +209,7 @@ export const removeBookmarkService = async (
           value: data?.bookmarks,
         },
       });
+      ToastHandler(ToastType.Success, `Removed From Bookmarks`);
     }
   } catch (error) {
     console.error("removebookmark", error);

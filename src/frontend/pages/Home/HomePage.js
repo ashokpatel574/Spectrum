@@ -2,10 +2,12 @@ import { useData } from "../../context/DataContext";
 import { getUserFollowingList, getfilterDataBySort } from "../../utils/utils";
 import AddPost from "../../components/AddPost/AddPost";
 import PostList from "../../components/PostList/PostList";
+import Loader from "../../components/loader/Loader";
 
 const HomePage = () => {
   const {
     state: { posts, userProfile, sortFeedTypeHome },
+    isLoadingData,
   } = useData();
 
   const currentUserFollowingList = getUserFollowingList(userProfile);
@@ -24,14 +26,20 @@ const HomePage = () => {
   );
 
   return (
-    <section className="postFeed_container">
-      <AddPost />
-      <PostList
-        postListData={filteredFeedBySort}
-        headerState={"Home"}
-        sortFeedType={sortFeedTypeHome}
-      />
-    </section>
+    <>
+      {isLoadingData ? (
+        <Loader />
+      ) : (
+        <section className="postFeed_container">
+          <AddPost />
+          <PostList
+            postListData={filteredFeedBySort}
+            headerState={"Home"}
+            sortFeedType={sortFeedTypeHome}
+          />
+        </section>
+      )}
+    </>
   );
 };
 

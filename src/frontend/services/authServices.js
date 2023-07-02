@@ -1,5 +1,8 @@
 import axios from "axios";
 import { ActionType } from "../constant";
+import { ToastHandler } from "../utils/utils";
+import { ToastType } from "../constant";
+import { getStringCaptialize } from "../utils/utils";
 
 export const getLoginCredentialsService = async (
   username,
@@ -7,10 +10,13 @@ export const getLoginCredentialsService = async (
   setToken,
   setCurrentUser,
   navigate,
-  setAuthError
+  setAuthError,
+  setIsLoadingAuth
 ) => {
   try {
     setAuthError(null);
+    setIsLoadingAuth(true);
+
     const {
       data: { foundUser, encodedToken },
       status,
@@ -32,28 +38,44 @@ export const getLoginCredentialsService = async (
       );
       setToken(encodedToken);
       setCurrentUser(foundUser);
+      setIsLoadingAuth(false);
       navigate("/");
+      ToastHandler(
+        ToastType.Success,
+        `Welcome back! ${getStringCaptialize(foundUser.firstname)}`
+      );
     }
   } catch (error) {
     console.error("loginError", error);
-
-    setAuthError({
-      status: error.response.status,
-      message: `Something went wrong! Try again later`,
-    });
+    setIsLoadingAuth(false);
 
     if (error.response.status === 404) {
       setAuthError({
         status: 404,
         message: `The username is not Registered`,
       });
-    }
-
-    if (error.response.status === 401) {
+      ToastHandler(
+        ToastType.Error,
+        `${error.response.status}, The username is not Registered`
+      );
+    } else if (error.response.status === 401) {
       setAuthError({
         status: 401,
         message: `Password is incorrect!`,
       });
+      ToastHandler(
+        ToastType.Error,
+        `${error.response.status},  Password is incorrect!`
+      );
+    } else {
+      setAuthError({
+        status: error.response.status,
+        message: `Something went wrong! Try again later`,
+      });
+      ToastHandler(
+        ToastType.Error,
+        `${error.response.status},  Something went wrong! Try again later`
+      );
     }
   }
 };
@@ -64,16 +86,15 @@ export const setSignUpCredentialsService = async (
   email,
   firstName,
   lastName,
-  birthYear,
-  gender,
   setToken,
   setCurrentUser,
   setAuthError,
-  setIsLoading,
+  setIsLoadingAuth,
   navigate
 ) => {
   try {
     setAuthError(null);
+    setIsLoadingAuth(true);
     const {
       data: { createdUser, encodedToken },
       status,
@@ -83,8 +104,6 @@ export const setSignUpCredentialsService = async (
       email,
       firstName,
       lastName,
-      birthYear,
-      gender,
     });
 
     if (status === 200 || status === 201) {
@@ -100,21 +119,36 @@ export const setSignUpCredentialsService = async (
       );
       setToken(encodedToken);
       setCurrentUser(createdUser);
+      setIsLoadingAuth(false);
       navigate("/");
+      ToastHandler(
+        ToastType.Success,
+        `Account Created Successfully,
+        Welcome ${getStringCaptialize(createdUser.firstname)}`
+      );
     }
   } catch (error) {
     console.error("SignUpError", error);
-
-    setAuthError({
-      status: error.response.status,
-      message: `Something went wrong! Try again later`,
-    });
+    setIsLoadingAuth(false);
 
     if (error.response.status === 422) {
       setAuthError({
         status: 422,
         message: "Username Already Exists",
       });
+      ToastHandler(
+        ToastType.Error,
+        `${error.response.status}, Username Already Exists`
+      );
+    } else {
+      setAuthError({
+        status: error.response.status,
+        message: `Something went wrong! Try again later`,
+      });
+      ToastHandler(
+        ToastType.Error,
+        `${error.response.status}, Something went wrong! Try again later`
+      );
     }
   }
 };
@@ -125,4 +159,5 @@ export const logoutService = (setToken, setCurrentUser, dispatch) => {
   setToken("");
   setCurrentUser("");
   dispatch({ type: ActionType.LogOut });
+  ToastHandler(ToastType.Success, `Logged out`);
 };

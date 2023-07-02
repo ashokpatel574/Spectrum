@@ -1,0 +1,11 @@
+.loader_container {
+  max-width: 60rem;
+  margin: 0 auto;
+  height: 60vh;
+  height: 60dvh;
+}
+
+.loader_container h3 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}

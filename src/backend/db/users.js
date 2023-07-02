@@ -15,8 +15,8 @@ export const users = [
     updatedAt: formatDate(),
     bio: "A people loving government worker!",
     profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-    website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+      "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+    website: "https://github.com/ashokpatel574",
     followers: [
       {
         firstname: "Shubham",
@@ -25,13 +25,7 @@ export const users = [
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
       },
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
+
       {
         firstname: "John",
         lastname: "Doe",
@@ -75,13 +69,6 @@ export const users = [
         username: "hergranger",
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-      },
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
       },
     ],
 
@@ -105,16 +92,10 @@ export const users = [
         lastname: "patel",
         username: "ashokpatel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+        website: "https://github.com/ashokpatel574",
       },
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
+
       {
         firstname: "Anna",
         lastname: "Chase",
@@ -136,16 +117,10 @@ export const users = [
         lastname: "patel",
         username: "ashokpatel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+        website: "https://github.com/ashokpatel574",
       },
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
+
       {
         firstname: "Jane",
         lastname: "Doe",
@@ -157,90 +132,7 @@ export const users = [
 
     bookmarks: [],
   },
-  {
-    _id: "1de0af5d-8505-47be-9dfc-8e1a9c7261c2",
-    firstname: "Bharati",
-    lastname: "Subramanian",
-    username: "bhaaratii",
-    password: "bharati098",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    bio: "Loves Code, Books, Coffee, and Songs in no particular order!",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-    website: "bharati-21.github.io",
-    followers: [
-      {
-        firstname: "Shubham",
-        lastname: "Soni",
-        username: "shubhamsoni",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
-      },
-      {
-        firstname: "Hermione",
-        lastname: "Granger",
-        username: "hergranger",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-      },
-      {
-        firstname: "Alex",
-        lastname: "Smith",
-        username: "youknowwho",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722175/profile-img_nxszbk.jpg",
-      },
-      {
-        firstname: "ashok",
-        lastname: "patel",
-        username: "ashokpatel",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
-      },
-    ],
-    following: [
-      {
-        firstname: "ashok",
-        lastname: "patel",
-        username: "ashokpatel",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
-      },
-      {
-        firstname: "Shubham",
-        lastname: "Soni",
-        username: "shubhamsoni",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
-      },
-      {
-        firstname: "Hermione",
-        lastname: "Granger",
-        username: "hergranger",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-      },
-      {
-        firstname: "Anna",
-        lastname: "Chase",
-        username: "annachase",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
-      },
-      {
-        firstname: "Perseus",
-        lastname: "Jackson",
-        username: "percyblues",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722054/596_pkjzf6.jpg",
-      },
-    ],
 
-    bookmarks: [],
-  },
   {
     _id: "18b6b5fe-2f11-4606-9777-8b172d8db165",
 
@@ -260,8 +152,8 @@ export const users = [
         lastname: "patel",
         username: "ashokpatel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+        website: "https://github.com/ashokpatel574",
       },
       {
         firstname: "Jane",
@@ -291,8 +183,8 @@ export const users = [
         lastname: "patel",
         username: "ashokpatel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+        website: "https://github.com/ashokpatel574",
       },
       {
         firstname: "Jane",
@@ -331,8 +223,8 @@ export const users = [
         lastname: "patel",
         username: "ashokpatel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+        website: "https://github.com/ashokpatel574",
       },
       {
         firstname: "Shubham",
@@ -369,8 +261,8 @@ export const users = [
         lastname: "patel",
         username: "ashokpatel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+        website: "https://github.com/ashokpatel574",
       },
       {
         firstname: "John",
@@ -408,16 +300,10 @@ export const users = [
         lastname: "patel",
         username: "ashokpatel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        website: "https://parksandrecreation.fandom.com/wiki/Leslie_Knope",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+        website: "https://github.com/ashokpatel574",
       },
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
+
       {
         firstname: "Anna",
         lastname: "Chase",
@@ -434,13 +320,6 @@ export const users = [
       },
     ],
     following: [
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
       {
         firstname: "John",
         lastname: "Doe",
@@ -479,13 +358,6 @@ export const users = [
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
     website: "https://riordan.fandom.com/wiki/Annabeth_Chase",
     followers: [
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
       {
         firstname: "Hermione",
         lastname: "Granger",
@@ -561,13 +433,6 @@ export const users = [
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652722054/596_pkjzf6.jpg",
     website: "https://riordan.fandom.com/wiki/Percy_Jackson",
     followers: [
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
       {
         firstname: "Hermione",
         lastname: "Granger",
@@ -652,13 +517,6 @@ export const users = [
       },
     ],
     following: [
-      {
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        username: "bhaaratii",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-      },
       {
         firstname: "Anna",
         lastname: "Chase",

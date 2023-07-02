@@ -48,7 +48,7 @@ export const posts = [
     firstname: "ashok",
     lastname: "patel",
     profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
+      "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
     createdAt: new Date("May 12, 2023 20:10:05"),
     updatedAt: formatDate(),
     comments: [
@@ -114,15 +114,7 @@ export const posts = [
           lastname: "patel",
           username: "ashokpatel",
           profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        },
-        {
-          _id: "1de0af5d-8505-47be-9dfc-8e1a9c7261c2",
-          firstname: "Bharati",
-          lastname: "Subramanian",
-          username: "bhaaratii",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
+            "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
         },
       ],
       dislikedBy: [],
@@ -132,7 +124,7 @@ export const posts = [
     firstname: "ashok",
     lastname: "patel",
     profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
+      "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
 
     createdAt: new Date("February 10, 2023 10:16:26"),
     updatedAt: formatDate(),
@@ -199,7 +191,7 @@ export const posts = [
     firstname: "ashok",
     lastname: "patel",
     profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
+      "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
 
     createdAt: new Date("February 10, 2023 11:06:56"),
     updatedAt: formatDate(),
@@ -265,15 +257,7 @@ export const posts = [
           lastname: "patel",
           username: "ashokpatel",
           profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
-        },
-        {
-          _id: "1de0af5d-8505-47be-9dfc-8e1a9c7261c2",
-          firstname: "Bharati",
-          lastname: "Subramanian",
-          username: "bhaaratii",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
+            "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
         },
       ],
       dislikedBy: [],
@@ -285,26 +269,12 @@ export const posts = [
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
     comments: [
       {
-        _id: "1de0af5d-8505-47be-9dfc-8e1a9c7261c2",
-        username: "bhaaratii",
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-        text: "Haha, I know the feeling! *grimace*",
-        createdAt: new Date("March 13, 2023 23:16:37"),
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-      {
         _id: "b0fb276d-0e13-4dd5-84fa-c72314f1dc21",
         username: "ashokpatel",
         firstname: "ashok",
         lastname: "patel",
         profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
+          "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
 
         text: "Hey, why don't you go out for a change! xD",
         createdAt: new Date("March 14, 2023 10:17:19"),
@@ -352,34 +322,7 @@ export const posts = [
     createdAt: new Date("March 17, 2023 15:26:58"),
     updatedAt: formatDate(),
   },
-  {
-    _id: uuid(),
-    content: `Harry Potter and that's it that's the book...\n"Ah yes, of course, I haven't told you," said Dumbledore.
-        `,
-    postImage: null,
-    likes: {
-      likeCount: 1,
-      likedBy: [
-        {
-          _id: "4786b5fe-2f11-4606-9777-8b172d8db008",
-          firstname: "Hermione",
-          lastname: "Granger",
-          username: "hergranger",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-        },
-      ],
-      dislikedBy: [],
-    },
-    username: "bhaaratii",
-    firstname: "Bharati",
-    lastname: "Subramanian",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-    comments: [],
-    createdAt: new Date("March 17, 2023 15:26:58"),
-    updatedAt: formatDate(),
-  },
+
   {
     _id: uuid(),
     content:
@@ -592,7 +535,7 @@ export const posts = [
           lastname: "patel",
           username: "ashokpatel",
           profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
+            "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
         },
         {
           _id: "3cf48e2f-e199-46fc-86ea-804ca3ab49c9",
@@ -602,14 +545,7 @@ export const posts = [
           profileImage:
             "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
         },
-        {
-          _id: "1de0af5d-8505-47be-9dfc-8e1a9c7261c2",
-          firstname: "Bharati",
-          lastname: "Subramanian",
-          username: "bhaaratii",
-          profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-        },
+
         {
           _id: "21b6b5fe-2f11-4606-9777-8b172d8db145",
           firstname: "Alex",
@@ -650,22 +586,7 @@ export const posts = [
     lastname: "Doe",
     profileImage:
       "https://res.cloudinary.com/dylkclyom/image/upload/v1652721997/photo-1531427186611-ecfd6d936c79_tmpw71.jpg",
-    comments: [
-      {
-        _id: "1de0af5d-8505-47be-9dfc-8e1a9c7261c2",
-        username: "bhaaratii",
-        firstname: "Bharati",
-        lastname: "Subramanian",
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652722029/latest_ccm17c.jpg",
-        text: "me: cries in a corner!",
-        createdAt: new Date("May 12, 2023 10:53:17"),
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-    ],
+    comments: [],
     createdAt: new Date("May 12, 2023 12:13:08"),
     updatedAt: formatDate(),
   },
@@ -763,12 +684,12 @@ export const posts = [
       ],
       dislikedBy: [],
     },
-    username: "bhaaratii",
-    firstname: "Bharati",
-    lastname: "Subramanian",
+    username: "ashokpatel",
+    firstname: "ashok",
+    lastname: "patel",
     profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-    createdAt: new Date("July 12, 2022 20:10:05"),
+      "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
+    createdAt: new Date("June 12, 2023 22:42:45"),
     updatedAt: formatDate(),
     comments: [
       {
@@ -779,7 +700,7 @@ export const posts = [
         profileImage:
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652722040/596_jes87l.jpg",
         text: "Oh wow! That's the dream!",
-        createdAt: new Date("July 12, 2022 22:42:45"),
+        createdAt: new Date("June 12, 2023 22:42:45"),
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -1010,24 +931,7 @@ export const posts = [
       },
     ],
   },
-  {
-    _id: uuid(),
-    content: `Chai aur Kitaab ♥`,
-    postImage: null,
-    likes: {
-      likeCount: 0,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "bhaaratii",
-    firstname: "Bharati",
-    lastname: "Subramanian",
-    profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-    createdAt: new Date("July 23, 2023 10:02:37"),
-    updatedAt: formatDate(),
-    comments: [],
-  },
+
   {
     _id: uuid(),
     content: `There's no high like reading books the entire day! A day well spent.`,
@@ -1057,7 +961,7 @@ export const posts = [
           lastname: "patel",
           username: "ashokpatel",
           profileImage:
-            "https://res.cloudinary.com/dylkclyom/image/upload/v1653879146/latest_idft5q.png",
+            "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
         },
         {
           _id: "3cf48e2f-e199-46fc-86ea-804ca3ab49c9",
@@ -1070,11 +974,11 @@ export const posts = [
       ],
       dislikedBy: [],
     },
-    username: "bhaaratii",
-    firstname: "Bharati",
-    lastname: "Subramanian",
+    username: "ashokpatel",
+    firstname: "ashok",
+    lastname: "patel",
     profileImage:
-      "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
+      "https://res.cloudinary.com/dz0snqho8/image/upload/v1688304958/user/Untitled_design_2_pfbtw6.png",
     createdAt: new Date("April 20, 2023 17:17:27"),
     updatedAt: formatDate(),
     comments: [
@@ -1087,21 +991,6 @@ export const posts = [
           "https://res.cloudinary.com/dylkclyom/image/upload/v1652721963/photo-1633332755192-727a05c4013d_qo2tty.jpg",
         text: "I love doing this!",
         createdAt: new Date("April 21, 2023 07:12:02"),
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-      {
-        _id: "3cf48e2f-e199-46fc-86ea-804ca3ab49c9",
-        username: "shubhamsoni",
-        firstname: "shubham",
-        lastname: "soni",
-
-        profileImage:
-          "https://res.cloudinary.com/dylkclyom/image/upload/v1652721980/Bharati2_qxscpm.png",
-        text: "I know right!",
-        createdAt: new Date("April 21, 2023 17:20:12"),
         votes: {
           upvotedBy: [],
           downvotedBy: [],

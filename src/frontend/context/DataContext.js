@@ -13,12 +13,18 @@ const DataContext = createContext();
 const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(DataReducer, initialState);
   const { token, currentUser } = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingData, setIsLoadingData] = useState(false);
   const [dataError, setdataError] = useState(null);
 
   useEffect(() => {
     if (token) {
-      getServerData(dispatch, token, currentUser);
+      getServerData(
+        dispatch,
+        token,
+        currentUser,
+        setIsLoadingData,
+        setdataError
+      );
     }
   }, [currentUser, token]);
 
@@ -27,8 +33,8 @@ const DataContextProvider = ({ children }) => {
       value={{
         state,
         dispatch,
-        isLoading,
-        setIsLoading,
+        isLoadingData,
+        setIsLoadingData,
         dataError,
         setdataError,
       }}

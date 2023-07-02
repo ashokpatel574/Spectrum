@@ -5,16 +5,19 @@ import SuggestionFeed from "./frontend/components/SuggestionFeed/SuggestionFeed"
 import { useData } from "./frontend/context/DataContext";
 import PostModal from "./frontend/components/Modal/PostModal";
 import ProfileModal from "./frontend/components/Modal/ProfileModal";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FloatingMenu from "./frontend/components/FloatingMenu/FloatingMenu";
 import { ActionType } from "./frontend/constant";
+import { useThemeContext } from "./frontend/context/ThemeContext";
 
 const App = () => {
   const {
     state: { isPostModalOpen, isProfileModalOpen },
     dispatch,
   } = useData();
+
+  const { themeMode } = useThemeContext();
 
   const closeModalOverlayHandler = (e) => {
     if (
@@ -76,7 +79,7 @@ const App = () => {
         rtl={false}
         draggable
         pauseOnHover
-        theme={`light`}
+        theme={themeMode}
       />
     </main>
   );
