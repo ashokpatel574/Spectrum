@@ -6,7 +6,7 @@
   display: none;
   width: 100%;
   padding: 0.8rem;
-  background-color: var(--secondary-color-one);
+  background-color: var(--background-color-one);
 }
 
 .floatMenu_container-list {

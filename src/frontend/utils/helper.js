@@ -42,6 +42,7 @@ export const useEmoji = (newPostData, setNewPostData) => {
 export const useSearch = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [showSearchDropBox, setShowSearchDropBox] = useState(false);
 
   const {
     state: { users },
@@ -49,6 +50,7 @@ export const useSearch = () => {
 
   const searchHandler = (e) => {
     setSearchInput(e.target.value);
+    setShowSearchDropBox(e.target.value.length > 0 && true);
 
     const result = users.filter((user) => {
       return user.firstname
@@ -61,6 +63,7 @@ export const useSearch = () => {
 
   const clearSearchHandler = () => {
     setSearchInput("");
+    setShowSearchDropBox(false);
   };
 
   return {
@@ -68,6 +71,8 @@ export const useSearch = () => {
     searchHandler,
     searchResult,
     clearSearchHandler,
+    showSearchDropBox,
+    setShowSearchDropBox,
   };
 };
 
@@ -267,4 +272,31 @@ export const useProfile = () => {
     closeProfileModalHandler,
     editUserImgHandler,
   };
+};
+
+export const useClickedOutsideDropBox = (
+  dropBoxstate,
+  setDropBoxState,
+  refState
+) => {
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (
+        dropBoxstate &&
+        refState.current &&
+        !refState.current.contains(e.target)
+      ) {
+        setDropBoxState(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [dropBoxstate, refState, setDropBoxState]);
 };

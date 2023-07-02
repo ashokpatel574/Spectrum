@@ -3,17 +3,6 @@ import { ActionType } from "../constant";
 
 export const getServerData = async (dispatch, token, currentUser) => {
   try {
-    const getAllPosts = await axios.get(`/api/posts`);
-    if (getAllPosts?.status === 200 || getAllPosts?.status === 201) {
-      dispatch({
-        type: ActionType.InitialServerFetch,
-        payload: {
-          type: ActionType.AllPosts,
-          value: getAllPosts?.data?.posts,
-        },
-      });
-    }
-
     const getAllUsers = await axios.get(`/api/users`);
     if (getAllUsers?.status === 200 || getAllUsers?.status === 201) {
       dispatch({
@@ -22,6 +11,17 @@ export const getServerData = async (dispatch, token, currentUser) => {
           type: ActionType.AllUsers,
           value: getAllUsers?.data?.users,
           loggedInUser: currentUser,
+        },
+      });
+    }
+
+    const getAllPosts = await axios.get(`/api/posts`);
+    if (getAllPosts?.status === 200 || getAllPosts?.status === 201) {
+      dispatch({
+        type: ActionType.InitialServerFetch,
+        payload: {
+          type: ActionType.AllPosts,
+          value: getAllPosts?.data?.posts,
         },
       });
     }

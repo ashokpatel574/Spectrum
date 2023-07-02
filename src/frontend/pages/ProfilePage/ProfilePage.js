@@ -20,7 +20,9 @@ const ProfilePage = () => {
   return (
     <section className="postFeed_container flex-column">
       <Profile />
-      <PostList postListData={userPosts} headerState={"Profile"} />
+      {profileUsername && (
+        <PostList postListData={userPosts} headerState={"Profile"} />
+      )}
     </section>
   );
 };

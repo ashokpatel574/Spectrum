@@ -8,7 +8,7 @@
   flex-wrap: nowrap;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: var(--background-color-three);
+  background-color: var(--background-color-one);
   border-radius: 0.5rem;
 }
 
@@ -48,7 +48,7 @@
 
 .avatarModal_choose:hover,
 .avatarModal_upload:hover {
-  background-color: var(--background-color-one);
+  background-color: var(--background-color-two);
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -64,7 +64,7 @@
   justify-content: center;
   align-items: center;
   z-index: 30;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--modal-overlay-bg);
 }
 
 .avatarOptions-container {
@@ -80,7 +80,7 @@
   width: 100%;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: var(--background-color-three);
+  background-color: var(--background-color-two);
   border-radius: 0.5rem;
 }
 

@@ -37,7 +37,6 @@
 }
 
 .sideBar_container-listItem a.active {
-  color: var(--primary-color-one);
   background-color: var(--primary-color-shade);
 }
 
@@ -46,10 +45,11 @@
 }
 
 .sideBar_container-listItem span {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
+  color: var(--text-color-one);
 }
 
 .sideBar_container-listItem svg {
@@ -59,6 +59,7 @@
 .sideBar_container-listItem .postBtn {
   padding: 0.4rem 2.5rem;
   border-radius: 8px;
+  color: var(--text-color-four);
 }
 
 .sideBar_container-listItem .home,
@@ -104,7 +105,7 @@
 /*  768px === 45em  */
 @media (max-width: 48em) {
   .sideBar_container-listItem .postBtn {
-    font-size: 1.7rem;
+    font-size: 1.65srem;
   }
 }
 

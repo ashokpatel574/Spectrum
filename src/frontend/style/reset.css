@@ -1,24 +1,59 @@
 /* Initial setup */
 
 :root {
-  --text-color-one: ##333;
+  --text-color-one: #333;
   --text-color-two: #5b5b5b;
   --text-color-three: #9a9b9a;
+  --text-color-four: #fff;
+  --text-color-highlight: #3c0ac2;
+
+  --background-color-one: #fff;
+  --background-color-two: #faf9f9;
+
   --primary-color-one: #3c0ac2;
   --primary-color-shade: rgba(59, 10, 194, 0.15);
-  --primary-color-two: #30089b;
-  --secondary-color-one: #fff;
-  --secondary-color-two: #f9fafb;
-  --secondary-color-three: #f6f7fb;
+
   --success-color: #2ecc71;
   --error-color: #e74c3c;
-  --border-radius: 0.8rem;
+
   --border-color-dark: #ccc;
   --border-color-light: #eee;
   --border-color-highlight: #3c0ac2;
-  --background-color-one: #fff;
-  --background-color-two: #ddd;
-  --background-color-three: #faf9f9;
+
+  --modal-overlay-bg: rgba(0, 0, 0, 0.4);
+  --header-bg-shadow: rgba(0, 0, 0, 0.05);
+  --post-card-shadow: rgba(99, 99, 99, 0.2);
+}
+
+.dark {
+  --text-color-one: #e4e6eb;
+  --text-color-two: rgb(250, 249, 249, 0.5);
+  --text-color-three: rgb(250, 249, 249, 0.5);
+  --text-color-four: #fff;
+  --text-color-highlight: #fff;
+
+  --background-color-one: #3a3b3c;
+  --background-color-two: #242526;
+
+  --primary-color-one: #3c0ac2;
+  --primary-color-shade: rgb(60, 10, 194, 0.2);
+
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+
+  --border-color-dark: #ccc;
+  --border-color-light: #eee;
+  --border-color-highlight: #3c0ac2;
+
+  --modal-overlay-bg: rgb(36, 37, 38, 0.75);
+  --header-bg-shadow: rgb(36, 37, 38, 0.75);
+  --post-card-shadow: rgb(36, 37, 38, 0.75);
+
+  /* --background-color-one: #202945;
+  --background-color-two: #152028;
+
+  --primary-color-one: #6200ee;
+  --primary-color-shade: rgb(98, 0, 238, 0.4); */
 }
 
 *,
@@ -41,12 +76,11 @@ body {
   font-family: "Poppins", sans-serif;
   position: relative;
   color: var(--text-color-one);
-  background-color: var(--background-color-three);
+  background-color: var(--background-color-two);
 
   /* If any child element has postion sticky then this  overflow-x property in parent container element doesn't work well , so we are using overflow clip but only draw back of overflow clip is that 5% of safari broswer and IE broswer do not support so for fall back we are using overflow-x hidden */
   overflow-x: hidden;
   overflow-x: clip;
-  /* min-height: 100vh; */
 }
 
 #root {

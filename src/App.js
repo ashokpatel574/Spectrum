@@ -17,13 +17,19 @@ const App = () => {
   } = useData();
 
   const closeModalOverlayHandler = (e) => {
-    if (e.target.className === "profileModal_overlay") {
+    if (
+      e.target.className === "profileModal_overlay" ||
+      e.target.className === "profileModal-section"
+    ) {
       dispatch({
         type: ActionType.CloseProfileModal,
       });
     }
 
-    if (e.target.className === "postModal_overlay") {
+    if (
+      e.target.className === "postModal_overlay" ||
+      e.target.className === "postModal_section"
+    ) {
       dispatch({
         type: ActionType.ClosePostModal,
       });

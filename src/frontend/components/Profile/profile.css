@@ -81,7 +81,7 @@
 }
 
 .profile-edit:hover {
-  color: var(--secondary-color-one);
+  color: var(--background-color-one);
   background-color: var(--primary-color-one);
 }
 
@@ -130,6 +130,18 @@
 .profile_details-partFour span svg {
   font-size: 2.6rem;
   margin-right: 1rem;
+}
+
+.btn.reloadBtn {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.7rem;
+  border-radius: 5px;
+}
+
+.user_followersList,
+.user_followingList {
+  cursor: pointer;
 }
 
 /*  1024px === 64em  */
@@ -244,6 +256,11 @@
   .profile_details-partThree span {
     font-size: 1.7rem;
     font-weight: 500;
+  }
+
+  .btn.reloadBtn {
+    padding: 0.4rem 0.8rem;
+    font-size: 1.65rem;
   }
 }
 

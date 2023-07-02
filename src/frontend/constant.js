@@ -26,4 +26,8 @@ export const ActionType = {
   CloseProfileModal: "CLOSE_PROFILE_MODAL",
   UpdateProfile: "UPDATE_PROFILE",
   LogOut: "LOG_OUT",
+  FilterFeed: "FILTER_FEED",
+  FilterFeedHome: "FILTER_FEED_HOME",
+  FilterFeedLiked: "FILTER_FEED_LIKED",
+  FilterFeedBookmark: "FILTER_FEED_BOOKMARK",
 };

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 
 import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
-import { useEmoji } from "../../utils/helper";
+import { useClickedOutsideDropBox, useEmoji } from "../../utils/helper";
 
 import { addNewPostService } from "../../services/postServices";
 import { deletePreviewFunc, postDataFunc } from "../../utils/utils";
@@ -16,16 +16,20 @@ const AddPost = () => {
     files: [],
   });
 
+  const emojiRef = useRef();
+
   const { token } = useAuth();
   const {
     state: { userProfile },
     dispatch,
   } = useData();
 
-  const { emojiModalOpen, emojiModalHandler, emojiPickerHandler } = useEmoji(
-    newPostData,
-    setNewPostData
-  );
+  const {
+    emojiModalOpen,
+    setEmojiModalOpen,
+    emojiModalHandler,
+    emojiPickerHandler,
+  } = useEmoji(newPostData, setNewPostData);
 
   const postHandler = (e) => postDataFunc(e, newPostData, setNewPostData);
 
@@ -39,6 +43,8 @@ const AddPost = () => {
       files: [],
     });
   };
+
+  useClickedOutsideDropBox(emojiModalOpen, setEmojiModalOpen, emojiRef);
 
   return (
     <div className="addPost_container flex-column">
@@ -102,7 +108,7 @@ const AddPost = () => {
             <span className="emojiPicker_container">
               <AddReactionIcon onClick={emojiModalHandler} />
               {emojiModalOpen && (
-                <span className="emojiPicker_container-box">
+                <span className="emojiPicker_container-box" ref={emojiRef}>
                   <EmojiPicker
                     onEmojiClick={emojiPickerHandler}
                     suggestedEmojisMode={SuggestionMode.RECENT}

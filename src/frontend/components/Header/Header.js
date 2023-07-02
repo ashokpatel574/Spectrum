@@ -1,17 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-//import LightModeIcon from "@mui/icons-material/LightMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { useSearch } from "../../utils/helper";
+import { useClickedOutsideDropBox, useSearch } from "../../utils/helper";
+import { useEffect, useRef } from "react";
+import { useThemeContext } from "../../context/ThemeContext";
 
 const Header = () => {
   const navigate = useNavigate();
+  const searchRef = useRef(null);
+  const { themeMode, themeChangeHandler } = useThemeContext();
 
-  const { searchInput, searchHandler, searchResult, clearSearchHandler } =
-    useSearch();
+  const {
+    searchInput,
+    searchHandler,
+    searchResult,
+    clearSearchHandler,
+    showSearchDropBox,
+    setShowSearchDropBox,
+  } = useSearch();
 
   const profileHandler = (navigateStatus, profileId) => {
     navigateStatus === "home"
@@ -20,13 +30,21 @@ const Header = () => {
     clearSearchHandler();
   };
 
+  useClickedOutsideDropBox(showSearchDropBox, setShowSearchDropBox, searchRef);
+
+  useEffect(() => {
+    if (!showSearchDropBox) {
+      clearSearchHandler();
+    }
+  }, [clearSearchHandler, showSearchDropBox]);
+
   return (
     <header className="header">
       <nav className="header_nav  container_section-width ">
         <div onClick={() => profileHandler("home")} className="nav_logo ">
           Spectrum
         </div>
-        <div className="nav_search flex-center">
+        <div className="nav_search flex-center" ref={searchRef}>
           <label htmlFor="searchInput">
             <input
               id="searchInput"
@@ -45,39 +63,40 @@ const Header = () => {
             </span>
           </label>
 
-          <span
-            className={`searchResult_container  ${
-              searchInput.length !== 0 && "active"
-            } `}
-          >
-            {searchResult.length > 0 ? (
-              searchResult?.map((item, id) => (
-                <span
-                  key={item.username}
-                  className="searchResult_container-section "
-                >
-                  <span onClick={() => profileHandler("profile", item?._id)}>
-                    <span className=" searchResult_Imgcontainer">
-                      <img src={item?.profileImage} alt="searched profile" />
-                    </span>
-                    <span className="searchResult_container-name">
-                      {item.firstname} {item.lastname}
+          {showSearchDropBox && (
+            <span
+              className={`searchResult_container  ${
+                searchInput.length !== 0 && "active"
+              } `}
+            >
+              {searchResult.length > 0 ? (
+                searchResult?.map((item, id) => (
+                  <span
+                    key={item.username}
+                    className="searchResult_container-section "
+                  >
+                    <span onClick={() => profileHandler("profile", item?._id)}>
+                      <span className=" searchResult_Imgcontainer">
+                        <img src={item?.profileImage} alt="searched profile" />
+                      </span>
+                      <span className="searchResult_container-name">
+                        {item.firstname} {item.lastname}
+                      </span>
                     </span>
                   </span>
-                </span>
-              ))
-            ) : (
-              <div className="searchResult_container-section-error">
-                No Results found!
-              </div>
-            )}
-          </span>
+                ))
+              ) : (
+                <div className="searchResult_container-section-error">
+                  No Results found!
+                </div>
+              )}
+            </span>
+          )}
         </div>
         <div className="nav_settings flex-center">
-          <span className="flex-center">{<DarkModeIcon />}</span>
-          {/* <span onClick={() => profileHandler("profile", userProfile?._id)}>
-            <AccountCircleIcon />
-          </span> */}
+          <span className="flex-center" onClick={themeChangeHandler}>
+            {themeMode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+          </span>
         </div>
       </nav>
     </header>
