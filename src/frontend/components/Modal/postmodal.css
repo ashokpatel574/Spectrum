@@ -10,7 +10,7 @@
 .postModal_container {
   position: relative;
   z-index: 40;
-  background-color: var(--background-color-one);
+  background-color: var(--background-color-two);
   max-width: 50rem;
   width: 100%;
   height: fit-content;
@@ -71,9 +71,16 @@
   resize: none;
   border: none;
   outline: none;
-  padding: 0.4rem 1.6rem;
+  padding: 1rem 1.6rem;
   font-size: 1.7rem;
   font-family: inherit;
+  background-color: var(--background-color-one);
+  color: var(--text-color-one);
+  border-radius: 0.5rem;
+}
+
+.postModal_InfoContainer textarea::placeholder {
+  color: var(--text-color-two);
 }
 
 .addPost_message textarea:focus {
@@ -142,8 +149,7 @@
   border: 1.5px solid var(--border-color-dark);
   border-radius: 50%;
   cursor: pointer;
-  background-color: var(--background-color-three);
-  color: var(--dark-color-one);
+  background-color: var(--background-color-two);
   transition: all 0.25s;
 }
 
@@ -188,7 +194,7 @@
 }
 
 .postModal_footer .updatepostBtn:disabled {
-  background-color: var(--text-color-two);
+  background-color: var(--text-color-three);
 }
 
 .postModal_container .emojiPicker_container-box {

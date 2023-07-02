@@ -29,8 +29,8 @@ const Profile = () => {
   const followHandler = (e, followUserId) => {
     e.stopPropagation();
     isFollowed
-      ? followService(followUserId, token, dispatch)
-      : unFollowService(followUserId, token, dispatch);
+      ? unFollowService(followUserId, token, dispatch)
+      : followService(followUserId, token, dispatch);
   };
 
   const editProfileHandler = () => {
@@ -45,8 +45,12 @@ const Profile = () => {
     logoutService(setToken, setCurrentUser, dispatch);
   };
 
-  if (profileDetails) {
-    return (
+  const reloadBtnHandler = () => {
+    logoutService(setToken, setCurrentUser, dispatch);
+  };
+
+  return profileDetails ? (
+    <>
       <div className="profile_container">
         <div className="profile_ImgContainer">
           <img src={profileDetails?.profileImage} alt="profile" />
@@ -89,21 +93,36 @@ const Profile = () => {
           </div>
           <div className="profile_details-partThree">
             <span>{userPosts} Posts</span>
-            <span> {profileDetails?.followers?.length} Followers</span>
-            <span> {profileDetails?.following?.length} Following</span>
-          </div>
-          <div className="profile_details-partFour">
-            <span>
-              <LinkIcon />
-              <Link to={profileDetails?.website}>
-                {profileDetails?.website}
-              </Link>
+            <span className="user_followersList">
+              {profileDetails?.followers?.length} Followers
+            </span>
+            <span className="user_followingList">
+              {profileDetails?.following?.length} Following
             </span>
           </div>
+          {profileDetails?.website && (
+            <div className="profile_details-partFour">
+              <span>
+                <LinkIcon />
+                <Link to={profileDetails?.website}>
+                  {profileDetails?.website}
+                </Link>
+              </span>
+            </div>
+          )}
         </div>
       </div>
-    );
-  }
+    </>
+  ) : (
+    <>
+      <div className="emptyFeed">
+        <p>Something went wrong!</p>
+        <button className="btn reloadBtn" onClick={reloadBtnHandler}>
+          Reload
+        </button>
+      </div>
+    </>
+  );
 };
 
 export default Profile;

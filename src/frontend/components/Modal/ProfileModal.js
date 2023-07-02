@@ -76,6 +76,7 @@ const ProfileModal = () => {
           <input
             id="profileModallink"
             type="text"
+            placeholder="Link"
             name="link"
             className="profileModal_link"
             value={updatedProfileData.link}

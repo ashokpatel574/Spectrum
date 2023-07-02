@@ -1,14 +1,22 @@
 import React from "react";
 import { useData } from "../../context/DataContext";
 import PostList from "../../components/PostList/PostList";
+import { getfilterDataBySort } from "../../utils/utils";
 
 const ExplorePage = () => {
   const {
-    state: { posts },
+    state: { posts, sortFeedTypeDefault },
   } = useData();
+
+  const filteredFeedBySort = getfilterDataBySort(posts, sortFeedTypeDefault);
+
   return (
     <section className="postFeed_container">
-      <PostList postListData={posts} headerState={"Explore"} />
+      <PostList
+        postListData={filteredFeedBySort}
+        headerState={"Explore"}
+        sortFeedType={sortFeedTypeDefault}
+      />
     </section>
   );
 };

@@ -9,6 +9,10 @@ export const initialState = {
   isPostEdited: false,
   isProfileModalOpen: false,
   profileModalDetails: null,
+  sortFeedTypeDefault: "Latest",
+  sortFeedTypeHome: "Latest",
+  sortFeedTypeLiked: "Latest",
+  sortFeedTypeBookmark: "Latest",
 };
 
 export const DataReducer = (state, action) => {
@@ -177,14 +181,44 @@ export const DataReducer = (state, action) => {
 
     case ActionType.LogOut: {
       return {
-        posts: [],
-        users: [],
         userProfile: {},
         isPostModalOpen: false,
         postModalDetails: null,
         isPostEdited: false,
         isProfileModalOpen: false,
         profileModalDetails: null,
+        sortFeedTypeDefault: "Latest",
+        sortFeedTypeHome: "Latest",
+        sortFeedTypeLiked: "Latest",
+        sortFeedTypeBookmark: "Latest",
+      };
+    }
+
+    case ActionType.FilterFeed: {
+      return {
+        ...state,
+        sortFeedTypeDefault: "Latest",
+      };
+    }
+
+    case ActionType.FilterFeedHome: {
+      return {
+        ...state,
+        sortFeedTypeHome: action.payload,
+      };
+    }
+
+    case ActionType.FilterFeedBookmark: {
+      return {
+        ...state,
+        sortFeedTypeBookmark: action.payload,
+      };
+    }
+
+    case ActionType.FilterFeedLiked: {
+      return {
+        ...state,
+        sortFeedTypeLiked: action.payload,
       };
     }
 

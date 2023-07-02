@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { ActionType } from "../constant";
 
 const validateNumber = (input) => {
   return /^[0-9]+$/.test(input);
@@ -61,12 +62,32 @@ const getfilterDataBySort = (dataToBeFiltered, sortOptions) => {
       );
     }
 
-    case "ClearFilter": {
+    default: {
       return [...dataToBeFiltered];
+    }
+  }
+};
+
+export const getFiltertypeState = (header) => {
+  switch (header) {
+    case "Home": {
+      return ActionType.FilterFeedHome;
+    }
+
+    case "Liked Posts": {
+      return ActionType.FilterFeedLiked;
+    }
+
+    case "Bookmark": {
+      return ActionType.FilterFeedBookmark;
+    }
+
+    case "Explore": {
+      return ActionType.FilterFeed;
     }
 
     default: {
-      return [...dataToBeFiltered];
+      return ActionType.FilterFeed;
     }
   }
 };

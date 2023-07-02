@@ -9,7 +9,7 @@
 .postFeed_container-header span {
   font-size: 2.2rem;
   font-weight: 500;
-  color: var(--primary-color-one);
+  color: var(--text-color-one);
 }
 
 .postFeed_container-header svg {
@@ -17,6 +17,7 @@
   align-items: center;
   font-size: 3.2rem;
   cursor: pointer;
+  color: var(--primary-color-one);
 }
 
 .postFeed_container-filterIcon-container {
@@ -24,7 +25,7 @@
 }
 
 .postFeed_settings span {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   padding: 0.5rem 1.6rem;
   border-radius: 0.3rem;
   cursor: pointer;
@@ -40,7 +41,7 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color-dark);
-  background-color: var(--background-color-one);
+  background-color: var(--background-color-two);
 }
 
 .postFeed_settings::before {
@@ -51,14 +52,14 @@
   top: 0%;
   right: 5%;
   transform: translate(-50%, -50%) rotate(45deg);
-  background-color: var(--background-color-one);
+  background-color: var(--background-color-two);
   border-top: 1px solid var(--border-color-dark);
   border-left: 1px solid var(--border-color-dark);
   z-index: -1;
 }
 
 .postFeed_settings span:hover {
-  background-color: var(--primary-color-shade);
+  background-color: var(--background-color-one);
   border-radius: 0.3rem;
 }
 

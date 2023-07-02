@@ -10,7 +10,7 @@
 }
 
 .suggestion_title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
 }
@@ -27,11 +27,11 @@
 }
 
 .suggestionListItem_textContainer .fullname {
-  font-size: 1.7rem;
+  font-size: 1.65rem;
 }
 
 .suggestionListItem_textContainer .username {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
 }
 
 .suggestionListItem_ImgContainer {
@@ -68,8 +68,9 @@
 .suggestionListItem_BtnContainer .followBtn {
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   text-transform: capitalize;
+  color: var(--text-color-four);
 }
 
 /*  1024px === 64em  */

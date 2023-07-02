@@ -7,7 +7,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import { timeAgo } from "../../utils/utils";
-import { usePost } from "../../utils/helper";
+import { useClickedOutsideDropBox, usePost } from "../../utils/helper";
+import { useRef } from "react";
 
 const Post = ({ post }) => {
   const {
@@ -19,6 +20,8 @@ const Post = ({ post }) => {
     likes: { likeCount },
     comments,
   } = post;
+
+  const postRef = useRef(null);
 
   const {
     userProfile,
@@ -33,6 +36,8 @@ const Post = ({ post }) => {
     postCommentHandler,
     profileHandler,
   } = usePost(post);
+
+  useClickedOutsideDropBox(postEdit, setPostEdit, postRef);
 
   return (
     <li className="feedListItem flex-column">
@@ -58,7 +63,7 @@ const Post = ({ post }) => {
         </div>
 
         {userProfile.username === username && (
-          <div className="feedListItem_header-text-partThree">
+          <div className="feedListItem_header-text-partThree" ref={postRef}>
             <span onClick={() => setPostEdit(!postEdit)}>
               <MoreHorizIcon />
             </span>
