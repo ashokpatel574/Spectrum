@@ -10,7 +10,8 @@ const HomePage = () => {
     isLoadingData,
   } = useData();
 
-  const currentUserFollowingList = getUserFollowingList(userProfile);
+  const currentUserFollowingList =
+    userProfile && getUserFollowingList(userProfile);
 
   const homeFeedPost = posts?.filter((post) => {
     return (
