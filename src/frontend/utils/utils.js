@@ -139,6 +139,13 @@ export const getStringCaptialize = (string) => {
   return string.at(0).toUpperCase() + string.slice(1);
 };
 
+export const isFollowedFunc = (profileDetails, userProfile) => {
+  return (
+    profileDetails?._id !== userProfile?._id &&
+    userProfile?.following?.some((item) => item?._id === profileDetails?._id)
+  );
+};
+
 export {
   timeAgo,
   validateEmail,

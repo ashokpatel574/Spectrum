@@ -29,45 +29,49 @@ const SuggestionFeed = () => {
   };
 
   return (
-    <section className="suggestion_container">
-      <p className="suggestion_title">Who to follow?</p>
-      <ul className="flex-column">
-        {suggestProfile?.slice(0, 5)?.map((profile) => (
-          <li
-            key={profile.username}
-            className="suggestionListItem"
-            onClick={() => profileHandler(profile._id)}
-          >
-            <div className="suggestionListItem_ImgContainer">
-              <img src={profile.profileImage} alt="profile" />
-            </div>
-
-            <div className="suggestionListItem_textContainer flex-column">
-              <span className="fullname">
-                {profile?.firstname} {profile?.lastname}
-              </span>
-              <span className="username">@{profile.username}</span>
-            </div>
-
-            <div className="suggestionListItem_BtnContainer">
-              <button
-                className="btn followBtn"
-                onClick={(e) =>
-                  followHandler(
-                    e,
-                    profile._id,
-                    profile?.firstname,
-                    profile?.lastname
-                  )
-                }
+    <>
+      {suggestProfile?.length > 0 && (
+        <section className="suggestion_container">
+          <p className="suggestion_title">Who to follow?</p>
+          <ul className="flex-column">
+            {suggestProfile?.slice(0, 5)?.map((profile) => (
+              <li
+                key={profile.username}
+                className="suggestionListItem"
+                onClick={() => profileHandler(profile._id)}
               >
-                follow
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+                <div className="suggestionListItem_ImgContainer">
+                  <img src={profile.profileImage} alt="profile" />
+                </div>
+
+                <div className="suggestionListItem_textContainer flex-column">
+                  <span className="fullname">
+                    {profile?.firstname} {profile?.lastname}
+                  </span>
+                  <span className="username">@{profile.username}</span>
+                </div>
+
+                <div className="suggestionListItem_BtnContainer">
+                  <button
+                    className="btn followBtn"
+                    onClick={(e) =>
+                      followHandler(
+                        e,
+                        profile._id,
+                        profile?.firstname,
+                        profile?.lastname
+                      )
+                    }
+                  >
+                    follow
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </>
   );
 };
 

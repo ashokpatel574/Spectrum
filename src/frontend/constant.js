@@ -1,3 +1,22 @@
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  RedditShareButton,
+  RedditIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  FacebookMessengerShareButton,
+  FacebookMessengerIcon,
+  PinterestShareButton,
+  PinterestIcon,
+} from "react-share";
+
 export const AVATAR_IMGS = [
   "https://res.cloudinary.com/dz0snqho8/image/upload/v1687781047/shippr/Avatar/avatar-2_xbo2oi.png",
   "https://res.cloudinary.com/dz0snqho8/image/upload/v1687781047/shippr/Avatar/avatar-1_up9sv8.png",
@@ -38,3 +57,29 @@ export const ToastType = {
   Info: "info",
   Error: "error",
 };
+
+export const shareButtonIcon = [
+  { Button: FacebookShareButton, Icon: FacebookIcon },
+  {
+    Button: RedditShareButton,
+    Icon: RedditIcon,
+  },
+  {
+    Button: TelegramShareButton,
+    Icon: TelegramIcon,
+  },
+  { Button: TwitterShareButton, Icon: TwitterIcon },
+  {
+    Button: WhatsappShareButton,
+    Icon: WhatsappIcon,
+  },
+  {
+    Button: LinkedinShareButton,
+    Icon: LinkedinIcon,
+  },
+  {
+    Button: FacebookMessengerShareButton,
+    Icon: FacebookMessengerIcon,
+  },
+  { Button: PinterestShareButton, Icon: PinterestIcon },
+];
