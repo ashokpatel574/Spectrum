@@ -1,4 +1,5 @@
 .feedListItem {
+  position: relative;
   display: flex;
   width: 100%;
   gap: 2.5rem;
@@ -179,6 +180,44 @@
 
 .post_bookmarkIcon.marked svg {
   color: var(--primary-color-one);
+}
+
+.sharePost_modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  max-width: 30rem;
+  width: 100%;
+  background-color: var(--background-color-two);
+  border-radius: 0.5rem;
+}
+
+.sharePost_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color-dark);
+}
+
+.sharePost_header span {
+  font-size: 1.7rem;
+}
+
+.sharePost_header span svg {
+  font-size: 2.4rem;
+}
+
+.sharePost_body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  width: 100%;
+  padding: 1.5rem 0.5rem;
 }
 
 /*  1024px === 64em  */

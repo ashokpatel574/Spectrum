@@ -14,9 +14,9 @@
   grid-template-columns: 1.75fr 5.75fr 2.5fr;
   grid-template-areas: "sidebar main suggestion";
   gap: 1.5rem;
-  height: calc(100vh - 10.5rem);
-  height: calc(100dvh - 10.5rem);
-  padding: 0rem 1.5rem;
+  height: calc(100vh - 8.5rem);
+  height: calc(100dvh - 8.5rem);
+  padding: 0 1.5rem 0.5rem 0;
 }
 
 .profileModal_overlay,
@@ -38,7 +38,6 @@
   .homePage_container {
     grid-template-columns: 1.75fr 5.5fr 2.75fr;
     gap: 1.25rem;
-    padding: 1rem 1rem 3.5rem 1rem;
   }
 }
 

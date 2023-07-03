@@ -43,8 +43,11 @@
   max-width: 90rem;
   width: 100%;
   margin: 0 auto;
-  height: fit-content;
-  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .errorPage_section {
@@ -76,11 +79,12 @@
   font-size: 2.4rem;
 }
 
-.backHomeBtn {
+.errorPage_container .backHomeBtn {
   font-size: 1.8rem;
   margin-top: 0.5rem;
-
   padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  color: var(--text-color-four);
 }
 
 /*  1024px = 64rem */

@@ -153,11 +153,12 @@ export const setSignUpCredentialsService = async (
   }
 };
 
-export const logoutService = (setToken, setCurrentUser, dispatch) => {
+export const logoutService = (setToken, setCurrentUser, dispatch, navigate) => {
   localStorage.removeItem("loginCredentials");
   localStorage.removeItem("epr_suggested");
   setToken("");
   setCurrentUser("");
   dispatch({ type: ActionType.LogOut });
   ToastHandler(ToastType.Success, `Logged out`);
+  navigate("/user");
 };

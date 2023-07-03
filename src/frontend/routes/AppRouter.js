@@ -1,9 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 
-// context
-import AuthContextProvider from "../context/AuthContext";
-import DataContextProvider from "../context/DataContext";
-
 // pages
 import App from "../../App";
 import LoginPage from "../pages/Login/LoginPage";
@@ -19,21 +15,12 @@ import RequireAuth from "../components/RequireAuth/RequireAuth";
 import MockAPI from "../components/mockApi/MockApi";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
-import ThemeContextProvider from "../context/ThemeContext";
 
 // React Router version > 6.4
 const AppRouter = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <AuthContextProvider>
-        <DataContextProvider>
-          <ThemeContextProvider>
-            <App />
-          </ThemeContextProvider>
-        </DataContextProvider>
-      </AuthContextProvider>
-    ),
+    element: <App />,
     errorElement: <PageNotFound />,
     children: [
       {
@@ -73,13 +60,7 @@ const AppRouter = createBrowserRouter([
   },
   {
     path: "/user",
-    element: (
-      <AuthContextProvider>
-        <ThemeContextProvider>
-          <LandingPage />
-        </ThemeContextProvider>
-      </AuthContextProvider>
-    ),
+    element: <LandingPage />,
     errorElement: <PageNotFound />,
     children: [
       { index: true, element: <LoginPage /> },
@@ -88,11 +69,7 @@ const AppRouter = createBrowserRouter([
   },
   {
     path: "*",
-    element: (
-      <ThemeContextProvider>
-        <PageNotFound />
-      </ThemeContextProvider>
-    ),
+    element: <PageNotFound />,
   },
   { path: "/mock-man", element: <MockAPI /> },
 ]);

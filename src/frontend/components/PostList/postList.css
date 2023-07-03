@@ -9,7 +9,7 @@
 .postFeed_container-header span {
   font-size: 2.2rem;
   font-weight: 500;
-  color: var(--text-color-one);
+  color: var(--text-color-highlight);
 }
 
 .postFeed_container-header svg {
@@ -41,7 +41,11 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color-dark);
-  background-color: var(--background-color-two);
+  background-color: var(--background-color-one);
+}
+
+.postFeed_container-filterIcon-container .postFeed_settings span {
+  color: var(--text-color-highlight);
 }
 
 .postFeed_settings::before {
@@ -52,14 +56,14 @@
   top: 0%;
   right: 5%;
   transform: translate(-50%, -50%) rotate(45deg);
-  background-color: var(--background-color-two);
+  background-color: var(--background-color-one);
   border-top: 1px solid var(--border-color-dark);
   border-left: 1px solid var(--border-color-dark);
   z-index: -1;
 }
 
 .postFeed_settings span:hover {
-  background-color: var(--background-color-one);
+  background-color: var(--primary-color-shade);
   border-radius: 0.3rem;
 }
 

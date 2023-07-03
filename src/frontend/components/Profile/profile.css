@@ -1,4 +1,5 @@
 .profile_container {
+  position: relative;
   display: flex;
   align-items: flex-start;
   padding: 2rem;
@@ -142,6 +143,117 @@
 .user_followersList,
 .user_followingList {
   cursor: pointer;
+}
+
+.followListModal_section {
+  position: absolute;
+  z-index: 100;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 35rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: var(--background-color-two);
+}
+
+.followListModal_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1rem;
+}
+
+.followListModal_container p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color-dark);
+  padding: 0.5rem 0;
+}
+
+.followListModal_container p span:first-child {
+  font-size: 1.8rem;
+}
+
+.followListModal_container p span:last-child svg {
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+.followListModal_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 30rem;
+  overflow-y: scroll;
+  padding: 0 0.25rem;
+}
+
+.followListModal_wrapper::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.followListModal_wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color-one);
+  border-radius: 2px;
+}
+
+.followListModal_wrapper::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.followListModal_listItem,
+.followListModal_listItem span {
+  display: inline-block;
+  background-color: transparent;
+  padding: 0.4rem 0.25rem;
+  font-size: 1.55rem;
+}
+
+.followListModal_listItem-partOne,
+.followListModal_listItem-partTwo {
+  cursor: pointer;
+}
+
+.followListModal_listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transition: all 0.1s;
+  padding: 0.25rem;
+}
+
+.followListModal_listItem:hover {
+  border-radius: 0.5rem;
+  background-color: var(--background-color-one);
+}
+
+.followListModal_listItem .followListModal_listItem_Imgcontainer {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  cursor: pointer;
+}
+
+.followListModal_listItem_Imgcontainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.followListModal_listItem-name {
+  text-transform: capitalize;
+}
+
+.searchResult_container-section:hover {
+  background-color: var(--primary-color-shade);
 }
 
 /*  1024px === 64em  */

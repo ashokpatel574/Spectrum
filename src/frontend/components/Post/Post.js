@@ -8,9 +8,13 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import { timeAgo } from "../../utils/utils";
 import { useClickedOutsideDropBox, usePost } from "../../utils/helper";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { shareButtonIcon } from "../../constant";
 
 const Post = ({ post }) => {
+  const [showSharePostModal, setShowSharePostModal] = useState(false);
   const {
     _id: postId,
     profileImage,
@@ -22,6 +26,7 @@ const Post = ({ post }) => {
   } = post;
 
   const postRef = useRef(null);
+  const sharePostModalRef = useRef(null);
 
   const {
     userProfile,
@@ -38,6 +43,11 @@ const Post = ({ post }) => {
   } = usePost(post);
 
   useClickedOutsideDropBox(postEdit, setPostEdit, postRef);
+  useClickedOutsideDropBox(
+    showSharePostModal,
+    setShowSharePostModal,
+    sharePostModalRef
+  );
 
   return (
     <li className="feedListItem flex-column">
@@ -115,11 +125,35 @@ const Post = ({ post }) => {
           >
             {isPostBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </span>
-          <span className="post_shareIcon">
+          <span
+            className="post_shareIcon"
+            onClick={() => setShowSharePostModal(true)}
+          >
             <ShareIcon />
           </span>
         </div>
       </div>
+
+      {showSharePostModal && (
+        <div className="sharePost_modal-container" ref={sharePostModalRef}>
+          <p className="sharePost_header">
+            <span>Share Post</span>
+            <span onClick={() => setShowSharePostModal(false)}>
+              <HighlightOffIcon />
+            </span>
+          </p>
+
+          <div className="sharePost_body">
+            {shareButtonIcon?.map(({ Button, Icon }, id) => (
+              <span className="post_shareIcon" key={id}>
+                <Button url={window.location.href} via={userProfile?.username}>
+                  <Icon size={34} round />
+                </Button>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
     </li>
   );
 };

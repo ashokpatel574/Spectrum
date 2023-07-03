@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import LinkIcon from "@mui/icons-material/Link";
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -10,23 +10,32 @@ import {
   unFollowService,
 } from "../../services/userServices";
 import { logoutService } from "../../services/authServices";
+import { useState } from "react";
+import { useRef } from "react";
+import { useClickedOutsideDropBox } from "../../utils/helper";
+import { isFollowedFunc } from "../../utils/utils";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const Profile = () => {
+  const [showUserFollowList, setShowUserFollowList] = useState(false);
+  const [userProfileFollowType, setUserProfileFollowType] = useState("");
+  const [userList, setUserList] = useState([]);
   const {
     state: { users, posts, userProfile },
     dispatch,
   } = useData();
+  let navigate = useNavigate();
+  const userListRef = useRef();
 
   const { token, setToken, setCurrentUser } = useAuth();
   const { profileId } = useParams();
   const profileDetails = users?.find((user) => user?._id === String(profileId));
 
-  const isFollowed =
-    profileDetails?._id !== userProfile?._id &&
-    userProfile?.following.some((item) => item?._id === profileDetails?._id);
+  const isFollowed = isFollowedFunc(profileDetails, userProfile);
 
   const followHandler = (e, followUserId, userfirstname, userLastname) => {
     e.stopPropagation();
+
     isFollowed
       ? unFollowService(
           followUserId,
@@ -59,6 +68,49 @@ const Profile = () => {
   const reloadBtnHandler = () => {
     logoutService(setToken, setCurrentUser, dispatch);
   };
+
+  const userFollowListHandler = (users, type) => {
+    setShowUserFollowList(true);
+    setUserList([...users]);
+    setUserProfileFollowType(type);
+  };
+
+  const profileHandler = (profileId) => {
+    navigate(`/profile/${profileId}`);
+    setShowUserFollowList(false);
+  };
+
+  const followListModalHandler = (e, followState, user) => {
+    e.stopPropagation();
+
+    followState === "follow"
+      ? followService(
+          user?._id,
+          token,
+          dispatch,
+          user?.firstname,
+          user?.lastname
+        )
+      : unFollowService(
+          user?._id,
+          token,
+          dispatch,
+          user?.firstname,
+          user?.lastname
+        );
+
+    userProfileFollowType === "following" &&
+      followState === "unfollow" &&
+      setUserList((prevState) => {
+        return [...prevState].filter((item) => item._id !== user._id);
+      });
+  };
+
+  useClickedOutsideDropBox(
+    showUserFollowList,
+    setShowUserFollowList,
+    userListRef
+  );
 
   return profileDetails ? (
     <>
@@ -111,10 +163,20 @@ const Profile = () => {
           </div>
           <div className="profile_details-partThree">
             <span>{userPosts} Posts</span>
-            <span className="user_followersList">
+            <span
+              className="user_followersList"
+              onClick={() =>
+                userFollowListHandler(profileDetails?.followers, "followers")
+              }
+            >
               {profileDetails?.followers?.length} Followers
             </span>
-            <span className="user_followingList">
+            <span
+              className="user_followingList"
+              onClick={() =>
+                userFollowListHandler(profileDetails?.following, "following")
+              }
+            >
               {profileDetails?.following?.length} Following
             </span>
           </div>
@@ -129,6 +191,78 @@ const Profile = () => {
             </div>
           )}
         </div>
+
+        {showUserFollowList && userList.length > 0 && (
+          <div className="followListModal_section" ref={userListRef}>
+            <div className="followListModal_container">
+              <p>
+                <span>
+                  {userProfileFollowType === "followers"
+                    ? "Followers"
+                    : "Following"}
+                </span>
+
+                <span onClick={() => setShowUserFollowList(false)}>
+                  <HighlightOffIcon />
+                </span>
+              </p>
+              <div className="followListModal_wrapper">
+                {userList?.map((item) => (
+                  <span
+                    key={item.username}
+                    className="followListModal_listItem"
+                  >
+                    <span
+                      onClick={() => profileHandler(item?._id)}
+                      className="followListModal_listItem-partOne"
+                    >
+                      <span className=" followListModal_listItem_Imgcontainer">
+                        <img src={item?.profileImage} alt="user profile" />
+                      </span>
+                      <span className="followListModal_listItem-name">
+                        {item.firstname} {item.lastname}
+                      </span>
+                    </span>
+
+                    <span className="followListModal_listItem-partTwo">
+                      {userProfileFollowType === "followers" ? (
+                        <>
+                          {isFollowedFunc(item, userProfile) ? (
+                            <span
+                              onClick={(e) =>
+                                followListModalHandler(e, "unfollow", item)
+                              }
+                            >
+                              following
+                            </span>
+                          ) : (
+                            <span
+                              onClick={(e) =>
+                                followListModalHandler(e, "follow", item)
+                              }
+                            >
+                              Follow
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <span
+                            onClick={(e) =>
+                              followListModalHandler(e, "unfollow", item)
+                            }
+                          >
+                            following
+                          </span>
+                        </>
+                      )}
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   ) : (
