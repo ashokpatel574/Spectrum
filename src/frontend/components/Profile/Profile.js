@@ -62,11 +62,11 @@ const Profile = () => {
   )?.length;
 
   const logoutHandler = () => {
-    logoutService(setToken, setCurrentUser, dispatch);
+    logoutService(setToken, setCurrentUser, dispatch, navigate);
   };
 
   const reloadBtnHandler = () => {
-    logoutService(setToken, setCurrentUser, dispatch);
+    logoutService(setToken, setCurrentUser, dispatch, navigate);
   };
 
   const userFollowListHandler = (users, type) => {

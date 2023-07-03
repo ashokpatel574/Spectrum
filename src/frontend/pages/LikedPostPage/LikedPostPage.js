@@ -14,10 +14,8 @@ const LikedPostPage = () => {
     });
   });
 
-  const filteredFeedBySort = getfilterDataBySort(
-    likedPostlist,
-    sortFeedTypeLiked
-  );
+  const filteredFeedBySort =
+    posts && getfilterDataBySort(likedPostlist, sortFeedTypeLiked);
 
   return (
     <section className="postFeed_container">

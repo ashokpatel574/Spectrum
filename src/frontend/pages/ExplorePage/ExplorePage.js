@@ -8,7 +8,8 @@ const ExplorePage = () => {
     state: { posts, sortFeedTypeDefault },
   } = useData();
 
-  const filteredFeedBySort = getfilterDataBySort(posts, sortFeedTypeDefault);
+  const filteredFeedBySort =
+    posts && getfilterDataBySort(posts, sortFeedTypeDefault);
 
   return (
     <section className="postFeed_container">

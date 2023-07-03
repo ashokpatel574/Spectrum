@@ -9,10 +9,8 @@ const BookmarkPage = () => {
 
   const bookmarksData = userProfile?.bookmarks;
 
-  const filteredFeedBySort = getfilterDataBySort(
-    bookmarksData,
-    sortFeedTypeBookmark
-  );
+  const filteredFeedBySort =
+    userProfile && getfilterDataBySort(bookmarksData, sortFeedTypeBookmark);
 
   return (
     <section className="postFeed_container">

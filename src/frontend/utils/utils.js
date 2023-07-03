@@ -43,28 +43,32 @@ const postDataFunc = (e, data, setData) => {
 };
 
 const getfilterDataBySort = (dataToBeFiltered, sortOptions) => {
-  switch (sortOptions) {
-    case "Trending": {
-      return [...dataToBeFiltered]?.sort(
-        (a, b) => b.likes.likeCount - a.likes.likeCount
-      );
-    }
+  if (dataToBeFiltered) {
+    switch (sortOptions) {
+      case "Trending": {
+        return [...dataToBeFiltered]?.sort(
+          (a, b) => b.likes.likeCount - a.likes.likeCount
+        );
+      }
 
-    case "Latest": {
-      return [...dataToBeFiltered]?.sort((a, b) => {
-        return Date.parse(b.createdAt) - Date.parse(a.createdAt);
-      });
-    }
+      case "Latest": {
+        return [...dataToBeFiltered]?.sort((a, b) => {
+          return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+        });
+      }
 
-    case "Oldest": {
-      return [...dataToBeFiltered]?.sort(
-        (a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)
-      );
-    }
+      case "Oldest": {
+        return [...dataToBeFiltered]?.sort(
+          (a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)
+        );
+      }
 
-    default: {
-      return [...dataToBeFiltered];
+      default: {
+        return [...dataToBeFiltered];
+      }
     }
+  } else {
+    return dataToBeFiltered;
   }
 };
 

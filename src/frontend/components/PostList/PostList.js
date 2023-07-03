@@ -23,7 +23,7 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
 
   return (
     <>
-      {postListData.length > 0 ? (
+      {postListData && postListData?.length > 0 ? (
         <>
           <header className="postFeed_container-header">
             <span>
