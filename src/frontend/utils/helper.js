@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
@@ -299,4 +299,60 @@ export const useClickedOutsideDropBox = (
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [dropBoxstate, refState, setDropBoxState]);
+};
+
+export const useInfiniteScroll = (posts) => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const lastElementInListRef = useRef(null);
+  const TotalPosts = posts?.length;
+  const hasMorePost = Boolean(pageNumber <= Math.ceil(TotalPosts / 4));
+  const [postLoading, setPostLoading] = useState(false);
+
+  let interval;
+
+  const observerFunc = (entries) => {
+    const entry = entries[0];
+
+    if (entry.isIntersecting && hasMorePost) {
+      setPostLoading(true);
+      interval = setTimeout(() => {
+        setPageNumber((prevPageNumber) => prevPageNumber + 1);
+        setPostLoading(false);
+      }, 700);
+    }
+  };
+
+  const observerOpts = {
+    threshold: 0.6,
+  };
+
+  useEffect(() => {
+    const referenceElement = lastElementInListRef.current;
+    const infiniteScrollObserver = new IntersectionObserver(
+      observerFunc,
+      observerOpts
+    );
+
+    if (referenceElement) {
+      infiniteScrollObserver.observe(referenceElement);
+    }
+
+    return () => {
+      if (referenceElement) {
+        infiniteScrollObserver.unobserve(referenceElement);
+      }
+
+      if (interval) {
+        clearTimeout(interval);
+      }
+    };
+  }, [hasMorePost, observerFunc]);
+
+  return {
+    pageNumber,
+    lastElementInListRef,
+    hasMorePost,
+    postLoading,
+    interval,
+  };
 };
