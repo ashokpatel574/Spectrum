@@ -67,6 +67,21 @@
   border-radius: 0.3rem;
 }
 
+.infiniteScroll_loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1.5rem 0 4rem 0;
+}
+
+.infiniteScroll_loader-container p {
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--primary-color-one);
+}
+
 /*  768px === 48em  */
 @media (max-width: 48em) {
   .postFeed_container-header {

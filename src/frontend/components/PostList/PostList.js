@@ -1,9 +1,13 @@
 import React, { useRef, useState } from "react";
+import { Oval } from "react-loader-spinner";
 
 import SortIcon from "@mui/icons-material/Sort";
 import Post from "../Post/Post";
 import { getFiltertypeState } from "../../utils/utils";
-import { useClickedOutsideDropBox } from "../../utils/helper";
+import {
+  useClickedOutsideDropBox,
+  useInfiniteScroll,
+} from "../../utils/helper";
 import { useData } from "../../context/DataContext";
 
 const PostList = ({ postListData, headerState, sortFeedType }) => {
@@ -20,6 +24,10 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
 
   const filterMenuHandler = () => setShowFilterMenu(!showfilterMenu);
   useClickedOutsideDropBox(showfilterMenu, setShowFilterMenu, filterMenuRef);
+
+  const { pageNumber, lastElementInListRef, hasMorePost, postLoading } =
+    useInfiniteScroll(postListData);
+  const postToRender = postListData?.slice(0, pageNumber * 4);
 
   return (
     <>
@@ -62,9 +70,38 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
             )}
           </header>
           <ul className="flex-column">
-            {postListData?.map((post, id) => {
-              return <Post key={id} post={post} />;
+            {postToRender?.map((post, id) => {
+              return <Post key={post?._id} post={post} />;
             })}
+
+            <div
+              key={"last-postElement"}
+              className="infiniteScroll_loader-container"
+              ref={lastElementInListRef}
+            >
+              {postToRender?.length &&
+                hasMorePost &&
+                postLoading &&
+                postListData?.length !== postToRender?.length && (
+                  <Oval
+                    height={50}
+                    width={50}
+                    color="#3c0ac2"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="oval-loading"
+                    secondaryColor="#30089b"
+                    strokeWidth={5}
+                    strokeWidthSecondary={5}
+                  />
+                )}
+              {!hasMorePost &&
+                !postLoading &&
+                postListData?.length === postToRender?.length && (
+                  <p>You have reached End!</p>
+                )}
+            </div>
           </ul>
         </>
       ) : (
