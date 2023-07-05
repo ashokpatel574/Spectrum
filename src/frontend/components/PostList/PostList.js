@@ -13,6 +13,7 @@ import { useData } from "../../context/DataContext";
 const PostList = ({ postListData, headerState, sortFeedType }) => {
   const [showfilterMenu, setShowFilterMenu] = useState(false);
   const filterMenuRef = useRef(null);
+  const lastElementInListRef = useRef(null);
   const { dispatch } = useData();
 
   const postFilterHandler = (sortOptions) => {
@@ -25,13 +26,15 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
   const filterMenuHandler = () => setShowFilterMenu(!showfilterMenu);
   useClickedOutsideDropBox(showfilterMenu, setShowFilterMenu, filterMenuRef);
 
-  const { pageNumber, lastElementInListRef, hasMorePost, postLoading } =
-    useInfiniteScroll(postListData);
+  const { pageNumber, hasMorePost, postLoading } = useInfiniteScroll(
+    postListData,
+    lastElementInListRef
+  );
   const postToRender = postListData?.slice(0, pageNumber * 4);
 
   return (
     <>
-      {postListData && postListData?.length > 0 ? (
+      {postToRender && postToRender?.length > 0 ? (
         <>
           <header className="postFeed_container-header">
             <span>
@@ -70,12 +73,11 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
             )}
           </header>
           <ul className="flex-column">
-            {postToRender?.map((post, id) => {
-              return <Post key={post?._id} post={post} />;
+            {postToRender?.map((post) => {
+              return <Post key={post._id} post={post} />;
             })}
 
             <div
-              key={"last-postElement"}
               className="infiniteScroll_loader-container"
               ref={lastElementInListRef}
             >

@@ -301,9 +301,9 @@ export const useClickedOutsideDropBox = (
   }, [dropBoxstate, refState, setDropBoxState]);
 };
 
-export const useInfiniteScroll = (posts) => {
+export const useInfiniteScroll = (posts, lastElementInListRef) => {
   const [pageNumber, setPageNumber] = useState(1);
-  const lastElementInListRef = useRef(null);
+
   const TotalPosts = posts?.length;
   const hasMorePost = Boolean(pageNumber <= Math.ceil(TotalPosts / 4));
   const [postLoading, setPostLoading] = useState(false);
@@ -346,6 +346,7 @@ export const useInfiniteScroll = (posts) => {
         clearTimeout(interval);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMorePost, observerFunc]);
 
   return {
