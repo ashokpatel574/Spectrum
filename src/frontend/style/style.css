@@ -44,8 +44,8 @@
 /*  1200px === 75em  */
 @media (max-width: 75em) {
   .homePage_container {
-    grid-template-columns: 0.2fr 6.6fr 3.3fr;
-    gap: 1.5rem;
+    grid-template-columns: 0.2fr 6.5fr 3.4fr;
+    gap: 1rem;
   }
 }
 

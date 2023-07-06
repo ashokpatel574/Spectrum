@@ -3,11 +3,12 @@
   background-color: var(--background-color-one);
   box-shadow: 0 1.2rem 3.2rem var(--header-bg-shadow);
   padding: 0 2rem;
-  height: 8rem;
+  height: 8.5rem;
 }
 
 .header_nav {
   display: grid;
+  align-items: center;
   grid-template-areas: "logo search icons";
   grid-template-columns: 30% 65% 5%;
   height: 100%;
@@ -16,14 +17,40 @@
 
 .nav_logo {
   grid-area: logo;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.logoMin {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  width: 5rem;
+  height: 5rem;
+}
+
+.logoMin img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.logoMax {
   font-size: 2.8rem;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--text-color-highlight);
-  cursor: pointer;
 }
 
 .nav_search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   margin-left: auto;
   margin-right: 1rem;
@@ -68,7 +95,6 @@
 .nav_search span {
   padding: 0 0.75rem;
   border-radius: 0.8rem;
-  background-color: var(--background-color-one);
 }
 
 .nav_search svg {
@@ -90,7 +116,7 @@
   flex-direction: column;
   max-height: 22rem;
   overflow-y: scroll;
-  background-color: var(--background-color-one);
+  background-color: var(--background-color-two);
   display: none;
 }
 
@@ -128,7 +154,7 @@
 }
 
 .searchResult_container-section:hover {
-  background-color: var(--background-color-two);
+  background-color: var(--primary-color-shade);
 }
 
 .searchResult_container .searchResult_Imgcontainer {
@@ -193,56 +219,31 @@
 @media (max-width: 48em) {
   .nav_logo {
     font-size: 2.2rem;
-    font-weight: 700;
     letter-spacing: 0.5px;
   }
 
   .nav_search {
-    margin-right: 1rem;
     max-width: 25rem;
   }
 
   .nav_search input {
     max-width: 25rem;
-    padding: 0.5rem 1rem;
-    font-size: 1.7rem;
-  }
-
-  .nav_search span {
-    padding: 0 0.75rem;
-    border-radius: 0.8rem;
-  }
-
-  .nav_search svg {
-    font-size: 2.2rem;
   }
 
   .searchResult_container {
-    top: 105%;
+    top: 125%;
     max-width: 25rem;
     padding: 0.5rem;
     gap: 1.25rem;
-    max-height: 22rem;
   }
 
   .searchResult_container.active {
     padding: 0.4rem 0.4rem;
   }
 
-  .searchResult_container-section,
-  .searchResult_container-section span {
-    padding: 0.4rem 0.25rem;
-    font-size: 1.55rem;
-  }
-
   .searchResult_container .searchResult_Imgcontainer {
     width: 4rem;
     height: 4rem;
-  }
-
-  .searchResult_container-section-error {
-    margin: 1.5rem 0;
-    font-size: 1.7rem;
   }
 
   .nav_settings svg {
@@ -252,61 +253,58 @@
 
 /*  544px === 34em  */
 @media (max-width: 34em) {
-  .nav_logo {
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+  .header_nav {
+    grid-template-areas: "logo search icons";
+    grid-template-columns: 10% 80% 10%;
+  }
+
+  .logoMax {
+    display: none;
   }
 
   .nav_search {
-    margin-right: 1rem;
-    max-width: 25rem;
+    max-width: 30rem;
   }
 
   .nav_search input {
-    max-width: 25rem;
-    padding: 0.5rem 1rem;
-    font-size: 1.7rem;
-  }
-
-  .nav_search span {
-    padding: 0 0.75rem;
-    border-radius: 0.8rem;
+    max-width: 30rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .nav_search svg {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 
   .searchResult_container {
-    top: 105%;
-    max-width: 25rem;
-    padding: 0.5rem;
-    gap: 1.25rem;
-    max-height: 22rem;
+    max-width: 30rem;
+  }
+}
+
+/*  448px === 28em  */
+@media (max-width: 28em) {
+  .header_nav {
+    grid-template-areas: "logo search icons";
+    grid-template-columns: 20% 65% 15%;
   }
 
-  .searchResult_container.active {
-    padding: 0.4rem 0.4rem;
+  .logoMax {
+    display: none;
   }
 
-  .searchResult_container-section,
-  .searchResult_container-section span {
-    padding: 0.4rem 0.25rem;
-    font-size: 1.55rem;
+  .nav_search {
+    max-width: 30rem;
   }
 
-  .searchResult_container .searchResult_Imgcontainer {
-    width: 4rem;
-    height: 4rem;
+  .nav_search input {
+    max-width: 30rem;
+    padding: 0.6rem 1.2rem;
   }
 
-  .searchResult_container-section-error {
-    margin: 1.5rem 0;
-    font-size: 1.7rem;
+  .nav_search svg {
+    font-size: 2.4rem;
   }
 
-  .nav_settings svg {
-    font-size: 2.8rem;
+  .searchResult_container {
+    max-width: 30rem;
   }
 }

@@ -1,7 +1,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+// import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
@@ -22,7 +22,7 @@ const Post = ({ post }) => {
     createdAt,
     content,
     likes: { likeCount },
-    comments,
+    // comments,
   } = post;
 
   const postRef = useRef(null);
@@ -108,7 +108,7 @@ const Post = ({ post }) => {
             {isPostLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             {likeCount > 0 && <span className="likeCount">{likeCount}</span>}
           </span>
-          <span className="post_commentIcon">
+          {/* <span className="post_commentIcon">
             <ChatBubbleOutlineIcon />
             {comments.length > 0 && (
               <span
@@ -118,7 +118,7 @@ const Post = ({ post }) => {
                 {comments.length}
               </span>
             )}
-          </span>
+          </span> */}
           <span
             className={`post_bookmarkIcon ${isPostBookmarked && "marked"}`}
             onClick={() => postBookMarkHandler(postId)}

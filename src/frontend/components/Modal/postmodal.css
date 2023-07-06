@@ -143,17 +143,19 @@
   top: 4%;
   right: -10%;
   transform: translate(-50%, -50%);
-  font-size: 1.7rem;
   height: 2.25rem;
   width: 2.25rem;
-  border: 1.5px solid var(--border-color-dark);
   border-radius: 50%;
   cursor: pointer;
   background-color: var(--background-color-two);
   transition: all 0.25s;
 }
 
-.newPostModalImg-container span:hover {
+.newPostModalImg-container span svg {
+  font-size: 2.4rem;
+}
+
+.newPostModalImg-container span svg:hover {
   color: var(--error-color);
 }
 
@@ -187,6 +189,7 @@
   margin-left: auto;
   border-radius: 0.5rem;
   transition: all 0.25s;
+  color: var(--text-color-four);
 }
 
 .updatepostBtn:hover {
@@ -204,20 +207,29 @@
   z-index: 45;
 }
 
-.postModal_container .EmojiPickerReact {
-  font-size: 1.5rem;
+.postModal_container .EmojiPickerReact .epr-body .epr-emoji-native {
+  font-size: 2.4rem;
 }
 
-.postModal_container .EmojiPickerReact::-webkit-scrollbar {
-  width: 2px;
+.postModal_container .emojiPicker_container-box .EmojiPickerReact.epr-main,
+.postModal_container
+  .emojiPicker_container-box
+  .EmojiPickerReact
+  .epr-emoji-category-label {
+  background-color: var(--background-color-two);
+  color: var(--text-color-one);
 }
 
-.postModal_container .EmojiPickerReact::-webkit-scrollbar-thumb {
+.postModal_container .EmojiPickerReact .epr-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.postModal_container .EmojiPickerReact .epr-body::-webkit-scrollbar-thumb {
   background-color: var(--primary-color-one);
   border-radius: 2px;
 }
 
-.postModal_container .EmojiPickerReact::-webkit-scrollbar-track {
+.postModal_container .EmojiPickerReact .epr-body::-webkit-scrollbar-track {
   background-color: transparent;
 }
 

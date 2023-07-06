@@ -32,7 +32,7 @@ const SuggestionFeed = () => {
     <>
       {suggestProfile?.length > 0 && (
         <section className="suggestion_container">
-          <p className="suggestion_title">Who to follow?</p>
+          <p className="suggestion_title">Suggested Users</p>
           <ul className="flex-column">
             {suggestProfile?.slice(0, 5)?.map((profile) => (
               <li

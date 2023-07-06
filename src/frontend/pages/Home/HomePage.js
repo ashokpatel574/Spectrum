@@ -1,8 +1,9 @@
-import { useData } from "../../context/DataContext";
-import { getUserFollowingList, getfilterDataBySort } from "../../utils/utils";
 import AddPost from "../../components/AddPost/AddPost";
 import PostList from "../../components/PostList/PostList";
 import Loader from "../../components/loader/Loader";
+
+import { useData } from "../../context/DataContext";
+import { getUserFollowingList, getfilterDataBySort } from "../../utils/utils";
 
 const HomePage = () => {
   const {

@@ -8,7 +8,7 @@ import Loader from "../../components/loader/Loader";
 
 const ProfilePage = () => {
   const {
-    state: { posts, users },
+    state: { posts, users, userProfile },
     isLoadingData,
     setIsLoadingData,
   } = useData();
@@ -40,9 +40,18 @@ const ProfilePage = () => {
       ) : (
         <section className="postFeed_container flex-column">
           <Profile />
-          {profileUsername && (
-            <PostList postListData={userPosts} headerState={"Profile"} />
-          )}
+          {profileUsername &&
+            (userPosts?.length > 0 ? (
+              <PostList postListData={userPosts} headerState={"Profile"} />
+            ) : (
+              <>
+                {userProfile?.username === profileUsername ? (
+                  <p className="emptyFeed">Start Posting & Following People</p>
+                ) : (
+                  <p className="emptyFeed">User has not posted anything yet!</p>
+                )}
+              </>
+            ))}
         </section>
       )}
     </>

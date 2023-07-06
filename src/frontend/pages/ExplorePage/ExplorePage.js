@@ -1,4 +1,3 @@
-import React from "react";
 import { useData } from "../../context/DataContext";
 import PostList from "../../components/PostList/PostList";
 import { getfilterDataBySort } from "../../utils/utils";

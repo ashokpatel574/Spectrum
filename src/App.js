@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import FloatingMenu from "./frontend/components/FloatingMenu/FloatingMenu";
 import { ActionType } from "./frontend/constant";
 import { useThemeContext } from "./frontend/context/ThemeContext";
+import ScrollToTop from "./frontend/components/ScrollToTop/ScrollToTop";
 
 const App = () => {
   const {
@@ -81,6 +82,8 @@ const App = () => {
         pauseOnHover
         theme={themeMode}
       />
+
+      <ScrollToTop />
     </main>
   );
 };

@@ -130,9 +130,10 @@
 
 .profileModal-section .updateProfileBtn {
   margin-left: auto;
-  font-size: 1.65rem;
+  font-size: 1.6rem;
   padding: 0.3rem 0.8rem;
   border-radius: 0.5rem;
+  color: var(--text-color-four);
 }
 
 .profileModal_section .bioLength {
