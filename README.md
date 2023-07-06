@@ -26,7 +26,7 @@ $ npm start
 - Add/Remove bookmark on a post
 - Create/Edit posts with Images and Emoji Upload
 - Delete your Own posts
-- Share post link
+- Share post 
 - Sort posts based on Latest/Trending/Oldest.
 - Infinite Scroll
 
