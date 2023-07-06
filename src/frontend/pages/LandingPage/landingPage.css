@@ -35,6 +35,7 @@
   text-align: center;
   word-wrap: break-word;
   font-size: 1.8rem;
+  color: var(--text-color-four);
 }
 
 .userCredentials-container {
