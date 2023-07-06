@@ -318,7 +318,7 @@ export const useInfiniteScroll = (posts, lastElementInListRef) => {
       interval = setTimeout(() => {
         setPageNumber((prevPageNumber) => prevPageNumber + 1);
         setPostLoading(false);
-      }, 700);
+      }, 400);
     }
   };
 

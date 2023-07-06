@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useData } from "../../context/DataContext";
 
 import Profile from "../../components/Profile/Profile";
+import PostListHeader from "../../components/PostListHeader/PostListHeader";
 import PostList from "../../components/PostList/PostList";
 import Loader from "../../components/loader/Loader";
 import { getfilterDataBySort } from "../../utils/utils";
@@ -48,11 +49,14 @@ const ProfilePage = () => {
           <Profile />
           {profileUsername &&
             (filteredFeedBySort?.length > 0 ? (
-              <PostList
-                postListData={filteredFeedBySort}
-                headerState={"Profile"}
-                sortFeedType={sortFeedTypeProfile}
-              />
+              <>
+                <PostListHeader
+                  postListData={filteredFeedBySort}
+                  headerState={"Profile"}
+                  sortFeedType={sortFeedTypeProfile}
+                />
+                <PostList postListData={filteredFeedBySort} />
+              </>
             ) : (
               <>
                 {userProfile?.username === profileUsername ? (
