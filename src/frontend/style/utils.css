@@ -242,10 +242,6 @@ svg {
   text-overflow: ellipsis;
 }
 
-.shoppingExploreBtn:hover {
-  background-color: var(--primary-color-two);
-}
-
 .Toastify__toast-container--top-right {
   top: 10em;
 }

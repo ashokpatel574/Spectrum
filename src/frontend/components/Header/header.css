@@ -106,7 +106,7 @@
 .searchResult_container {
   position: absolute;
   z-index: 100;
-  top: 95%;
+  top: 110%;
   left: 0%;
   max-width: 30rem;
   width: 100%;

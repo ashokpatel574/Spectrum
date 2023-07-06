@@ -13,6 +13,11 @@
 
 .hero-container {
   background-color: var(--primary-color-one);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .hero-container h2 {
@@ -20,6 +25,16 @@
   letter-spacing: 1.5px;
   font-weight: 800;
   color: var(--text-color-four);
+  text-align: center;
+}
+
+.hero-container p {
+  max-width: 35rem;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 1.8rem;
 }
 
 .userCredentials-container {
@@ -37,6 +52,13 @@
 
   .userCredentials-container {
     padding: 3rem 2rem;
+  }
+
+  .hero-container p {
+    max-width: 35rem;
+    width: 100%;
+    word-wrap: break-word;
+    font-size: 1.65rem;
   }
 }
 
