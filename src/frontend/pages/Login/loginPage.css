@@ -67,6 +67,8 @@
   border-radius: 5px;
   font-size: 1.6rem;
   font-family: inherit;
+  background-color: var(--background-color-one);
+  color: var(--text-color-one);
 }
 
 .login_form-section.passwordContainer {

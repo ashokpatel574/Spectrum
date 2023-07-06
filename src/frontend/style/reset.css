@@ -45,8 +45,8 @@
   --success-color: #2ecc71;
   --error-color: #e74c3c;
 
-  --border-color-dark: #ccc;
-  --border-color-light: #eee;
+  --border-color-dark: #eee;
+  --border-color-light: #ccc;
   --border-color-highlight: #3c0ac2;
 
   --modal-overlay-bg: rgb(36, 37, 38, 0.75);
