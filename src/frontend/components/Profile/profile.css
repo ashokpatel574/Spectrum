@@ -12,8 +12,8 @@
 
 .profile_ImgContainer {
   flex-shrink: 0;
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -44,7 +44,7 @@
 }
 
 .profile_details-partOne .fullname {
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -74,7 +74,7 @@
 .profile_details-partOne .profile-edit {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   border: 1px solid var(--border-color-dark);
   border-radius: 0.6rem;
   cursor: pointer;
@@ -82,12 +82,12 @@
 }
 
 .profile-edit:hover {
-  color: var(--background-color-one);
+  color: var(--text-color-four);
   background-color: var(--primary-color-one);
 }
 
 .profile_details-partTwo span {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   letter-spacing: 0.25px;
 }
 
@@ -100,8 +100,8 @@
 
 .profile_details-partThree span {
   display: inline-block;
-  color: var(--primary-color-one);
-  font-size: 1.8rem;
+  color: var(--text-color-highlight);
+  font-size: 1.75rem;
   font-weight: 500;
 }
 
@@ -123,14 +123,15 @@
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-  font-size: 1.6rem;
-  color: blue;
+  font-size: 1.55rem;
+  color: var(--link-color);
   text-decoration: underline;
 }
 
 .profile_details-partFour span svg {
-  font-size: 2.6rem;
-  margin-right: 1rem;
+  font-size: 2.4rem;
+  margin-right: 0.5rem;
+  transform: rotate(-45deg);
 }
 
 .btn.reloadBtn {
@@ -138,6 +139,7 @@
   padding: 0.5rem 1rem;
   font-size: 1.7rem;
   border-radius: 5px;
+  color: var(--text-color-four);
 }
 
 .user_followersList,
@@ -151,10 +153,11 @@
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 35rem;
+  max-width: 32rem;
   width: 100%;
-  border-radius: 0.5rem;
   background-color: var(--background-color-two);
+  border: 1.5px solid var(--border-color-dark);
+  border-radius: 0.8rem;
 }
 
 .followListModal_container {
@@ -175,11 +178,17 @@
 
 .followListModal_container p span:first-child {
   font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .followListModal_container p span:last-child svg {
   font-size: 2.4rem;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.followListModal_container p span:last-child svg:hover {
+  color: var(--error-color);
 }
 
 .followListModal_wrapper {
@@ -229,7 +238,7 @@
 
 .followListModal_listItem:hover {
   border-radius: 0.5rem;
-  background-color: var(--background-color-one);
+  background-color: var(--primary-color-shade);
 }
 
 .followListModal_listItem .followListModal_listItem_Imgcontainer {
@@ -250,28 +259,28 @@
 
 .followListModal_listItem-name {
   text-transform: capitalize;
+  font-size: 1.6rem;
 }
 
 .searchResult_container-section:hover {
   background-color: var(--primary-color-shade);
 }
 
+.followListModal_listItem-partTwo .unfollow {
+  font-size: 1.6rem;
+  color: var(--text-color-two);
+}
+
+.followListModal_listItem-partTwo .follow {
+  font-size: 1.6rem;
+  color: var(--text-color-highlight);
+}
+
 /*  1024px === 64em  */
 @media (max-width: 64em) {
-  .profile_container {
-    padding: 2rem;
-    margin: 2rem 0;
-    gap: 1.5rem;
-  }
-
   .profile_ImgContainer {
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .profile_detailsContainer {
-    width: 100%;
-    gap: 2rem;
+    width: 5.5rem;
+    height: 5.5rem;
   }
 
   .profile_details-partOne .fullname {
@@ -292,28 +301,14 @@
     font-size: 1.7rem;
   }
 
-  .profile_details-partTwo span {
-    font-size: 1.8rem;
-  }
-
   .profile_details-partThree {
     gap: 1.5rem;
-  }
-  .profile_details-partThree span {
-    font-size: 1.8rem;
-    font-weight: 500;
   }
 
   .profile_details-partFour span a {
     display: inline-flex;
     flex-wrap: wrap;
     font-size: 1.4rem;
-    color: blue;
-    text-decoration: underline;
-  }
-
-  .profile_details-partFour span svg {
-    font-size: 2.4rem;
   }
 }
 
@@ -321,7 +316,7 @@
 @media (max-width: 34em) {
   .profile_container {
     padding: 1.75rem 1rem;
-    margin: 0.5rem 0;
+    margin: 1.5rem 0 0.5rem 0;
     gap: 1rem;
   }
 
@@ -330,18 +325,8 @@
     height: 4.5rem;
   }
 
-  .profile_detailsContainer {
-    width: 100%;
-    gap: 2rem;
-  }
-
-  .profile_details-partOne .fullname {
-    font-size: 1.8rem;
-  }
-
   .profile_details-partOne .username {
     font-size: 1.6rem;
-    margin-top: 0;
   }
 
   .profileIcon {
@@ -354,7 +339,6 @@
 
   .profile_details-partOne .profile-edit {
     padding: 0.4rem 0.8rem;
-    font-size: 1.7rem;
   }
 
   .profile_details-partTwo span {
@@ -367,12 +351,43 @@
 
   .profile_details-partThree span {
     font-size: 1.7rem;
-    font-weight: 500;
   }
 
   .btn.reloadBtn {
     padding: 0.4rem 0.8rem;
     font-size: 1.65rem;
+  }
+
+  .followListModal_section {
+    top: 60%;
+    left: 50%;
+    max-width: 30rem;
+  }
+
+  .followListModal_container {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .followListModal_container p span:first-child {
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+
+  .followListModal_wrapper {
+    max-height: 30rem;
+  }
+
+  .followListModal_listItem .followListModal_listItem_Imgcontainer {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .followListModal_listItem-partTwo .unfollow {
+    font-size: 1.5rem;
+  }
+
+  .followListModal_listItem-partTwo .follow {
+    font-size: 1.5rem;
   }
 }
 

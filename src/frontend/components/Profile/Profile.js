@@ -1,20 +1,21 @@
+import { useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import LinkIcon from "@mui/icons-material/Link";
 import LogoutIcon from "@mui/icons-material/Logout";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
+
 import {
   getUserProfileService,
   followService,
   unFollowService,
 } from "../../services/userServices";
 import { logoutService } from "../../services/authServices";
-import { useState } from "react";
-import { useRef } from "react";
+
 import { useClickedOutsideDropBox } from "../../utils/helper";
 import { isFollowedFunc } from "../../utils/utils";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const Profile = () => {
   const [showUserFollowList, setShowUserFollowList] = useState(false);
@@ -229,6 +230,7 @@ const Profile = () => {
                         <>
                           {isFollowedFunc(item, userProfile) ? (
                             <span
+                              className="unfollow"
                               onClick={(e) =>
                                 followListModalHandler(e, "unfollow", item)
                               }
@@ -237,6 +239,7 @@ const Profile = () => {
                             </span>
                           ) : (
                             <span
+                              className="follow"
                               onClick={(e) =>
                                 followListModalHandler(e, "follow", item)
                               }
@@ -248,6 +251,7 @@ const Profile = () => {
                       ) : (
                         <>
                           <span
+                            className="unfollow"
                             onClick={(e) =>
                               followListModalHandler(e, "unfollow", item)
                             }

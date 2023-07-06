@@ -77,8 +77,6 @@
   }
 
   .sideBar_container-listItem a {
-    justify-content: center;
-    align-items: center;
     padding: 0.5rem 1rem;
     border-radius: 0.8rem;
   }
@@ -91,6 +89,14 @@
   .sideBar_container-listItem .postBtn {
     padding: 0.4rem 1rem;
     border-radius: 8px;
+  }
+}
+
+/*  1024px === 64em  */
+@media (max-width: 64em) {
+  .sideBar_container-listItem a {
+    justify-content: center;
+    align-items: center;
   }
 
   .sideBar_container-listItem .home,
@@ -105,7 +111,7 @@
 /*  768px === 45em  */
 @media (max-width: 48em) {
   .sideBar_container-listItem .postBtn {
-    font-size: 1.65srem;
+    font-size: 1.65rem;
   }
 }
 

@@ -108,7 +108,7 @@ const PostModal = () => {
                       className="newpostImg"
                     />
                   )}
-                  <span onClick={() => deletePreviewHandler(id)}> X</span>
+                  <span onClick={() => deletePreviewHandler(id)}> <HighlightOffIcon/></span>
                 </li>
               );
             })}

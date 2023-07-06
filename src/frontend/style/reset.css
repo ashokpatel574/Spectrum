@@ -8,6 +8,7 @@
   --text-color-three: #9a9b9a;
   --text-color-four: #fff;
   --text-color-highlight: #3c0ac2;
+  --link-color: blue;
 
   --background-color-one: #fff;
   --background-color-two: #faf9f9;
@@ -33,6 +34,7 @@
   --text-color-three: rgb(250, 249, 249, 0.5);
   --text-color-four: #fff;
   --text-color-highlight: #fff;
+  --link-color: #fff;
 
   --background-color-one: #3a3b3c;
   --background-color-two: #242526;

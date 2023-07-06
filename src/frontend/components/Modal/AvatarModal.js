@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 import { AVATAR_IMGS } from "../../constant";
 import { useClickedOutsideDropBox } from "../../utils/helper";
 

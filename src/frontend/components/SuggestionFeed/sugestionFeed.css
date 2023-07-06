@@ -27,7 +27,7 @@
 }
 
 .suggestionListItem_textContainer .fullname {
-  font-size: 1.65rem;
+  font-size: 1.6rem;
 }
 
 .suggestionListItem_textContainer .username {
@@ -68,7 +68,7 @@
 .suggestionListItem_BtnContainer .followBtn {
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   text-transform: capitalize;
   color: var(--text-color-four);
 }

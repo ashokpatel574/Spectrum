@@ -48,7 +48,7 @@
 
 .avatarModal_choose:hover,
 .avatarModal_upload:hover {
-  background-color: var(--background-color-two);
+  background-color: var(--primary-color-shade);
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -76,11 +76,10 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  max-width: 32rem;
-  width: 100%;
+  width: 30rem;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: var(--background-color-two);
+  background-color: var(--background-color-one);
   border-radius: 0.5rem;
 }
 
@@ -95,11 +94,12 @@
   transition: all 2s;
 }
 
-.avatarOptions-Text svg:hover {
+.avatarOptions-container .avatarOptions-Text svg:hover {
   color: var(--error-color);
 }
 
 .avatarOptions-Imgcontainer {
+  max-width: 30rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -124,29 +124,45 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  vertical-align: middle;
 }
 
 .avatarOptions-Img:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
 .avatarModal_upload-container .uploadProfileImage {
   display: none;
 }
 
-/*  384px === 24em  */
-@media (max-width: 24em) {
+/*  544px === 34em  */
+@media (max-width: 34em) {
   .avatarModal_container {
-    left: 25%;
-    padding: 0.75rem;
+    left: -50%;
   }
 
   .avatarOptions-container {
+    width: 28rem;
+  }
+
+  .avatarOptions-Text span {
+    font-size: 1.7rem;
+    transition: all 2s;
+  }
+
+  .avatarOptions-Imgcontainer {
     max-width: 28rem;
   }
 
   .avatarOptions-Img {
     width: 4.5rem;
     height: 4.5rem;
+  }
+}
+
+/*  384px === 24em  */
+@media (max-width: 24em) {
+  .avatarModal_container {
+    left: -80%;
   }
 }

@@ -1,20 +1,24 @@
 import React, { useRef, useState } from "react";
 import { Oval } from "react-loader-spinner";
-
 import SortIcon from "@mui/icons-material/Sort";
+
+import { useData } from "../../context/DataContext";
+import { useThemeContext } from "../../context/ThemeContext";
+
 import Post from "../Post/Post";
+
 import { getFiltertypeState } from "../../utils/utils";
 import {
   useClickedOutsideDropBox,
   useInfiniteScroll,
 } from "../../utils/helper";
-import { useData } from "../../context/DataContext";
 
 const PostList = ({ postListData, headerState, sortFeedType }) => {
   const [showfilterMenu, setShowFilterMenu] = useState(false);
   const filterMenuRef = useRef(null);
   const lastElementInListRef = useRef(null);
   const { dispatch } = useData();
+  const { themeMode } = useThemeContext();
 
   const postFilterHandler = (sortOptions) => {
     dispatch({
@@ -34,7 +38,7 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
 
   return (
     <>
-      {postToRender && postToRender?.length > 0 ? (
+      {postToRender && postToRender?.length > 0 && (
         <>
           <header className="postFeed_container-header">
             <span>
@@ -88,12 +92,12 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
                   <Oval
                     height={50}
                     width={50}
-                    color="#3c0ac2"
+                    color={themeMode === "light" ? "#3c0ac2" : "#fff"}
                     wrapperStyle={{}}
                     wrapperClass=""
                     visible={true}
                     ariaLabel="oval-loading"
-                    secondaryColor="#30089b"
+                    secondaryColor={themeMode === "light" ? "#30089b" : "#fff"}
                     strokeWidth={5}
                     strokeWidthSecondary={5}
                   />
@@ -105,10 +109,6 @@ const PostList = ({ postListData, headerState, sortFeedType }) => {
                 )}
             </div>
           </ul>
-        </>
-      ) : (
-        <>
-          <p className="emptyFeed">Start Posting & Following People</p>
         </>
       )}
     </>

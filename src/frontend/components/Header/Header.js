@@ -1,13 +1,14 @@
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { useClickedOutsideDropBox, useSearch } from "../../utils/helper";
-import { useEffect, useRef } from "react";
 import { useThemeContext } from "../../context/ThemeContext";
+import { useClickedOutsideDropBox, useSearch } from "../../utils/helper";
+
+import sepectrumLogo from "../../assets/logo/spectrum.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -41,10 +42,13 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="header_nav  container_section-width ">
-        <div onClick={() => profileHandler("home")} className="nav_logo ">
-          Spectrum
+        <div onClick={() => profileHandler("home")} className="nav_logo">
+          <span className="logoMin">
+            <img src={sepectrumLogo} alt="spectrum logo" />
+          </span>
+          <span className="logoMax">Spectrum</span>
         </div>
-        <div className="nav_search flex-center" ref={searchRef}>
+        <div className="nav_search " ref={searchRef}>
           <label htmlFor="searchInput">
             <input
               id="searchInput"

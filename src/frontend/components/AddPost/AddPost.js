@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
+import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
@@ -8,7 +10,6 @@ import { useClickedOutsideDropBox, useEmoji } from "../../utils/helper";
 
 import { addNewPostService } from "../../services/postServices";
 import { deletePreviewFunc, postDataFunc } from "../../utils/utils";
-import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 
 const AddPost = () => {
   const [newPostData, setNewPostData] = useState({
@@ -17,7 +18,6 @@ const AddPost = () => {
   });
 
   const emojiRef = useRef();
-
   const { token } = useAuth();
   const {
     state: { userProfile },
@@ -85,7 +85,7 @@ const AddPost = () => {
                   onClick={() => deletePreviewHandler(id)}
                   className="flex-center"
                 >
-                  X
+                  <HighlightOffIcon />
                 </span>
               </li>
             );
