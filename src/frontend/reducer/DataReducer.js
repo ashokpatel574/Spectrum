@@ -13,6 +13,7 @@ export const initialState = {
   sortFeedTypeHome: "Latest",
   sortFeedTypeLiked: "Latest",
   sortFeedTypeBookmark: "Latest",
+  sortFeedTypeProfile: "Latest",
 };
 
 export const DataReducer = (state, action) => {
@@ -191,6 +192,7 @@ export const DataReducer = (state, action) => {
         sortFeedTypeHome: "Latest",
         sortFeedTypeLiked: "Latest",
         sortFeedTypeBookmark: "Latest",
+        sortFeedTypeProfile: "Latest",
       };
     }
 
@@ -212,6 +214,13 @@ export const DataReducer = (state, action) => {
       return {
         ...state,
         sortFeedTypeBookmark: action.payload,
+      };
+    }
+
+    case ActionType.FilterFeedProfile: {
+      return {
+        ...state,
+        sortFeedTypeProfile: action.payload,
       };
     }
 

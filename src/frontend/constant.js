@@ -49,6 +49,7 @@ export const ActionType = {
   FilterFeedHome: "FILTER_FEED_HOME",
   FilterFeedLiked: "FILTER_FEED_LIKED",
   FilterFeedBookmark: "FILTER_FEED_BOOKMARK",
+  FilterFeedProfile: "FILTER_FEED_PROFILE",
 };
 
 export const ToastType = {
