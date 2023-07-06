@@ -192,10 +192,6 @@
   color: var(--text-color-four);
 }
 
-.updatepostBtn:hover {
-  background-color: var(--primary-color-two);
-}
-
 .postModal_footer .updatepostBtn:disabled {
   background-color: var(--text-color-three);
 }

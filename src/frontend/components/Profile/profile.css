@@ -149,7 +149,7 @@
 
 .followListModal_section {
   position: absolute;
-  z-index: 100;
+  z-index: 110;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -216,7 +216,6 @@
 
 .followListModal_listItem,
 .followListModal_listItem span {
-  display: inline-block;
   background-color: transparent;
   padding: 0.4rem 0.25rem;
   font-size: 1.55rem;
@@ -225,6 +224,13 @@
 .followListModal_listItem-partOne,
 .followListModal_listItem-partTwo {
   cursor: pointer;
+}
+
+.followListModal_listItem-partOne {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .followListModal_listItem {
@@ -258,6 +264,7 @@
 }
 
 .followListModal_listItem-name {
+  word-wrap: break-word;
   text-transform: capitalize;
   font-size: 1.6rem;
 }
@@ -359,7 +366,7 @@
   }
 
   .followListModal_section {
-    top: 60%;
+    top: 80%;
     left: 50%;
     max-width: 30rem;
   }
