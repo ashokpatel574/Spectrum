@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Sepectrum
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ - A social media web app
+ -  Discover the Spectrum of Connections, Join our Social Media Revolution! 
 
-## Available Scripts
+https://github.com/ashokpatel574/Spectrum
 
-In the project directory, you can run:
 
-### `npm start`
+## How to install and run locally?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+$ git clone https://github.com/ashokpatel574/Spectrum.git
+$ cd spectrum
+$ npm install
+$ npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Pages and Features -
 
-### `npm test`
+### Home Page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Posts of users you follow
+- User Suggestions
+  - Follow users
+- Like/Unlike a Post
+- Add/Remove bookmark on a post
+- Create/Edit posts with Images and Emoji Upload
+- Delete your Own posts
+- Share post link
+- Sort posts based on Latest/Trending/Oldest.
+- Infinite Scroll
 
-### `npm run build`
+### Explore Page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- All Posts from latest to oldest
+- Infinite Scroll
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Bookmarks Page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- User Bookmarked posts list
+  - Remove from Bookmarks
+  - Like
+  - Infinite Scroll
+ 
+### Liked Page
 
-### `npm run eject`
+- User Liked posts
+- Infinite Scroll
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Profile Page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Edit your Own Profile with an Image Upload
+- Can choose from Avatar options also
+- Follow/Unfollow users.
+- Check followers/following list.
+- Logout
+- List of all posts posted by the user
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Other Features
 
-## Learn More
+- Authentication
+  - Login
+  - Signup
+- Image Upload
+- 404 Error Page
+- Dark Mode
+- Search Users
+- Toasts
+- Loaders
+- Responsive
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Built with -
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React JS
+- React Context API + useReducer
+- React Router v6.4
+- Vanilla CSS
+- Material UI Icons
+- mockBee for backend
+- React Toastify
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
