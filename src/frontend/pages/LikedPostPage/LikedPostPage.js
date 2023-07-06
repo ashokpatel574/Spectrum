@@ -1,6 +1,7 @@
 import { useData } from "../../context/DataContext";
 import PostList from "../../components/PostList/PostList";
 import { getfilterDataBySort } from "../../utils/utils";
+import PostListHeader from "../../components/PostListHeader/PostListHeader";
 
 const LikedPostPage = () => {
   const {
@@ -19,11 +20,14 @@ const LikedPostPage = () => {
   return (
     <section className="postFeed_container">
       {likedPostlist.length > 0 ? (
-        <PostList
-          postListData={filteredFeedBySort}
-          headerState={"Liked Posts"}
-          sortFeedType={sortFeedTypeLiked}
-        />
+        <>
+          <PostListHeader
+            postListData={filteredFeedBySort}
+            headerState={"Liked Posts"}
+            sortFeedType={sortFeedTypeLiked}
+          />
+          <PostList postListData={filteredFeedBySort} />
+        </>
       ) : (
         <p className="emptyFeed">You don't have any liked posts!</p>
       )}

@@ -1,5 +1,6 @@
 import AddPost from "../../components/AddPost/AddPost";
 import PostList from "../../components/PostList/PostList";
+import PostListHeader from "../../components/PostListHeader/PostListHeader";
 import Loader from "../../components/loader/Loader";
 
 import { useData } from "../../context/DataContext";
@@ -34,11 +35,12 @@ const HomePage = () => {
       ) : (
         <section className="postFeed_container">
           <AddPost />
-          <PostList
+          <PostListHeader
             postListData={filteredFeedBySort}
             headerState={"Home"}
             sortFeedType={sortFeedTypeHome}
           />
+          <PostList postListData={filteredFeedBySort} />
         </section>
       )}
     </>

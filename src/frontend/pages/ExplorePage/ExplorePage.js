@@ -1,6 +1,7 @@
 import { useData } from "../../context/DataContext";
 import PostList from "../../components/PostList/PostList";
 import { getfilterDataBySort } from "../../utils/utils";
+import PostListHeader from "../../components/PostListHeader/PostListHeader";
 
 const ExplorePage = () => {
   const {
@@ -12,11 +13,12 @@ const ExplorePage = () => {
 
   return (
     <section className="postFeed_container">
-      <PostList
+      <PostListHeader
         postListData={filteredFeedBySort}
         headerState={"Explore"}
         sortFeedType={sortFeedTypeDefault}
       />
+      <PostList postListData={filteredFeedBySort} />
     </section>
   );
 };
