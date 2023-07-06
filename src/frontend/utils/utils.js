@@ -90,6 +90,10 @@ export const getFiltertypeState = (header) => {
       return ActionType.FilterFeed;
     }
 
+    case "Profile": {
+      return ActionType.FilterFeedProfile;
+    }
+
     default: {
       return ActionType.FilterFeed;
     }

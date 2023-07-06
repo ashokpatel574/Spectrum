@@ -5,10 +5,11 @@ import { useData } from "../../context/DataContext";
 import Profile from "../../components/Profile/Profile";
 import PostList from "../../components/PostList/PostList";
 import Loader from "../../components/loader/Loader";
+import { getfilterDataBySort } from "../../utils/utils";
 
 const ProfilePage = () => {
   const {
-    state: { posts, users, userProfile },
+    state: { posts, users, userProfile, sortFeedTypeProfile },
     isLoadingData,
     setIsLoadingData,
   } = useData();
@@ -33,6 +34,11 @@ const ProfilePage = () => {
     };
   }, []);
 
+  const filteredFeedBySort = getfilterDataBySort(
+    userPosts,
+    sortFeedTypeProfile
+  );
+
   return (
     <>
       {isLoadingData ? (
@@ -41,8 +47,12 @@ const ProfilePage = () => {
         <section className="postFeed_container flex-column">
           <Profile />
           {profileUsername &&
-            (userPosts?.length > 0 ? (
-              <PostList postListData={userPosts} headerState={"Profile"} />
+            (filteredFeedBySort?.length > 0 ? (
+              <PostList
+                postListData={filteredFeedBySort}
+                headerState={"Profile"}
+                sortFeedType={sortFeedTypeProfile}
+              />
             ) : (
               <>
                 {userProfile?.username === profileUsername ? (

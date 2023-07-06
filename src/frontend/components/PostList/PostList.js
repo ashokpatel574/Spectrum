@@ -6,7 +6,6 @@ import { useData } from "../../context/DataContext";
 import { useThemeContext } from "../../context/ThemeContext";
 
 import Post from "../Post/Post";
-
 import { getFiltertypeState } from "../../utils/utils";
 import {
   useClickedOutsideDropBox,
