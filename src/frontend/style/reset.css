@@ -36,11 +36,11 @@
   --text-color-highlight: #fff;
   --link-color: #fff;
 
-  --background-color-one: #3a3b3c;
+  /* --background-color-one: #3a3b3c;
   --background-color-two: #242526;
 
   --primary-color-one: #3c0ac2;
-  --primary-color-shade: rgb(60, 10, 194, 0.2);
+  --primary-color-shade: rgb(60, 10, 194, 0.2); */
 
   --success-color: #2ecc71;
   --error-color: #e74c3c;
@@ -53,11 +53,11 @@
   --header-bg-shadow: rgb(36, 37, 38, 0.75);
   --post-card-shadow: rgb(36, 37, 38, 0.75);
 
-  /* --background-color-one: #202945;
+  --background-color-one: #202945;
   --background-color-two: #152028;
 
   --primary-color-one: #6200ee;
-  --primary-color-shade: rgb(98, 0, 238, 0.4); */
+  --primary-color-shade: rgb(98, 0, 238, 0.4);
 }
 
 *,

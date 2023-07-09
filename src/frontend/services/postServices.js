@@ -90,11 +90,11 @@ export const postUpdateService = async (postId, post, token, dispatch) => {
   }
 };
 
-export const postDeleteService = async (postId, token, dispatch) => {
+export const postDeleteService = async (postId, token, dispatch, username) => {
   try {
     const {
       status,
-      data: { posts },
+      data: { posts, bookmarks },
     } = await axios.delete(
       `/api/posts/${postId}`,
 
@@ -106,7 +106,11 @@ export const postDeleteService = async (postId, token, dispatch) => {
     if (status === 200 || status === 201) {
       dispatch({
         type: ActionType.DeletePost,
-        payload: posts,
+        payload: {
+          posts: posts,
+          userBookmarkDB: bookmarks,
+          username: username,
+        },
       });
       ToastHandler(ToastType.Success, `Deleted Post!`);
     }

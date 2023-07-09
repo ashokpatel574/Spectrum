@@ -3,7 +3,7 @@ import { Oval } from "react-loader-spinner";
 
 import { useThemeContext } from "../../context/ThemeContext";
 import Post from "../Post/Post";
-import { useInfiniteScroll } from "../../utils/helper";
+import { useInfiniteScroll } from "../../utils/hooks/useInfiniteScroll";
 
 const PostList = ({ postListData }) => {
   const lastElementInListRef = useRef(null);

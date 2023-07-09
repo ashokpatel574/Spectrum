@@ -5,13 +5,18 @@ import PostListHeader from "../../components/PostListHeader/PostListHeader";
 
 const BookmarkPage = () => {
   const {
-    state: { userProfile, sortFeedTypeBookmark },
+    state: { userProfile, sortFeedTypeBookmark, users },
   } = useData();
 
-  const bookmarksData = userProfile?.bookmarks;
+  const currentUserProfile = users?.find(
+    (userItem) => userItem?.username === userProfile?.username
+  );
+
+  const bookmarksData = currentUserProfile?.bookmarks;
 
   const filteredFeedBySort =
-    userProfile && getfilterDataBySort(bookmarksData, sortFeedTypeBookmark);
+    currentUserProfile &&
+    getfilterDataBySort(bookmarksData, sortFeedTypeBookmark);
 
   return (
     <section className="postFeed_container">

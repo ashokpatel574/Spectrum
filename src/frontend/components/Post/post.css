@@ -210,6 +210,7 @@
 
 .sharePost_header span svg {
   font-size: 2.4rem;
+  cursor: pointer;
 }
 
 .sharePost_body {

@@ -4,7 +4,7 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import { AVATAR_IMGS } from "../../constant";
-import { useClickedOutsideDropBox } from "../../utils/helper";
+import { useClickedOutsideDropBox } from "../../utils/hooks/useClickedOutsideDropBox";
 
 const AvatarModal = ({
   isAvatarModalOpen,

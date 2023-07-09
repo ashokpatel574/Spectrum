@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
@@ -15,67 +15,6 @@ import { updateUserProfileService } from "../services/userServices";
 import { validateOnlyString } from "./utils";
 import { ActionType } from "../constant";
 
-export const useEmoji = (newPostData, setNewPostData) => {
-  const [emojiModalOpen, setEmojiModalOpen] = useState(false);
-
-  const emojiModalHandler = () => {
-    setEmojiModalOpen(!emojiModalOpen);
-  };
-
-  const emojiPickerHandler = (emojidata) => {
-    const updatedPostMessage = newPostData?.message + emojidata.emoji;
-    setNewPostData({
-      ...newPostData,
-      message: updatedPostMessage,
-    });
-    setEmojiModalOpen(!emojiModalOpen);
-  };
-
-  return {
-    emojiModalOpen,
-    setEmojiModalOpen,
-    emojiModalHandler,
-    emojiPickerHandler,
-  };
-};
-
-export const useSearch = () => {
-  const [searchInput, setSearchInput] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-  const [showSearchDropBox, setShowSearchDropBox] = useState(false);
-
-  const {
-    state: { users },
-  } = useData();
-
-  const searchHandler = (e) => {
-    setSearchInput(e.target.value);
-    setShowSearchDropBox(e.target.value.length > 0 && true);
-
-    const result = users.filter((user) => {
-      return user.firstname
-        .toLowerCase()
-        .toString()
-        .startsWith(e.target.value.trim().toLowerCase());
-    });
-    setSearchResult(result);
-  };
-
-  const clearSearchHandler = () => {
-    setSearchInput("");
-    setShowSearchDropBox(false);
-  };
-
-  return {
-    searchInput,
-    searchHandler,
-    searchResult,
-    clearSearchHandler,
-    showSearchDropBox,
-    setShowSearchDropBox,
-  };
-};
-
 export const usePost = (selectedPost) => {
   const [postEdit, setPostEdit] = useState(false);
   const { token } = useAuth();
@@ -87,11 +26,15 @@ export const usePost = (selectedPost) => {
 
   let navigate = useNavigate();
 
+  const currentUserProfile = users?.find(
+    (user) => user?.username === userProfile?.username
+  );
+
   const isPostLiked = posts
     ?.find((post) => post?._id === selectedPost._id)
     ?.likes?.likedBy?.some((post) => post?.username === userProfile?.username);
 
-  const isPostBookmarked = userProfile?.bookmarks?.some(
+  const isPostBookmarked = currentUserProfile?.bookmarks?.some(
     (bookItem) => bookItem?._id === selectedPost._id
   );
 
@@ -114,7 +57,7 @@ export const usePost = (selectedPost) => {
 
   const postDeleteHandler = (postId) => {
     setPostEdit(false);
-    postDeleteService(postId, token, dispatch);
+    postDeleteService(postId, token, dispatch, userProfile.username);
   };
 
   const postCommentHandler = () => {};
@@ -127,7 +70,7 @@ export const usePost = (selectedPost) => {
   };
 
   return {
-    userProfile,
+    currentUserProfile,
     postEdit,
     setPostEdit,
     isPostLiked,
@@ -271,89 +214,5 @@ export const useProfile = () => {
     updateUserProfileHandler,
     closeProfileModalHandler,
     editUserImgHandler,
-  };
-};
-
-export const useClickedOutsideDropBox = (
-  dropBoxstate,
-  setDropBoxState,
-  refState
-) => {
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      // If the menu is open and the clicked target is not within the menu,
-      // then close the menu
-      if (
-        dropBoxstate &&
-        refState.current &&
-        !refState.current.contains(e.target)
-      ) {
-        setDropBoxState(false);
-      }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [dropBoxstate, refState, setDropBoxState]);
-};
-
-export const useInfiniteScroll = (posts, lastElementInListRef) => {
-  const [pageNumber, setPageNumber] = useState(1);
-
-  const TotalPosts = posts?.length;
-  const hasMorePost = Boolean(pageNumber <= Math.ceil(TotalPosts / 4));
-  const [postLoading, setPostLoading] = useState(false);
-
-  let interval;
-
-  const observerFunc = (entries) => {
-    const entry = entries[0];
-
-    if (entry.isIntersecting && hasMorePost) {
-      setPostLoading(true);
-      interval = setTimeout(() => {
-        setPageNumber((prevPageNumber) => prevPageNumber + 1);
-        setPostLoading(false);
-      }, 400);
-    }
-  };
-
-  const observerOpts = {
-    threshold: 0.6,
-  };
-
-  useEffect(() => {
-    const referenceElement = lastElementInListRef.current;
-    const infiniteScrollObserver = new IntersectionObserver(
-      observerFunc,
-      observerOpts
-    );
-
-    if (referenceElement) {
-      infiniteScrollObserver.observe(referenceElement);
-    }
-
-    return () => {
-      if (referenceElement) {
-        infiniteScrollObserver.unobserve(referenceElement);
-      }
-
-      if (interval) {
-        clearTimeout(interval);
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMorePost, observerFunc]);
-
-  return {
-    pageNumber,
-    lastElementInListRef,
-    hasMorePost,
-    postLoading,
-    interval,
   };
 };

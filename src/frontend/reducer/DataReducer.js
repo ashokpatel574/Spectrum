@@ -102,9 +102,23 @@ export const DataReducer = (state, action) => {
     }
 
     case ActionType.DeletePost: {
+      const updatedUserData = state.users.map((user) => {
+        return user.username === action.payload.username
+          ? {
+              ...user,
+              bookmarks: [...action.payload.userBookmarkDB],
+            }
+          : user;
+      });
+
       return {
         ...state,
-        posts: action.payload,
+        posts: action.payload.posts,
+        users: updatedUserData,
+        userProfile: {
+          ...state.userProfile,
+          bookmarks: [...action.payload.userBookmarkDB],
+        },
       };
     }
 

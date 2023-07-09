@@ -8,18 +8,22 @@ import { getUserFollowingList, getfilterDataBySort } from "../../utils/utils";
 
 const HomePage = () => {
   const {
-    state: { posts, userProfile, sortFeedTypeHome },
+    state: { posts, userProfile, sortFeedTypeHome, users },
     isLoadingData,
   } = useData();
 
+  const currentUserProfile = users?.find(
+    (userItem) => userItem.username === userProfile.username
+  );
+
   const currentUserFollowingList =
-    userProfile && getUserFollowingList(userProfile);
+    userProfile && getUserFollowingList(currentUserProfile);
 
   const homeFeedPost = posts?.filter((post) => {
     return (
       currentUserFollowingList?.some(
         (listItem) => listItem === post?.username
-      ) || post?.username === userProfile?.username
+      ) || post?.username === currentUserProfile?.username
     );
   });
 

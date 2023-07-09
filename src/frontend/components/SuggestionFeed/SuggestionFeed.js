@@ -12,7 +12,12 @@ const SuggestionFeed = () => {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  const currentUserFollowing = getUserFollowingList(userProfile);
+  const currentUserProfile = users?.find(
+    (user) => user?.username === userProfile?.username
+  );
+
+  const currentUserFollowing = getUserFollowingList(currentUserProfile);
+
   const suggestProfile = users?.filter(
     (user) =>
       !currentUserFollowing?.includes(user.username) &&

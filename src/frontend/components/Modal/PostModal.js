@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
-import { useEmoji } from "../../utils/helper";
+import { useEmoji } from "../../utils/hooks/useEmoji";
 
 import {
   postUpdateService,
@@ -13,7 +14,6 @@ import {
 } from "../../services/postServices";
 import { deletePreviewFunc, postDataFunc } from "../../utils/utils";
 import { ActionType } from "../../constant";
-import EmojiPicker, { SuggestionMode } from "emoji-picker-react";
 
 const PostModal = () => {
   const [postModalData, setPostModalData] = useState({
@@ -108,7 +108,10 @@ const PostModal = () => {
                       className="newpostImg"
                     />
                   )}
-                  <span onClick={() => deletePreviewHandler(id)}> <HighlightOffIcon/></span>
+                  <span onClick={() => deletePreviewHandler(id)}>
+                    {" "}
+                    <HighlightOffIcon />
+                  </span>
                 </li>
               );
             })}
