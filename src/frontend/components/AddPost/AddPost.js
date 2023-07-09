@@ -6,7 +6,8 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
-import { useClickedOutsideDropBox, useEmoji } from "../../utils/helper";
+import { useEmoji } from "../../utils/hooks/useEmoji";
+import { useClickedOutsideDropBox } from "../../utils/hooks/useClickedOutsideDropBox";
 
 import { addNewPostService } from "../../services/postServices";
 import { deletePreviewFunc, postDataFunc } from "../../utils/utils";
@@ -20,9 +21,13 @@ const AddPost = () => {
   const emojiRef = useRef();
   const { token } = useAuth();
   const {
-    state: { userProfile },
+    state: { userProfile, users },
     dispatch,
   } = useData();
+
+  const currentUserProfile = users?.find(
+    (user) => user?.username === userProfile?.username
+  );
 
   const {
     emojiModalOpen,
@@ -50,7 +55,7 @@ const AddPost = () => {
     <div className="addPost_container flex-column">
       <div className="addPost_InfoContainer ">
         <div className="addPost_ImgContainer">
-          <img src={userProfile?.profileImage} alt="profile" />
+          <img src={currentUserProfile?.profileImage} alt="profile" />
         </div>
         <div className="addPost_message">
           <label htmlFor="addPostMessage"></label>
@@ -59,10 +64,10 @@ const AddPost = () => {
             id="addPostMessage"
             maxLength={1000}
             name="message"
-            value={newPostData.message}
+            value={newPostData?.message}
             onChange={postHandler}
           >
-            {newPostData.message}
+            {newPostData?.message}
           </textarea>
         </div>
       </div>

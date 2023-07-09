@@ -6,8 +6,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { useThemeContext } from "../../context/ThemeContext";
-import { useClickedOutsideDropBox, useSearch } from "../../utils/helper";
 
+import { useSearch } from "../../utils/hooks/useSearch";
+import { useClickedOutsideDropBox } from "../../utils/hooks/useClickedOutsideDropBox";
 import sepectrumLogo from "../../assets/logo/spectrum.png";
 
 const Header = () => {

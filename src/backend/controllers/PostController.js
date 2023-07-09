@@ -277,7 +277,7 @@ export const dislikePostHandler = function (schema, request) {
  * send DELETE Request at /api/user/posts/:postId
  * */
 export const deletePostHandler = function (schema, request) {
-  const user = requiresAuth.call(this, request);
+  let user = requiresAuth.call(this, request);
   try {
     if (!user) {
       return new Response(
@@ -303,8 +303,29 @@ export const deletePostHandler = function (schema, request) {
         }
       );
     }
+
+    const isBookmarked = user.bookmarks.some(
+      (currPost) => currPost._id === postId
+    );
+
+    if (isBookmarked) {
+      const filteredBookmarks = user.bookmarks.filter(
+        (currPost) => currPost._id !== postId
+      );
+
+      user = { ...user, bookmarks: filteredBookmarks };
+      this.db.users.update(
+        { _id: user._id },
+        { ...user, updatedAt: formatDate() }
+      );
+    }
+
     this.db.posts.remove({ _id: postId });
-    return new Response(201, {}, { posts: this.db.posts });
+    return new Response(
+      201,
+      {},
+      { posts: this.db.posts, bookmarks: user.bookmarks }
+    );
   } catch (error) {
     return new Response(
       500,

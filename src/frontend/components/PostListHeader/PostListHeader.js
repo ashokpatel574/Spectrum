@@ -3,7 +3,7 @@ import SortIcon from "@mui/icons-material/Sort";
 
 import { useData } from "../../context/DataContext";
 import { getFiltertypeState } from "../../utils/utils";
-import { useClickedOutsideDropBox } from "../../utils/helper";
+import { useClickedOutsideDropBox } from "../../utils/hooks/useClickedOutsideDropBox";
 
 const PostListHeader = ({ postListData, headerState, sortFeedType }) => {
   const [showfilterMenu, setShowFilterMenu] = useState(false);

@@ -1,16 +1,16 @@
+import { useRef, useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 // import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import { timeAgo } from "../../utils/utils";
-import { useClickedOutsideDropBox, usePost } from "../../utils/helper";
-import { useRef, useState } from "react";
-
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { usePost } from "../../utils/helper";
+import { useClickedOutsideDropBox } from "../../utils/hooks/useClickedOutsideDropBox";
 import { shareButtonIcon } from "../../constant";
 
 const Post = ({ post }) => {
@@ -29,7 +29,7 @@ const Post = ({ post }) => {
   const sharePostModalRef = useRef(null);
 
   const {
-    userProfile,
+    currentUserProfile,
     postEdit,
     setPostEdit,
     isPostLiked,
@@ -72,7 +72,7 @@ const Post = ({ post }) => {
           </div>
         </div>
 
-        {userProfile.username === username && (
+        {currentUserProfile?.username === username && (
           <div className="feedListItem_header-text-partThree" ref={postRef}>
             <span onClick={() => setPostEdit(!postEdit)}>
               <MoreHorizIcon />
@@ -91,7 +91,7 @@ const Post = ({ post }) => {
         <div className="feedListItem_InfoContainer-body flex-column">
           <p className="feedListItem_InfoContainer-body--content">{content}</p>
           {post?.postImage?.length > 0 &&
-            post?.postImage.map((image, id) => (
+            post?.postImage?.map((image, id) => (
               <div
                 key={id}
                 className="feedListItem_InfoContainer-body--postImage"
@@ -146,7 +146,10 @@ const Post = ({ post }) => {
           <div className="sharePost_body">
             {shareButtonIcon?.map(({ Button, Icon }, id) => (
               <span className="post_shareIcon" key={id}>
-                <Button url={window.location.href} via={userProfile?.username}>
+                <Button
+                  url={window.location.href}
+                  via={currentUserProfile?.username}
+                >
                   <Icon size={34} round />
                 </Button>
               </span>

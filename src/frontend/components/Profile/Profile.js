@@ -14,7 +14,7 @@ import {
 } from "../../services/userServices";
 import { logoutService } from "../../services/authServices";
 
-import { useClickedOutsideDropBox } from "../../utils/helper";
+import { useClickedOutsideDropBox } from "../../utils/hooks/useClickedOutsideDropBox";
 import { isFollowedFunc } from "../../utils/utils";
 
 const Profile = () => {
@@ -28,11 +28,15 @@ const Profile = () => {
   let navigate = useNavigate();
   const userListRef = useRef();
 
+  const currentuserProfile = users?.find(
+    (user) => user?.username === userProfile?.username
+  );
+
   const { token, setToken, setCurrentUser } = useAuth();
   const { profileId } = useParams();
   const profileDetails = users?.find((user) => user?._id === String(profileId));
 
-  const isFollowed = isFollowedFunc(profileDetails, userProfile);
+  const isFollowed = isFollowedFunc(profileDetails, currentuserProfile);
 
   const followHandler = (e, followUserId, userfirstname, userLastname) => {
     e.stopPropagation();
@@ -228,7 +232,7 @@ const Profile = () => {
                     <span className="followListModal_listItem-partTwo">
                       {userProfileFollowType === "followers" ? (
                         <>
-                          {isFollowedFunc(item, userProfile) ? (
+                          {isFollowedFunc(item, currentuserProfile) ? (
                             <span
                               className="unfollow"
                               onClick={(e) =>

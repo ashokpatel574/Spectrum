@@ -79,9 +79,6 @@
   border-radius: 0.6rem;
   cursor: pointer;
   transition: all 0.25s;
-}
-
-.profile-edit:hover {
   color: var(--text-color-four);
   background-color: var(--primary-color-one);
 }
@@ -150,7 +147,7 @@
 .followListModal_section {
   position: absolute;
   z-index: 110;
-  top: 70%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 32rem;
@@ -332,6 +329,10 @@
     height: 4.5rem;
   }
 
+  .profile_details-partOne .fullname {
+    font-size: 1.75rem;
+  }
+
   .profile_details-partOne .username {
     font-size: 1.6rem;
   }
@@ -349,7 +350,7 @@
   }
 
   .profile_details-partTwo span {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
   }
 
   .profile_details-partThree {
@@ -357,7 +358,7 @@
   }
 
   .profile_details-partThree span {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
   }
 
   .btn.reloadBtn {
@@ -396,6 +397,10 @@
   .followListModal_listItem-partTwo .follow {
     font-size: 1.5rem;
   }
+
+  .profile_details-partFour span a {
+    font-size: 1.35rem;
+  }
 }
 
 /*  368px === 23em  */
@@ -424,5 +429,9 @@
 
   .profile_details-partFour {
     margin-left: -5rem;
+  }
+
+  .profile_details-partFour span a {
+    font-size: 1.3rem;
   }
 }
