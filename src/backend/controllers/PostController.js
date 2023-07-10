@@ -115,7 +115,7 @@ export const createPostHandler = function (schema, request) {
  * body contains { postData }
  * */
 export const editPostHandler = function (schema, request) {
-  const user = requiresAuth.call(this, request);
+  let user = requiresAuth.call(this, request);
   try {
     if (!user) {
       return new Response(
@@ -142,7 +142,25 @@ export const editPostHandler = function (schema, request) {
     }
     post = { ...post, ...postData };
     this.db.posts.update({ _id: postId }, post);
-    return new Response(201, {}, { posts: this.db.posts });
+
+    const isBookmarked = user.bookmarks.some(
+      (currPost) => currPost._id === postId
+    );
+
+    if (isBookmarked) {
+      const filteredBookmarks = user.bookmarks.map((currPost) =>
+        currPost._id === postId ? { ...post } : currPost
+      );
+
+      user = { ...user, bookmarks: filteredBookmarks };
+      this.db.users.update({ _id: user._id }, { ...user });
+    }
+
+    return new Response(
+      201,
+      {},
+      { posts: this.db.posts, bookmarks: user.bookmarks }
+    );
   } catch (error) {
     return new Response(
       500,
@@ -160,7 +178,7 @@ export const editPostHandler = function (schema, request) {
  * */
 
 export const likePostHandler = function (schema, request) {
-  const user = requiresAuth.call(this, request);
+  let user = requiresAuth.call(this, request);
   try {
     if (!user) {
       return new Response(
@@ -197,7 +215,30 @@ export const likePostHandler = function (schema, request) {
     post.likes.likeCount += 1;
     post.likes.likedBy.push(updatedUser);
     this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
-    return new Response(201, {}, { posts: this.db.posts });
+
+    const isBookmarked = user.bookmarks.some(
+      (currPost) => currPost._id === postId
+    );
+
+    if (isBookmarked) {
+      const filteredBookmarks = user.bookmarks.map((currPost) =>
+        currPost._id === postId
+          ? { ...post, updatedAt: formatDate() }
+          : currPost
+      );
+
+      user = { ...user, bookmarks: filteredBookmarks };
+      this.db.users.update(
+        { _id: user._id },
+        { ...user, updatedAt: formatDate() }
+      );
+    }
+
+    return new Response(
+      201,
+      {},
+      { posts: this.db.posts, bookmarks: user.bookmarks }
+    );
   } catch (error) {
     return new Response(
       500,
@@ -215,7 +256,7 @@ export const likePostHandler = function (schema, request) {
  * */
 
 export const dislikePostHandler = function (schema, request) {
-  const user = requiresAuth.call(this, request);
+  let user = requiresAuth.call(this, request);
   try {
     if (!user) {
       return new Response(
@@ -260,7 +301,30 @@ export const dislikePostHandler = function (schema, request) {
     post.likes.dislikedBy.push(updatedUser);
     post = { ...post, likes: { ...post.likes, likedBy: updatedLikedBy } };
     this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
-    return new Response(201, {}, { posts: this.db.posts });
+
+    const isBookmarked = user.bookmarks.some(
+      (currPost) => currPost._id === postId
+    );
+
+    if (isBookmarked) {
+      const filteredBookmarks = user.bookmarks.map((currPost) =>
+        currPost._id === postId
+          ? { ...post, updatedAt: formatDate() }
+          : currPost
+      );
+
+      user = { ...user, bookmarks: filteredBookmarks };
+      this.db.users.update(
+        { _id: user._id },
+        { ...user, updatedAt: formatDate() }
+      );
+    }
+
+    return new Response(
+      201,
+      {},
+      { posts: this.db.posts, bookmarks: user.bookmarks }
+    );
   } catch (error) {
     return new Response(
       500,

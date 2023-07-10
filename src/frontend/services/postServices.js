@@ -59,11 +59,17 @@ export const getPostEditService = async (postId, dispatch) => {
   }
 };
 
-export const postUpdateService = async (postId, post, token, dispatch) => {
+export const postUpdateService = async (
+  postId,
+  post,
+  token,
+  dispatch,
+  username
+) => {
   try {
     const {
       status,
-      data: { posts },
+      data: { posts, bookmarks },
     } = await axios.post(
       `/api/posts/edit/${postId}`,
       {
@@ -77,7 +83,11 @@ export const postUpdateService = async (postId, post, token, dispatch) => {
     if (status === 200 || status === 201) {
       dispatch({
         type: ActionType.UpdatePost,
-        payload: posts,
+        payload: {
+          posts: posts,
+          userBookmarkDB: bookmarks,
+          username: username,
+        },
       });
       ToastHandler(ToastType.Success, `Updated Post!`);
     }
@@ -123,7 +133,12 @@ export const postDeleteService = async (postId, token, dispatch, username) => {
   }
 };
 
-export const addLikedPostService = async (postId, token, dispatch) => {
+export const addLikedPostService = async (
+  postId,
+  token,
+  dispatch,
+  username
+) => {
   try {
     const { status, data } = await axios.post(
       `/api/posts/like/${postId}`,
@@ -136,7 +151,11 @@ export const addLikedPostService = async (postId, token, dispatch) => {
     if (status === 200 || status === 201) {
       dispatch({
         type: ActionType.TogglePostLike,
-        payload: data?.posts,
+        payload: {
+          posts: data?.posts,
+          bookmarksDB: data?.bookmarks,
+          username: username,
+        },
       });
     }
   } catch (error) {
@@ -144,7 +163,12 @@ export const addLikedPostService = async (postId, token, dispatch) => {
   }
 };
 
-export const removeLikedPostService = async (postId, token, dispatch) => {
+export const removeLikedPostService = async (
+  postId,
+  token,
+  dispatch,
+  username
+) => {
   try {
     const { status, data } = await axios.post(
       `/api/posts/dislike/${postId}`,
@@ -157,7 +181,11 @@ export const removeLikedPostService = async (postId, token, dispatch) => {
     if (status === 200 || status === 201) {
       dispatch({
         type: ActionType.TogglePostLike,
-        payload: data?.posts,
+        payload: {
+          posts: data?.posts,
+          bookmarksDB: data?.bookmarks,
+          username: username,
+        },
       });
     }
   } catch (error) {

@@ -40,8 +40,8 @@ export const usePost = (selectedPost) => {
 
   const postLikeHandler = (postId) => {
     isPostLiked
-      ? removeLikedPostService(postId, token, dispatch)
-      : addLikedPostService(postId, token, dispatch);
+      ? removeLikedPostService(postId, token, dispatch, userProfile?.username)
+      : addLikedPostService(postId, token, dispatch, userProfile?.username);
   };
 
   const postBookMarkHandler = (postId) => {
@@ -57,7 +57,7 @@ export const usePost = (selectedPost) => {
 
   const postDeleteHandler = (postId) => {
     setPostEdit(false);
-    postDeleteService(postId, token, dispatch, userProfile.username);
+    postDeleteService(postId, token, dispatch, userProfile?.username);
   };
 
   const postCommentHandler = () => {};
