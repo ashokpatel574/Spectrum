@@ -93,3 +93,17 @@
     font-size: 1.65rem;
   }
 }
+
+/*  544px === 34em  */
+@media (max-width: 34em) {
+  .postFeed_container-header span {
+    font-size: 1.8rem;
+  }
+}
+
+/*  368px === 23em  */
+@media (max-width: 23em) {
+  .postFeed_container-header span {
+    font-size: 1.7rem;
+  }
+}

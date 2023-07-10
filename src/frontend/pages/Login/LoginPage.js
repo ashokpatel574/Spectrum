@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
@@ -16,6 +15,7 @@ const LoginPage = () => {
     logInformSubmit,
     guestLoginformSubmit,
     passwordViewHandler,
+    signupLinkHandler,
   } = useLogin();
 
   return (
@@ -100,7 +100,8 @@ const LoginPage = () => {
             Log In as Guest
           </button>
           <span className="goto_signUp-text">
-            Don't have an account? <Link to="signUp">Sign Up</Link>
+            Don't have an account?{" "}
+            <span onClick={signupLinkHandler}>Sign Up</span>
           </span>
         </section>
       )}

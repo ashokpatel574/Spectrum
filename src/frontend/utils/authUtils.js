@@ -101,6 +101,19 @@ export const useLogin = () => {
     }
   };
 
+  const signupLinkHandler = () => {
+    navigate("/user/signUp");
+    setAuthError(null);
+    setLogInUserInput({
+      username: "",
+      password: "",
+    });
+    setLogInErrorDetails({
+      username: "",
+      password: "",
+    });
+  };
+
   return {
     logInUserInput,
     logInErrorDetails,
@@ -109,6 +122,7 @@ export const useLogin = () => {
     logInformSubmit,
     guestLoginformSubmit,
     passwordViewHandler,
+    signupLinkHandler,
   };
 };
 
@@ -131,7 +145,7 @@ export const useSignUp = () => {
     confirmPassword: "",
   });
 
-  const { setToken, setCurrentUser, setAuthError, setIsLoadingAuth } =
+  const { setToken, setCurrentUser, setSignUpError, setIsLoadingAuth } =
     useAuth();
   const navigate = useNavigate();
 
@@ -242,7 +256,7 @@ export const useSignUp = () => {
           lastname,
           setToken,
           setCurrentUser,
-          setAuthError,
+          setSignUpError,
           setIsLoadingAuth,
           navigate
         )
@@ -259,10 +273,32 @@ export const useSignUp = () => {
       });
   };
 
+  const loginLinkHandler = () => {
+    navigate("/user");
+    setSignUpError(null);
+    setUserSignUpDetails({
+      firstname: "",
+      lastname: "",
+      email: "",
+      username: "",
+      password: "",
+      confirmPassword: "",
+    });
+    setSignUpErrorDetails({
+      firstname: "",
+      lastname: "",
+      email: "",
+      username: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
+
   return {
     userSignUpDetails,
     signUpErrorDetails,
     signUpDataHandler,
     signUpFormSubmit,
+    loginLinkHandler,
   };
 };

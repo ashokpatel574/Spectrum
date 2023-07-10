@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { makeServer } from "./server";
+import "react-toastify/dist/ReactToastify.css";
 import { RouterProvider } from "react-router-dom";
 import AppRouter from "./frontend/routes/AppRouter";
 import AuthContextProvider from "./frontend/context/AuthContext";
