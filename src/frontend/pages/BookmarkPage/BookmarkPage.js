@@ -13,7 +13,6 @@ const BookmarkPage = () => {
   );
 
   const bookmarksData = currentUserProfile?.bookmarks;
-
   const filteredFeedBySort =
     currentUserProfile &&
     getfilterDataBySort(bookmarksData, sortFeedTypeBookmark);

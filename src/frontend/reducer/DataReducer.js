@@ -68,9 +68,22 @@ export const DataReducer = (state, action) => {
     }
 
     case ActionType.TogglePostLike: {
+      const updatedUserData = state.users?.map((user) => {
+        return user.username === action.payload.username
+          ? {
+              ...user,
+              bookmarks: [...action.payload?.bookmarksDB],
+            }
+          : user;
+      });
       return {
         ...state,
-        posts: [...action.payload],
+        posts: action.payload?.posts,
+        users: updatedUserData,
+        userProfile: {
+          ...state.userProfile,
+          bookmarks: [...action.payload?.bookmarksDB],
+        },
       };
     }
 
@@ -141,12 +154,25 @@ export const DataReducer = (state, action) => {
     }
 
     case ActionType.UpdatePost: {
+      const updatedUserData = state.users.map((user) => {
+        return user.username === action.payload.username
+          ? {
+              ...user,
+              bookmarks: [...action.payload.userBookmarkDB],
+            }
+          : user;
+      });
       return {
         ...state,
         isPostModalOpen: false,
         isPostEdited: false,
         postModalDetails: null,
-        posts: action.payload,
+        posts: action.payload.posts,
+        users: updatedUserData,
+        userProfile: {
+          ...state.userProfile,
+          bookmarks: [...action.payload.userBookmarkDB],
+        },
       };
     }
 

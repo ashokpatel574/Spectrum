@@ -24,7 +24,7 @@ const PostModal = () => {
   const { token } = useAuth();
   const {
     dispatch,
-    state: { postModalDetails, isPostEdited },
+    state: { postModalDetails, isPostEdited, userProfile },
   } = useData();
 
   const {
@@ -50,7 +50,13 @@ const PostModal = () => {
       postImage:
         postModalData?.files?.length === 0 ? null : postModalData?.files,
     };
-    postUpdateService(postModalDetails._id, updatedPost, token, dispatch);
+    postUpdateService(
+      postModalDetails._id,
+      updatedPost,
+      token,
+      dispatch,
+      userProfile?.username
+    );
   };
 
   const closePostModalHandler = () => {
