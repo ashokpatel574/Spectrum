@@ -39,14 +39,13 @@ export const getLoginCredentialsService = async (
       setToken(encodedToken);
       setCurrentUser(foundUser);
       setIsLoadingAuth(false);
-      navigate("/");
       ToastHandler(
         ToastType.Success,
         `Welcome back! ${getStringCaptialize(foundUser.firstname)}`
       );
+      navigate("/");
     }
   } catch (error) {
-    console.error("loginError", error);
     setIsLoadingAuth(false);
 
     if (error.response.status === 404) {
@@ -56,7 +55,7 @@ export const getLoginCredentialsService = async (
       });
       ToastHandler(
         ToastType.Error,
-        `${error.response.status}, The username is not Registered`
+        `${error.response.status},  The username is not Registered!`
       );
     } else if (error.response.status === 401) {
       setAuthError({
@@ -88,12 +87,12 @@ export const setSignUpCredentialsService = async (
   lastName,
   setToken,
   setCurrentUser,
-  setAuthError,
+  setSignUpError,
   setIsLoadingAuth,
   navigate
 ) => {
   try {
-    setAuthError(null);
+    setSignUpError(null);
     setIsLoadingAuth(true);
     const {
       data: { createdUser, encodedToken },
@@ -128,11 +127,10 @@ export const setSignUpCredentialsService = async (
       );
     }
   } catch (error) {
-    console.error("SignUpError", error);
     setIsLoadingAuth(false);
 
     if (error.response.status === 422) {
-      setAuthError({
+      setSignUpError({
         status: 422,
         message: "Username Already Exists",
       });
@@ -141,7 +139,7 @@ export const setSignUpCredentialsService = async (
         `${error.response.status}, Username Already Exists`
       );
     } else {
-      setAuthError({
+      setSignUpError({
         status: error.response.status,
         message: `Something went wrong! Try again later`,
       });
@@ -159,6 +157,6 @@ export const logoutService = (setToken, setCurrentUser, dispatch, navigate) => {
   setToken("");
   setCurrentUser("");
   dispatch({ type: ActionType.LogOut });
-  ToastHandler(ToastType.Success, `Logged out`);
   navigate("/user");
+  ToastHandler(ToastType.Success, `Logged out`);
 };

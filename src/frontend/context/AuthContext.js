@@ -10,6 +10,7 @@ const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
   const [isLoadingAuth, setIsLoadingAuth] = useState(false);
   const [authError, setAuthError] = useState(null);
+  const [signUpError, setSignUpError] = useState(null);
 
   return (
     <AuthContext.Provider
@@ -22,6 +23,8 @@ const AuthContextProvider = ({ children }) => {
         authError,
         setAuthError,
         setIsLoadingAuth,
+        signUpError,
+        setSignUpError,
       }}
     >
       {children}

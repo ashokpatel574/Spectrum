@@ -59,7 +59,7 @@ const Header = () => {
               value={searchInput}
               onChange={searchHandler}
             />
-            <span className="flex-center">
+            <span className="flex-center headerIcon">
               {searchInput.length === 0 ? (
                 <SearchIcon />
               ) : (
@@ -80,7 +80,10 @@ const Header = () => {
                     key={item.username}
                     className="searchResult_container-section "
                   >
-                    <span onClick={() => profileHandler("profile", item?._id)}>
+                    <span
+                      onClick={() => profileHandler("profile", item?._id)}
+                      className="searcResult_card"
+                    >
                       <span className=" searchResult_Imgcontainer">
                         <img src={item?.profileImage} alt="searched profile" />
                       </span>

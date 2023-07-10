@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useSignUp } from "../../utils/authUtils";
 import Loader from "../../components/loader/Loader";
 
 const SignUp = () => {
-  const { authError, isLoadingAuth } = useAuth();
+  const { signUpError, isLoadingAuth } = useAuth();
 
   const {
     userSignUpDetails,
     signUpErrorDetails,
     signUpDataHandler,
     signUpFormSubmit,
+    loginLinkHandler,
   } = useSignUp();
 
   return (
@@ -22,9 +22,9 @@ const SignUp = () => {
           <h2 className="app-title">spectrum</h2>
           <h3 className="signUp_title">Sign Up</h3>
 
-          {authError && (
+          {signUpError && (
             <p className="signUpError_server-message">
-              {`(${authError?.status})`} {authError?.message}
+              {`(${signUpError?.status})`} {signUpError?.message}
             </p>
           )}
 
@@ -135,9 +135,7 @@ const SignUp = () => {
 
           <p className="goto_login-text">
             Already have an account?
-            <span>
-              <Link to="/user">Login</Link>
-            </span>
+            <span onClick={loginLinkHandler}>Login</span>
           </p>
         </section>
       )}

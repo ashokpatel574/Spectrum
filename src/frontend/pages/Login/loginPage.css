@@ -122,11 +122,12 @@
   font-size: 1.55rem;
 }
 
-.goto_signUp-text a {
+.goto_signUp-text span {
   margin-left: 0.5rem;
   font-size: 1.6rem;
   color: var(--text-color-highlight);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .loginBtn:hover,
